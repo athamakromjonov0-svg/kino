@@ -82,7 +82,7 @@
 ```text
 cinebook-frontend/
 │
-├── public/                   # logo, favicon, _redirects (Render SPA)
+├── public/                   # logo, favicon, _redirects (Static Site uchun zaxira)
 ├── src/
 │   ├── app/                  # App shell, providers, router (40+ route)
 │   │   ├── App.jsx
@@ -117,7 +117,8 @@ cinebook-frontend/
 │   ├── schemas/              # Zod sxemalari
 │   ├── utils/                # errorHandler, formatDate, validators, localLists
 │   └── __tests__/            # 6 test fayl, 42 test
-├── mock-server.cjs           # To'liq Mock API (barcha endpointlar + admin CRUD)
+├── mock-server.cjs           # To'liq Mock API + Swagger UI + dist/ static serving
+├── render.yaml               # Render Blueprint (bitta service: frontend + API + docs)
 ├── vite.config.js
 └── package.json
 ```
@@ -143,25 +144,38 @@ VITE_API_URL=http://localhost:5432
 ### 4. Mock serverni ishga tushirish
 Haqiqiy backend hali tayyor bo'lmasa, loyiha ichidagi Mock API barcha endpointlarni qo'llab-quvvatlaydi:
 ```bash
+npm run build      # frontend dist/ ga build qilinadi (ixtiyoriy, lekin tavsiya etiladi)
 npm run mock-server
 ```
-Server `http://localhost:5432` da ishlaydi. Test akkauntlar:
-- **Admin**: `ali@example.com` / `password123`
-- **User**: `madina@example.com` / `password123`
-
-### 5. API hujjatlari (Swagger) 📘
-
-Mock server barcha **29 ta endpoint** uchun OpenAPI 3.0 hujjatlarini o'zi beradi:
+Server `http://localhost:5432` da ishlaydi va **bitta portda ham frontend, ham API, ham Swagger**
+taqdim etadi:
 
 | URL | Nima |
 | :--- | :--- |
+| `http://localhost:5432/` | Frontend (SPA) — `dist/` build qilingan bo'lsa |
 | `http://localhost:5432/api-docs` | Swagger UI — interaktiv, "Try it out" bilan |
 | `http://localhost:5432/openapi.json` | OpenAPI 3.0 spetsifikatsiyasi (JSON) |
+| `http://localhost:5432/api/health` | Health check (JSON) |
 
-- Spetsifikatsiya — loyiha ildizidagi **`openapi.json`** fayli (22 path / 29 operation,
-  `components` da umumiy sxemalar, `bearerAuth` security va tayyor misollar).
+Test akkauntlar:
+- **Admin**: `ali@example.com` / `password123`
+- **User**: `madina@example.com` / `password123`
+
+> `dist/` mavjud bo'lmasa, mock server faqat API + Swagger beradi va logda ogohlantiradi.
+
+### 5. API hujjatlari (Swagger) 📘
+
+Mock server barcha endpointlar uchun OpenAPI 3.0 hujjatlarini o'zi beradi:
+
+| URL | Nima |
+| :--- | :--- |
+| `http://localhost:5432/api-docs` | Swagger UI — CineBook brend dizaynida, "Try it out" bilan |
+| `http://localhost:5432/openapi.json` | OpenAPI 3.0 spetsifikatsiyasi (JSON) |
+
+- Spetsifikatsiya — loyiha ildizidagi **`openapi.json`** fayli (22 path / 31 operation,
+  `components` da 28 ta umumiy sxema, `bearerAuth` security va tayyor misollar).
 - Swagger UI assetlari CDN'dan yuklanadi — qo'shimcha npm paket o'rnatilmaydi.
-- Boshlashda server `GET /` health javobida `docs` va `spec` havolalarini ham qaytaradi.
+- Swagger UI brend headerida endpoint/path statistikasini avtomatik ko'rsatadi.
 
 ### 6. Development
 ```bash
@@ -267,25 +281,59 @@ oqimlar, ommaviy demo streamlar, rasmiy YouTube embedlar).
 
 ## ☁️ Render Deploy Qo'llanmasi
 
+Loyiha **bittaga service** sifatida deploy qilinadi: frontend, mock API va Swagger UI
+bir xil domen ostida ishlaydi — shuning uchun CORS muammosi ham bo'lmaydi.
+
+### Eng oson yo'l — Blueprint
+
 1. Loyihani GitHub'ga yuklang.
-2. [Render Dashboard](https://dashboard.render.com) → **New +** → **Static Site**.
-3. Sozlamalar:
-   - **Build Command**: `npm install && npm run build`
-   - **Publish Directory**: `dist`
-4. **Environment Variables**: `VITE_API_URL` = `https://your-backend.onrender.com`
-5. SPA rewrite: `public/_redirects` fayli allaqachon bor:
-   ```text
-   /*    /index.html   200
-   ```
-6. Backend CORS'da Render frontend domeni ruxsat etilganiga ishonch hosil qiling.
+2. [Render Dashboard](https://dashboard.render.com) → **New +** → **Blueprint**.
+3. Reponi tanlang (`athamakromjonov0-svg/kino`) — `render.yaml` o'zi o'qiladi.
+4. **Apply** bosing. Hammasi avtomatik sozlanadi:
+
+| Yo'l | Nima |
+| :--- | :--- |
+| `/` | Frontend (SPA) |
+| `/api-docs` | Swagger UI |
+| `/openapi.json` | OpenAPI spetsifikatsiyasi |
+| `/api/health` | Health check |
+
+### Qo'lda sozlashtirish
+
+[Render Dashboard](https://dashboard.render.com) → **New +** → **Web Service**:
+
+| Maydon | Qiymat |
+| :--- | :--- |
+| **Build Command** | `npm install && npm run build` |
+| **Start Command** | `node mock-server.cjs` |
+| **Health Check Path** | `/api/health` |
+
+Environment Variables:
+
+| Kalit | Qiymat |
+| :--- | :--- |
+| `PORT` | `10000` |
+| `NODE_ENV` | `production` |
+| `VITE_API_URL` | **Bo'sh qoldiring** — frontend o'z domeniga (same-origin) ulanadi |
+
+> `VITE_API_URL` faqat frontend va API **alohida** deploy qilinganda kerak
+> (masalan haqiqiy backend boshqa domenda bo'lsa).
+
+### Nima uchun bitta service?
+
+`mock-server.cjs` `dist/` ni ham statik fayl sifatida beradi va noma'lum yo'llar uchun
+`index.html` qaytaradi (SPA fallback). Shuning uchun `/admin/users` kabi deep link
+to'g'ridan-to'g'ri ishlaydi — alohida Static Site yoki `_redirects` sozlamasi kerak emas.
+Statik assetlar (`/assets/...`) immutable cache bilan beriladi.
 
 ---
 
 ## 🛠️ Keng Tarqalgan Muammolar
 
-1. **Network Error** — backend ishga tushganini va `VITE_API_URL` to'g'riligini tekshiring. Lokal sinov uchun: `npm run mock-server`.
+1. **Network Error** — backend ishga tushganini tekshiring. Lokal sinov uchun `npm run build && npm run mock-server`. Render'da `VITE_API_URL` **bo'sh** bo'lishi kerak (same-origin).
 2. **409 Conflict** — joy boshqa foydalanuvchi tomonidan band qilingan. Xarita avtomatik yangilanadi.
 3. **403 Forbidden (admin)** — rolni tekshiring: admin bilan qayta login qiling (`ali@example.com`).
 4. **Streaming ishlamayapti** — `GET /streaming/:id` javobini tekshiring; `source: null` bo'lsa streaming haqiqatan mavjud emas (bu xato emas, dizayn bo'yicha).
-5. **F5 dan keyin 404** — `_redirects` fayli deploy'da mavjudligini tekshiring.
+5. **F5 dan keyin 404** — `npm run build` bajarilganini tekshiring; mock server `dist/` yo'qligini logda ogohlantiradi.
 6. **HLS brauzerda ishlamasa** — Safari native HLS qo'llaydi; boshqa brauzerlarda hls.js avtomatik ulanadi. Tarmoq xatosi bo'lsa pleyer aniq xabar ko'rsatadi.
+7. **Sayt JSON ko'rsatmoqda** — `/api/health` ni tekshiring. Bu endpoint frontend kabi `200` qaytarishi kerak.

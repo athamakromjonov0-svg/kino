@@ -910,6 +910,68 @@ function getAuthUser(req) {
   return users[0] || null;
 }
 
+// ==========================================
+// STATIC SITE SERVING (dist/)
+// Frontend build natijasi bir xil service'dan tarqatiladi, shuning
+// uchun Render'da bitta domen ostida ham frontend, ham Swagger UI
+// (va API) ishlaydi — CORS muammosi ham bo'lmaydi.
+// ==========================================
+const DIST_DIR = path.join(__dirname, 'dist');
+const serveStatic = fs.existsSync(path.join(DIST_DIR, 'index.html'));
+
+const MIME_TYPES = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.mjs': 'text/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.webp': 'image/webp',
+  '.avif': 'image/avif',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+  '.txt': 'text/plain; charset=utf-8',
+  '.map': 'application/json; charset=utf-8',
+};
+
+/**
+ * Serves a single file from dist/.
+ * @returns {boolean} true if a file was served, false if it should fall through
+ */
+function serveStaticFile(res, pathname) {
+  // Path traversal dan himoya: .. va absolute yo'llarni tozalash
+  const decoded = decodeURIComponent(pathname);
+  const safePath = path.normalize(decoded).replace(/^(\.\.[/\\])+/, '');
+  const filePath = path.join(DIST_DIR, safePath);
+
+  // DIST_DIR ichidan chiqib ketishga urinishni bloklash
+  if (!filePath.startsWith(DIST_DIR)) return false;
+
+  if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) return false;
+
+  const ext = path.extname(filePath).toLowerCase();
+  const contentType = MIME_TYPES[ext] || 'application/octet-stream';
+
+  // Vite hashli assetlar — uzoq mudatli kesh
+  const cacheControl = safePath.includes('/assets/')
+    ? 'public, max-age=31536000, immutable'
+    : 'no-cache';
+
+  res.writeHead(200, {
+    'Content-Type': contentType,
+    'Cache-Control': cacheControl,
+    'Access-Control-Allow-Origin': '*',
+  });
+  res.end(fs.readFileSync(filePath));
+  return true;
+}
+
 const server = http.createServer(async (req, res) => {
   // CORS Preflight
   if (req.method === 'OPTIONS') {
@@ -927,12 +989,16 @@ const server = http.createServer(async (req, res) => {
 
   try {
     // Health check endpoint
-    if (pathname === '/' && method === 'GET') {
+    // dist/ mavjud bo'lsa, "/" frontend SPA ga tegishli — health uchun
+    // /api/health ishlatiladi. Aks holda (faqat API rejimi) "/" ham health.
+    const isHealthPath = serveStatic ? '/api/health' : '/';
+    if (pathname === isHealthPath && method === 'GET') {
       return sendJSON(res, 200, {
         status: 'online',
         service: 'CineBook Mock API Server',
         docs: '/api-docs',
         spec: '/openapi.json',
+        frontend: serveStatic ? '/' : null,
         timestamp: new Date().toISOString()
       });
     }
@@ -1418,6 +1484,22 @@ if (pathname === '/reviews' && method === 'POST') {
       return sendJSON(res, 200, openApiSpec);
     }
 
+    // ==========================================
+    // STATIC SITE (dist/) — SPA fallback
+    // API route'lar yuqorida allaqachon tekshirilgan, shu sabab
+    // bu qismga kelganda hech qanday API mos kelmagan.
+    // ==========================================
+    if (method === 'GET' && serveStatic) {
+      const served = serveStaticFile(res, pathname);
+      if (served) return;
+      // Route'lar client-side: noma'lum yo'l uchun index.html
+      const indexFile = path.join(DIST_DIR, 'index.html');
+      if (fs.existsSync(indexFile)) {
+        res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        return res.end(fs.readFileSync(indexFile));
+      }
+    }
+
     // 404 for any other path
     return sendJSON(res, 404, { message: "Endpoint topilmadi" });
 
@@ -1427,9 +1509,15 @@ if (pathname === '/reviews' && method === 'POST') {
   }
 });
 
-server.listen(PORT, () => {
-  console.log(`🎬 CineBook Mock Server running on http://localhost:${PORT}`);
+server.listen(PORT, () => {    console.log(`🎬 CineBook Mock Server running on http://localhost:${PORT}`);
   console.log(`📘 Swagger UI:  http://localhost:${PORT}/api-docs`);
   console.log(`📄 OpenAPI spec: http://localhost:${PORT}/openapi.json`);
+  if (serveStatic) {
+    console.log(`🖥️  Frontend SPA: http://localhost:${PORT}/`);
+    console.log(`❤️  Health check: http://localhost:${PORT}/api/health`);
+  } else {
+    console.log(`❤️  Health check: http://localhost:${PORT}/`);
+    console.log(`⚠️  dist/ topilmadi — frontend uchun avval "npm run build" ishga tushiring.`);
+  }
   console.log(`Ready to serve API requests.`);
 });

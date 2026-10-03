@@ -1,0 +1,848 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "CineBook Mock API",
+    "version": "1.0.0",
+    "description": "CINEBOOK ULTRA uchun to'liq mock backend API.\n\nBarcha ma'lumot xotira (in-memory) da saqlanadi — server qayta ishga tushsa tiklanadi.\n\n**Muhim:** bu mock server. Haqiqiy backend ulansa, endpointlar bir xil, ammo ma'lumotlar haqiqiy bo'ladi.\n\n## Test akkauntlar\n\n| Rol | Email | Parol |\n| --- | --- | --- |\n| admin | ali@example.com | password123 |\n| user | madina@example.com | password123 |\n\n## Autentifikatsiya\n\nBarcha himoyalangan endpointlar `Authorization: Bearer <token>` sarlavhasini talab qiladi.\nToken `POST /auth/login` orqali olinadi.",
+    "contact": { "name": "CineBook Ultra", "url": "http://localhost:5173" },
+    "license": { "name": "MIT" }
+  },
+  "servers": [
+    { "url": "http://localhost:5432", "description": "Mock server (npm run mock-server)" }
+  ],
+  "tags": [
+    { "name": "System", "description": "Health check va umumiy endpointlar" },
+    { "name": "Auth", "description": "Ro'yxatdan o'tish, kirish, joriy foydalanuvchi" },
+    { "name": "Movies", "description": "Kino katalogi (ochiq)" },
+    { "name": "Sessions", "description": "Seanslar va zal xaritasi" },
+    { "name": "Bookings", "description": "Chipta bron qilish (auth talab qiladi)" },
+    { "name": "Community", "description": "Aktyorlar, sharhlar, kolleksiyalar" },
+    { "name": "Cinemas", "description": "Kinoteatrlar katalogi" },
+    { "name": "Streaming", "description": "Qonuniy video manbalar" },
+    { "name": "Admin", "description": "Admin panel endpointlari (admin roli talab qiladi)" }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["System"],
+        "summary": "Health check",
+        "description": "Server holati va hujjatlar havolasi.",
+        "responses": {
+          "200": {
+            "description": "Server onlayn",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "online" },
+                    "service": { "type": "string", "example": "CineBook Mock API Server" },
+                    "docs": { "type": "string", "example": "/api-docs" },
+                    "timestamp": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Ro'yxatdan o'tish",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RegisterRequest" },
+              "example": { "name": "Sardor Ismoilov", "email": "sardor@example.com", "password": "secret123" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Muvaffaqiyatli ro'yxatdan o'tdi",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/RegisterResponse" },
+                "example": {
+                  "message": "Muvaffaqiyatli ro'yxatdan o'tdingiz",
+                  "user": { "id": 3, "name": "Sardor Ismoilov", "email": "sardor@example.com" }
+                }
+              }
+            }
+          },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "409": {
+            "description": "Email allaqachon mavjud",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Ushbu email bilan foydalanuvchi allaqachon mavjud (409 xatosi)" } } }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Tizimga kirish",
+        "description": "Muvaffaqiyatli javobda `token` qaytadi. Shu token barcha himoyalangan endpointlarda ishlatiladi.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" },
+              "example": { "email": "ali@example.com", "password": "password123" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token berildi",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AuthResponse" },
+                "example": {
+                  "token": "mock_token_user_1_1759497000000",
+                  "user": { "id": 1, "name": "Ali Valiyev", "email": "ali@example.com", "role": "admin" }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Email yoki parol noto'g'ri",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Email yoki parol noto'g'ri (401 xatosi)" } } }
+          }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Joriy foydalanuvchi",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Joriy foydalanuvchi",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/User" } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      }
+    },
+    "/movies": {
+      "get": {
+        "tags": ["Movies"],
+        "summary": "Kinolar ro'yxati (paginatsiya + janr filtri)",
+        "parameters": [
+          { "name": "genre", "in": "query", "required": false, "schema": { "type": "string" }, "description": "Janr nomi. `all` yoki bo'sh — filtr yo'q.", "example": "Action" },
+          { "name": "page", "in": "query", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 1 } },
+          { "name": "limit", "in": "query", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 8 } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sahifalangan kinolar",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MoviePage" } } }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Kino qo'shish (admin)",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/MovieWriteRequest" },
+              "example": { "title": "Dune: Messiah", "genre": "Sci-Fi", "description": "Paul Atreidesning davomi." }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Kino yaratildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Movie" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" }
+        }
+      }
+    },
+    "/movies/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/MovieId" }],
+      "get": {
+        "tags": ["Movies"],
+        "summary": "Kino tafsilotlari (seanslari bilan)",
+        "responses": {
+          "200": { "description": "Kino topildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Movie" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "put": {
+        "tags": ["Admin"],
+        "summary": "Kino tahrirlash (admin)",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MovieWriteRequest" }, "example": { "title": "Dune: Part Two (IMAX)", "genre": "Sci-Fi" } } }
+        },
+        "responses": {
+          "200": { "description": "Kino yangilandi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Movie" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "Kino o'chirish (admin)",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Kino o'chirildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Message" }, "example": { "message": "Film o'chirildi" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/sessions": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Barcha seanslar (admin, tekis ro'yxat)",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Seanslar ro'yxati",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListResponse" },
+                "example": { "data": [{ "id": 101, "hall": "Zal 1 (IMAX Laser)", "time": "2026-10-02T15:30:00Z", "movieId": 1, "movieTitle": "Dune: Part Two" }], "total": 1 }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" }
+        }
+      },
+      "post": {
+        "tags": ["Admin"],
+        "summary": "Seans qo'shish (admin)",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SessionWriteRequest" },
+              "example": { "movieId": 1, "hall": "Zal 2 (Dolby Atmos)", "time": "2026-10-07T19:00:00Z" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Seans yaratildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SessionWithMovie" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "description": "Film topilmadi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/sessions/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/SessionId" }],
+      "put": {
+        "tags": ["Admin"],
+        "summary": "Seans tahrirlash (admin)",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SessionWriteRequest" }, "example": { "hall": "VIP Lounge", "time": "2026-10-08T21:00:00Z" } } }
+        },
+        "responses": {
+          "200": { "description": "Seans yangilandi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/SessionWithMovie" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      },
+      "delete": {
+        "tags": ["Admin"],
+        "summary": "Seans o'chirish (admin)",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Seans o'chirildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Message" }, "example": { "message": "Seans o'chirildi" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/sessions/{id}/seats": {
+      "parameters": [{ "$ref": "#/components/parameters/SessionId" }],
+      "get": {
+        "tags": ["Sessions"],
+        "summary": "Zal xaritasi (joylar holati)",
+        "description": "Har bir seans uchun 5 qator x 8 o'rin. `taken: true` — joy band qilingan.",
+        "responses": {
+          "200": {
+            "description": "Joylar ro'yxati",
+            "content": {
+              "application/json": {
+                "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Seat" } },
+                "example": [{ "row": 1, "seat": 1, "taken": false }, { "row": 2, "seat": 3, "taken": true }]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/bookings": {
+      "post": {
+        "tags": ["Bookings"],
+        "summary": "Joy bron qilish (bitta joy — bitta so'rov)",
+        "description": "Ketma-ket bron qilish uchun har bir joy uchun alohida so'rov yuboriladi. Band joy uchun 409 qaytadi.",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/BookingRequest" },
+              "example": { "sessionId": 101, "row": 1, "seat": 1 }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Bron yaratildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Booking" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "404": { "description": "Zalda bunday joy topilmadi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "409": {
+            "description": "Joy allaqachon band (409 Conflict)",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Ushbu joy allaqachon boshqa foydalanuvchi tomonidan band qilingan (409 xatosi)" } } }
+          }
+        }
+      },
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Barcha bronlar (admin)",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Bronlar ro'yxati (foydalanuvchi emaili bilan)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ListResponse" },
+                "example": { "data": [{ "id": 1001, "userId": 1, "sessionId": 101, "row": 2, "seat": 3, "status": "Tasdiqlangan", "userEmail": "ali@example.com" }], "total": 1 }
+              }
+            }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" }
+        }
+      }
+    },
+    "/bookings/my": {
+      "get": {
+        "tags": ["Bookings"],
+        "summary": "Mening bronlarim",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Joriy foydalanuvchining bronlari",
+            "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Booking" } } } }
+          },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      }
+    },
+    "/bookings/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/BookingId" }],
+      "delete": {
+        "tags": ["Bookings"],
+        "summary": "Bronni bekor qilish",
+        "description": "Faqat egasi bekor qila oladi — boshqa foydalanuvchi uchun 403 qaytadi. Bekor qilinganda joy avtomatik bo'shaladi.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Bron bekor qilindi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Message" }, "example": { "message": "Bron muvaffaqiyatli bekor qilindi" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": {
+            "description": "Bron boshqa foydalanuvchiga tegishli",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Bu bron boshqa foydalanuvchiga tegishli (403 xatosi)" } } }
+          },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/actors": {
+      "get": {
+        "tags": ["Community"],
+        "summary": "Aktyorlar ro'yxati",
+        "parameters": [
+          { "$ref": "#/components/parameters/Page" },
+          { "$ref": "#/components/parameters/Limit8" }
+        ],
+        "responses": {
+          "200": { "description": "Sahifalangan aktyorlar", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ActorPage" } } } }
+        }
+      }
+    },
+    "/actors/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/ActorId" }],
+      "get": {
+        "tags": ["Community"],
+        "summary": "Aktyor tafsilotlari (filmografiya bilan)",
+        "responses": {
+          "200": { "description": "Aktyor topildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ActorDetail" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/reviews": {
+      "get": {
+        "tags": ["Community"],
+        "summary": "Sharhlar ro'yxati",
+        "parameters": [
+          { "name": "movieId", "in": "query", "required": false, "schema": { "type": "integer" }, "description": "Faqat bitta kino sharhlarini filtrlash" }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sharhlar",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ListResponse" } } }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Community"],
+        "summary": "Sharh yozish",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ReviewWriteRequest" },
+              "example": { "movieId": 1, "text": "Ajoyib vizual effektlar!", "rating": 5 }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Sharh yaratildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Review" } } } },
+          "400": { "$ref": "#/components/responses/BadRequest" },
+          "401": { "$ref": "#/components/responses/Unauthorized" }
+        }
+      }
+    },
+    "/collections": {
+      "get": {
+        "tags": ["Community"],
+        "summary": "Kolleksiyalar ro'yxati",
+        "responses": {
+          "200": { "description": "Kolleksiyalar (kinolari bilan)", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ListResponse" } } } }
+        }
+      }
+    },
+    "/collections/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/CollectionId" }],
+      "get": {
+        "tags": ["Community"],
+        "summary": "Kolleksiya tafsilotlari",
+        "responses": {
+          "200": { "description": "Kolleksiya topildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Collection" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/cinemas": {
+      "get": {
+        "tags": ["Cinemas"],
+        "summary": "Kinoteatrlar katalogi",
+        "responses": {
+          "200": { "description": "Kinoteatrlar", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/ListResponse" } } } }
+        }
+      }
+    },
+    "/cinemas/{id}": {
+      "parameters": [{ "$ref": "#/components/parameters/CinemaId" }],
+      "get": {
+        "tags": ["Cinemas"],
+        "summary": "Kinoteatr tafsilotlari",
+        "responses": {
+          "200": { "description": "Kinoteatr topildi", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Cinema" } } } },
+          "404": { "$ref": "#/components/responses/NotFound" }
+        }
+      }
+    },
+    "/streaming/{movieId}": {
+      "parameters": [{ "$ref": "#/components/parameters/MovieId" }],
+      "get": {
+        "tags": ["Streaming"],
+        "summary": "Video manbani olish",
+        "description": "Faqat qonuniy manbalar (litsenziyalangan oqimlar, rasmiy embed). Manba yo'q bo'lsa `source: null` qaytadi — bu xato emas, dizayn bo'yicha.",
+        "responses": {
+          "200": {
+            "description": "Video manba (yoki null)",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/StreamingResponse" } } }
+          }
+        }
+      }
+    },
+    "/admin/stats": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Dashboard statistikasi",
+        "description": "`isDemoPreview: true` qaytarsa, raqamlar demo ma'lumotlari ekanini bildiradi.",
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Statistika", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/AdminStats" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": ["Admin"],
+        "summary": "Foydalanuvchilar ro'yxati (admin)",
+        "description": "Parollar hech qachon qaytarilmaydi.",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          { "$ref": "#/components/parameters/Page" },
+          { "$ref": "#/components/parameters/Limit10" }
+        ],
+        "responses": {
+          "200": { "description": "Sahifalangan foydalanuvchilar", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/UserPage" } } } },
+          "401": { "$ref": "#/components/responses/Unauthorized" },
+          "403": { "$ref": "#/components/responses/Forbidden" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "`POST /auth/login` dan olingan token. Format: `mock_token_user_<id>_<timestamp>`"
+      }
+    },
+    "parameters": {
+      "MovieId": { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 },
+      "SessionId": { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 101 },
+      "BookingId": { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1001 },
+      "ActorId": { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 },
+      "CollectionId": { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 },
+      "CinemaId": { "name": "id", "in": "path", "required": true, "schema": { "type": "integer" }, "example": 1 },
+      "Page": { "name": "page", "in": "query", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 1 } },
+      "Limit8": { "name": "limit", "in": "query", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 8 } },
+      "Limit10": { "name": "limit", "in": "query", "required": false, "schema": { "type": "integer", "minimum": 1, "default": 10 } }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Maydonlar to'liq emas (400)",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Barcha maydonlarni to'ldirish shart" } } }
+      },
+      "Unauthorized": {
+        "description": "Token yo'q yoki yaroqsiz (401)",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Avtorizatsiya talab qilinadi" } } }
+      },
+      "Forbidden": {
+        "description": "Admin roli talab qilinadi (403)",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Faqat admin foydalanuvchilar uchun (403)" } } }
+      },
+      "NotFound": {
+        "description": "Resurs topilmadi (404)",
+        "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" }, "example": { "message": "Topilmadi" } } }
+      }
+    },
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": { "message": { "type": "string", "example": "Xatolik yuz berdi" } },
+        "required": ["message"]
+      },
+      "Message": {
+        "type": "object",
+        "properties": { "message": { "type": "string", "example": "Amal bajarildi" } }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "name": { "type": "string", "example": "Ali Valiyev" },
+          "email": { "type": "string", "format": "email", "example": "ali@example.com" },
+          "role": { "type": "string", "enum": ["admin", "user"], "example": "admin" }
+        }
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "required": ["name", "email", "password"],
+        "properties": {
+          "name": { "type": "string", "example": "Sardor Ismoilov" },
+          "email": { "type": "string", "format": "email", "example": "sardor@example.com" },
+          "password": { "type": "string", "format": "password", "minLength": 6, "example": "secret123" }
+        }
+      },
+      "RegisterResponse": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "user": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" },
+              "email": { "type": "string", "format": "email" }
+            }
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": { "type": "string", "format": "email", "example": "ali@example.com" },
+          "password": { "type": "string", "format": "password", "example": "password123" }
+        }
+      },
+      "AuthResponse": {
+        "type": "object",
+        "properties": {
+          "token": { "type": "string", "example": "mock_token_user_1_1759497000000" },
+          "user": { "$ref": "#/components/schemas/User" }
+        }
+      },
+      "Session": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 101 },
+          "hall": { "type": "string", "example": "Zal 1 (IMAX Laser)" },
+          "time": { "type": "string", "format": "date-time", "example": "2026-10-02T15:30:00Z" }
+        }
+      },
+      "SessionWithMovie": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Session" },
+          {
+            "type": "object",
+            "properties": {
+              "movieId": { "type": "integer", "example": 1 },
+              "movieTitle": { "type": "string", "example": "Dune: Part Two" }
+            }
+          }
+        ]
+      },
+      "SessionWriteRequest": {
+        "type": "object",
+        "properties": {
+          "movieId": { "type": "integer", "example": 1 },
+          "hall": { "type": "string", "example": "Zal 2 (Dolby Atmos)" },
+          "time": { "type": "string", "format": "date-time", "example": "2026-10-07T19:00:00Z" }
+        }
+      },
+      "Movie": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "title": { "type": "string", "example": "Dune: Part Two" },
+          "genre": { "type": "string", "example": "Sci-Fi" },
+          "description": { "type": "string" },
+          "poster": { "type": "string", "format": "uri" },
+          "banner": { "type": "string", "format": "uri" },
+          "sessions": { "type": "array", "items": { "$ref": "#/components/schemas/Session" } }
+        }
+      },
+      "MovieWriteRequest": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string", "maxLength": 200, "example": "Dune: Messiah" },
+          "genre": { "type": "string", "example": "Sci-Fi" },
+          "description": { "type": "string" },
+          "poster": { "type": "string", "format": "uri" },
+          "banner": { "type": "string", "format": "uri" }
+        }
+      },
+      "MoviePage": {
+        "type": "object",
+        "properties": {
+          "data": { "type": "array", "items": { "$ref": "#/components/schemas/Movie" } },
+          "page": { "type": "integer", "example": 1 },
+          "limit": { "type": "integer", "example": 8 },
+          "total": { "type": "integer", "example": 24 },
+          "totalPages": { "type": "integer", "example": 3 }
+        }
+      },
+      "Seat": {
+        "type": "object",
+        "properties": {
+          "row": { "type": "integer", "example": 1 },
+          "seat": { "type": "integer", "example": 1 },
+          "taken": { "type": "boolean", "example": false }
+        }
+      },
+      "BookingRequest": {
+        "type": "object",
+        "required": ["sessionId", "row", "seat"],
+        "properties": {
+          "sessionId": { "type": "integer", "example": 101 },
+          "row": { "type": "integer", "example": 1 },
+          "seat": { "type": "integer", "example": 1 }
+        }
+      },
+      "Booking": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1003 },
+          "userId": { "type": "integer", "example": 2 },
+          "sessionId": { "type": "integer", "example": 101 },
+          "row": { "type": "integer", "example": 1 },
+          "seat": { "type": "integer", "example": 1 },
+          "status": { "type": "string", "example": "Tasdiqlangan" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "userEmail": { "type": "string", "format": "email", "description": "Faqat admin ro'yxatida" }
+        }
+      },
+      "Actor": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "name": { "type": "string", "example": "Timothée Chalamet" },
+          "knownFor": { "type": "string", "example": "Dune: Part Two" },
+          "image": { "type": "string", "format": "uri" },
+          "biography": { "type": "string" }
+        }
+      },
+      "ActorDetail": {
+        "allOf": [
+          { "$ref": "#/components/schemas/Actor" },
+          {
+            "type": "object",
+            "properties": {
+              "filmography": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "integer" },
+                    "title": { "type": "string" },
+                    "poster": { "type": "string", "format": "uri" },
+                    "genre": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "ActorPage": {
+        "type": "object",
+        "properties": {
+          "data": { "type": "array", "items": { "$ref": "#/components/schemas/Actor" } },
+          "page": { "type": "integer" },
+          "limit": { "type": "integer" },
+          "total": { "type": "integer" },
+          "totalPages": { "type": "integer" }
+        }
+      },
+      "Review": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 3 },
+          "movieId": { "type": "integer", "example": 1 },
+          "user": { "type": "string", "example": "Ali Valiyev" },
+          "rating": { "type": "integer", "nullable": true, "minimum": 1, "maximum": 10, "example": 5 },
+          "text": { "type": "string", "maxLength": 2000 },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "ReviewWriteRequest": {
+        "type": "object",
+        "required": ["movieId", "text"],
+        "properties": {
+          "movieId": { "type": "integer", "example": 1 },
+          "text": { "type": "string", "maxLength": 2000, "example": "Ajoyib film!" },
+          "rating": { "type": "integer", "minimum": 1, "maximum": 10, "example": 5 }
+        }
+      },
+      "Collection": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "name": { "type": "string", "example": "Sci-Fi Universe" },
+          "description": { "type": "string" },
+          "movieIds": { "type": "array", "items": { "type": "integer" }, "example": [1, 5] },
+          "movies": { "type": "array", "items": { "$ref": "#/components/schemas/Movie" } }
+        }
+      },
+      "Cinema": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "name": { "type": "string", "example": "CineBook Imax Center" },
+          "address": { "type": "string", "example": "Toshkent, Amir Temur shoh ko'chasi 108" },
+          "halls": { "type": "integer", "example": 4 },
+          "image": { "type": "string", "format": "uri" }
+        }
+      },
+      "StreamingSource": {
+        "type": "object",
+        "properties": {
+          "movieId": { "type": "integer", "example": 1 },
+          "type": { "type": "string", "enum": ["hls", "mp4", "embed"], "example": "hls" },
+          "url": { "type": "string", "format": "uri", "example": "https://stream-public.broadpeak.io/.../index.m3u8" },
+          "label": { "type": "string", "example": "HLS Demo Stream" },
+          "license": { "type": "string", "example": "Public sample stream (broadpeak.io)" },
+          "ageRating": { "type": "string", "example": "13+" }
+        }
+      },
+      "StreamingResponse": {
+        "type": "object",
+        "properties": {
+          "source": { "oneOf": [{ "$ref": "#/components/schemas/StreamingSource" }, { "type": "null" }] }
+        }
+      },
+      "AdminStats": {
+        "type": "object",
+        "properties": {
+          "isDemoPreview": { "type": "boolean", "example": true },
+          "totalMovies": { "type": "integer" },
+          "totalUsers": { "type": "integer" },
+          "totalBookings": { "type": "integer" },
+          "activeSessions": { "type": "integer" },
+          "bookingsOverTime": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": { "date": { "type": "string" }, "count": { "type": "integer" } }
+            }
+          },
+          "popularMovies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": { "movieId": { "type": "integer" }, "title": { "type": "string" }, "bookings": { "type": "integer" } }
+            }
+          },
+          "userGrowth": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": { "month": { "type": "string" }, "users": { "type": "integer" } }
+            }
+          }
+        }
+      },
+      "ListResponse": {
+        "type": "object",
+        "properties": {
+          "data": { "type": "array", "items": {} },
+          "total": { "type": "integer" }
+        }
+      },
+      "UserPage": {
+        "type": "object",
+        "properties": {
+          "data": { "type": "array", "items": { "$ref": "#/components/schemas/User" } },
+          "page": { "type": "integer" },
+          "limit": { "type": "integer" },
+          "total": { "type": "integer" },
+          "totalPages": { "type": "integer" }
+        }
+      }
+    }
+  }
+}

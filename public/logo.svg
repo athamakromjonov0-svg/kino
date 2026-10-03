@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <g transform="translate(4, 4)">
+    <rect width="40" height="40" rx="10" fill="#18181F" stroke="#E50914" stroke-width="2"/>
+    <path d="M12 10C10.8954 10 10 10.8954 10 12V28C10 29.1046 10.8954 30 12 30H28C29.1046 30 30 29.1046 30 28V12C30 10.8954 29.1046 10 28 10H12Z" stroke="#E50914" stroke-width="2"/>
+    <path d="M17 15L25 20L17 25V15Z" fill="#E50914"/>
+    <line x1="10" y1="14" x2="30" y2="14" stroke="#E50914" stroke-width="1.5" stroke-dasharray="2 2"/>
+    <line x1="10" y1="26" x2="30" y2="26" stroke="#E50914" stroke-width="1.5" stroke-dasharray="2 2"/>
+  </g>
+  <text x="56" y="32" font-family="'Inter', sans-serif" font-weight="900" font-size="24" fill="#FFFFFF" letter-spacing="-0.5">CINE<tspan fill="#E50914">BOOK</tspan></text>
+</svg>

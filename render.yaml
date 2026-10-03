@@ -1,0 +1,30 @@
+# CineBook Ultra — Render deployment config (Blueprint)
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Frontend — Vite SPA. SPA rewrite public/_redirects orqali bajariladi.
+  - type: web
+    name: cinebook-ultra
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install && npm run build
+    startCommand: npx vite preview --host 0.0.0.0 --port 10000
+    healthCheckPath: /
+    envVars:
+      # Backend API manzilini shu yerga yozing (Render'da yoki haqiqiy backend'da).
+      - key: VITE_API_URL
+        sync: false
+
+  # Mock backend — faqat lokal sinov uchun. Deploy kerak bo'lmasa, bu blokni o'chiring.
+  - type: web
+    name: cinebook-ultra-mock-api
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: echo "No build step required"
+    startCommand: node mock-server.cjs
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: 10001

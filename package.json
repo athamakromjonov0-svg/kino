@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "mock-server": "node mock-server.cjs"
+    "mock-server": "node mock-server.cjs",
+    "start": "node mock-server.cjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

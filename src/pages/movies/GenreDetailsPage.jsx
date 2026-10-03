@@ -27,7 +27,7 @@ export const GenreDetailsPage = () => {
       <button
         type="button"
         onClick={() => navigate('/genres')}
-        className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white p-2 rounded-lg bg-[#18181F] border border-[#27272A] transition-colors"
+        className="inline-flex items-center gap-2 text-xs font-semibold text-[#9CA3AF] hover:text-[#F8FAFC] p-2 rounded-lg bg-[#171A22] border border-white/[0.08] transition-colors"
       >
         <ChevronLeft className="w-4 h-4" />
         <span>Barcha janrlar</span>
@@ -58,7 +58,7 @@ export const GenreDetailsPage = () => {
       <div className="text-center">
         <Link
           to={`/movies?genre=${encodeURIComponent(genre)}`}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-[#FF4D5A] hover:text-[#E50914] transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-[#A78BFA] hover:text-[#8B5CF6] transition-colors"
         >
           Katalogda filter bilan ko'rish
         </Link>

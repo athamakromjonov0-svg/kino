@@ -231,7 +231,7 @@ const VideoPlayer = ({ source, movieTitle }) => {
   if (isEmbed) {
     return (
       <div className="w-full space-y-3">
-        <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-[#27272A] shadow-2xl">
+        <div className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl">
           <iframe
             src={source.url}
             title={movieTitle || source.label || 'Video'}
@@ -241,13 +241,13 @@ const VideoPlayer = ({ source, movieTitle }) => {
             referrerPolicy="strict-origin-when-cross-origin"
           />
         </div>
-        <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-400">
-          <span className="px-2.5 py-1 rounded-md bg-[#18181F] border border-[#27272A] font-semibold text-zinc-300">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-[#9CA3AF]">
+          <span className="px-2.5 py-1 rounded-md bg-[#171A22] border border-white/[0.08] font-semibold text-[#D1D5DB]">
             {source.label || 'Official embed'}
           </span>
           <span>Litsenziya: {source.license || 'Official provider embed'}</span>
           {source.ageRating && (
-            <span className="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/30 text-amber-400 font-bold">
+            <span className="px-2 py-0.5 rounded bg-[#F59E0B]/[0.16] border border-[#F59E0B]/[0.3] text-[#FBBF24] font-bold">
               {source.ageRating}
             </span>
           )}
@@ -263,7 +263,7 @@ const VideoPlayer = ({ source, movieTitle }) => {
     <div className="w-full space-y-3">
       <div
         ref={containerRef}
-        className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-[#27272A] shadow-2xl group"
+        className="relative w-full aspect-video bg-black rounded-2xl overflow-hidden border border-white/[0.08] shadow-2xl group"
         onMouseMove={armControlsHide}
       >
         <video
@@ -299,19 +299,19 @@ const VideoPlayer = ({ source, movieTitle }) => {
         {/* Loading spinner */}
         {isLoading && !error && (
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <Loader2 className="w-12 h-12 text-[#E50914] animate-spin" />
+            <Loader2 className="w-12 h-12 text-[#8B5CF6] animate-spin" />
           </div>
         )}
 
         {/* Explicit error state — never fake playback */}
         {error && (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/85 px-6 text-center">
-            <AlertTriangle className="w-12 h-12 text-[#FF4D5A]" />
-            <p className="text-sm font-semibold text-white max-w-md">{error}</p>
+            <AlertTriangle className="w-12 h-12 text-[#A78BFA]" />
+            <p className="text-sm font-semibold text-[#F8FAFC] max-w-md">{error}</p>
             <button
               type="button"
               onClick={() => window.location.reload()}
-              className="px-5 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-bold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-bold transition-colors"
             >
               Qayta yuklash
             </button>
@@ -326,8 +326,8 @@ const VideoPlayer = ({ source, movieTitle }) => {
             className="absolute inset-0 flex items-center justify-center group/play"
             aria-label="Ijro etish"
           >
-            <span className="w-20 h-20 rounded-full bg-[#E50914]/90 hover:bg-[#E50914] flex items-center justify-center shadow-2xl shadow-[#E50914]/40 transition-all hover:scale-110">
-              <Play className="w-9 h-9 text-white fill-white ml-1" />
+            <span className="w-20 h-20 rounded-full bg-[#8B5CF6]/90 hover:bg-[#8B5CF6] flex items-center justify-center shadow-2xl shadow-[#8B5CF6]/40 transition-all hover:scale-110">
+              <Play className="w-9 h-9 text-[#F8FAFC] fill-white ml-1" />
             </span>
           </button>
         )}
@@ -348,23 +348,23 @@ const VideoPlayer = ({ source, movieTitle }) => {
             tabIndex={0}
           >
             <div
-              className="h-full bg-[#E50914] rounded-full relative group-hover/bar:h-2 transition-all"
+              className="h-full bg-[#8B5CF6] rounded-full relative group-hover/bar:h-2 transition-all"
               style={{ width: duration ? `${(currentTime / duration) * 100}%` : '0%' }}
             >
-              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#E50914] opacity-0 group-hover/bar:opacity-100 transition-opacity" />
+              <span className="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#8B5CF6] opacity-0 group-hover/bar:opacity-100 transition-opacity" />
             </div>
           </div>
 
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2 sm:gap-3">
-              <button type="button" onClick={togglePlay} className="text-white hover:text-[#FF4D5A] transition-colors" aria-label={isPlaying ? 'Pauza' : 'Ijro'}>
+              <button type="button" onClick={togglePlay} className="text-[#F8FAFC] hover:text-[#A78BFA] transition-colors" aria-label={isPlaying ? 'Pauza' : 'Ijro'}>
                 {isPlaying ? <Pause className="w-5 h-5 fill-white" /> : <Play className="w-5 h-5 fill-white" />}
               </button>
-              <button type="button" onClick={() => seekBy(-10)} className="text-white/80 hover:text-white transition-colors" aria-label="10 soniya orqaga">
+              <button type="button" onClick={() => seekBy(-10)} className="text-[#F8FAFC]/80 hover:text-[#F8FAFC] transition-colors" aria-label="10 soniya orqaga">
                 <RotateCcw className="w-4.5 h-4.5" />
               </button>
               <div className="flex items-center gap-2 group/vol">
-                <button type="button" onClick={toggleMute} className="text-white/80 hover:text-white transition-colors" aria-label={isMuted ? 'Ovozni yoqish' : 'Ovozni o\'chirish'}>
+                <button type="button" onClick={toggleMute} className="text-[#F8FAFC]/80 hover:text-[#F8FAFC] transition-colors" aria-label={isMuted ? 'Ovozni yoqish' : 'Ovozni o\'chirish'}>
                   {isMuted || volume === 0 ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
                 </button>
                 <input
@@ -380,11 +380,11 @@ const VideoPlayer = ({ source, movieTitle }) => {
                       v.muted = false;
                     }
                   }}
-                  className="w-0 group-hover/vol:w-20 transition-all duration-200 accent-[#E50914] cursor-pointer"
+                  className="w-0 group-hover/vol:w-20 transition-all duration-200 accent-[#8B5CF6] cursor-pointer"
                   aria-label="Ovoz balandligi"
                 />
               </div>
-              <span className="text-xs text-zinc-300 font-mono tabular-nums">
+              <span className="text-xs text-[#D1D5DB] font-mono tabular-nums">
                 {formatTime(currentTime)} / {formatTime(duration)}
               </span>
             </div>
@@ -394,20 +394,20 @@ const VideoPlayer = ({ source, movieTitle }) => {
                 <button
                   type="button"
                   onClick={() => setShowSpeedMenu(!showSpeedMenu)}
-                  className="flex items-center gap-1 text-xs font-bold text-white/80 hover:text-white transition-colors"
+                  className="flex items-center gap-1 text-xs font-bold text-[#F8FAFC]/80 hover:text-[#F8FAFC] transition-colors"
                   aria-label="Ijro tezligi"
                 >
                   <Settings className="w-4.5 h-4.5" />
                   <span className="hidden sm:inline">{playbackSpeed}x</span>
                 </button>
                 {showSpeedMenu && (
-                  <div className="absolute bottom-8 right-0 bg-[#18181F] border border-[#27272A] rounded-xl py-1.5 w-24 shadow-2xl z-10">
+                  <div className="absolute bottom-8 right-0 bg-[#171A22] border border-white/[0.08] rounded-xl py-1.5 w-24 shadow-2xl z-10">
                     {SPEEDS.map((s) => (
                       <button
                         key={s}
                         type="button"
                         onClick={() => changeSpeed(s)}
-                        className={`w-full text-left px-3 py-1.5 text-xs transition-colors ${s === playbackSpeed ? 'text-[#FF4D5A] font-bold' : 'text-zinc-300 hover:text-white hover:bg-[#27272A]'}`}
+                        className={`w-full text-left px-3 py-1.5 text-xs transition-colors ${s === playbackSpeed ? 'text-[#A78BFA] font-bold' : 'text-[#D1D5DB] hover:text-[#F8FAFC] hover:bg-white/[0.04]'}`}
                       >
                         {s}x
                       </button>
@@ -415,18 +415,18 @@ const VideoPlayer = ({ source, movieTitle }) => {
                   </div>
                 )}
               </div>
-              <button type="button" onClick={togglePiP} className="hidden sm:block text-white/80 hover:text-white transition-colors" aria-label="Picture-in-Picture">
+              <button type="button" onClick={togglePiP} className="hidden sm:block text-[#F8FAFC]/80 hover:text-[#F8FAFC] transition-colors" aria-label="Picture-in-Picture">
                 <PictureInPicture2 className="w-4.5 h-4.5" />
               </button>
               <button
                 type="button"
                 onClick={() => setShowHelp(!showHelp)}
-                className="hidden sm:block text-white/80 hover:text-white transition-colors"
+                className="hidden sm:block text-[#F8FAFC]/80 hover:text-[#F8FAFC] transition-colors"
                 aria-label="Klaviatura boshqaruvi"
               >
                 <Keyboard className="w-4.5 h-4.5" />
               </button>
-              <button type="button" onClick={toggleFullscreen} className="text-white/80 hover:text-white transition-colors" aria-label={isFullscreen ? 'To\'liq ekrandan chiqish' : 'To\'liq ekran'}>
+              <button type="button" onClick={toggleFullscreen} className="text-[#F8FAFC]/80 hover:text-[#F8FAFC] transition-colors" aria-label={isFullscreen ? 'To\'liq ekrandan chiqish' : 'To\'liq ekran'}>
                 {isFullscreen ? <Minimize className="w-5 h-5" /> : <Maximize className="w-5 h-5" />}
               </button>
             </div>
@@ -435,8 +435,8 @@ const VideoPlayer = ({ source, movieTitle }) => {
 
         {/* Keyboard help overlay */}
         {showHelp && (
-          <div className="absolute top-4 right-4 bg-[#18181F]/95 border border-[#27272A] rounded-xl p-4 text-xs space-y-1.5 shadow-2xl backdrop-blur-md">
-            <p className="font-bold text-white mb-2 uppercase tracking-wider text-[10px]">Klaviatura boshqaruvi</p>
+          <div className="absolute top-4 right-4 bg-[#171A22]/95 border border-white/[0.08] rounded-xl p-4 text-xs space-y-1.5 shadow-2xl backdrop-blur-md">
+            <p className="font-bold text-[#F8FAFC] mb-2 uppercase tracking-[0.08em] text-[10px]">Klaviatura boshqaruvi</p>
             {[
               ['Space / K', 'Ijro / Pauza'],
               ['← / →', '±10 soniya'],
@@ -444,8 +444,8 @@ const VideoPlayer = ({ source, movieTitle }) => {
               ['M', 'Ovozsiz rejim'],
               ['F', 'To\'liq ekran'],
             ].map(([k, d]) => (
-              <div key={k} className="flex items-center justify-between gap-4 text-zinc-400">
-                <kbd className="px-1.5 py-0.5 bg-[#27272A] rounded font-mono text-[10px] text-zinc-200">{k}</kbd>
+              <div key={k} className="flex items-center justify-between gap-4 text-[#9CA3AF]">
+                <kbd className="px-1.5 py-0.5 bg-white/[0.04] rounded font-mono text-[10px] text-[#E5E7EB]">{k}</kbd>
                 <span>{d}</span>
               </div>
             ))}
@@ -454,18 +454,18 @@ const VideoPlayer = ({ source, movieTitle }) => {
       </div>
 
       {/* Source info bar — transparency about license and age rating */}
-      <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-400">
-        <span className="px-2.5 py-1 rounded-md bg-[#18181F] border border-[#27272A] font-semibold text-zinc-300">
+      <div className="flex flex-wrap items-center gap-3 text-xs text-[#9CA3AF]">
+        <span className="px-2.5 py-1 rounded-md bg-[#171A22] border border-white/[0.08] font-semibold text-[#D1D5DB]">
           {source?.label || 'Video'}
         </span>
         <span>Litsenziya: {source?.license || 'Noma\'lum'}</span>
         {source?.ageRating && (
-          <span className="px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/30 text-amber-400 font-bold">
+          <span className="px-2 py-0.5 rounded bg-[#F59E0B]/[0.16] border border-[#F59E0B]/[0.3] text-[#FBBF24] font-bold">
             {source.ageRating}
           </span>
         )}
         {user?.name && (
-          <span className="ml-auto text-zinc-500">
+          <span className="ml-auto text-[#6B7280]">
             Ijro davomiyligi qurilmangizda (localStorage) saqlanadi
           </span>
         )}

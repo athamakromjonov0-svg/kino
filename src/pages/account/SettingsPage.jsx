@@ -38,17 +38,17 @@ export const SettingsPage = () => {
   };
 
   const Toggle = ({ checked, onChange, label, description }) => (
-    <div className="flex items-center justify-between gap-4 bg-[#18181F] border border-[#27272A] rounded-2xl p-4">
+    <div className="flex items-center justify-between gap-4 bg-[#171A22] border border-white/[0.08] rounded-2xl p-4">
       <div>
-        <p className="text-sm font-semibold text-white">{label}</p>
-        <p className="text-xs text-zinc-400 mt-0.5">{description}</p>
+        <p className="text-sm font-semibold text-[#F8FAFC]">{label}</p>
+        <p className="text-xs text-[#9CA3AF] mt-0.5">{description}</p>
       </div>
       <button
         type="button"
         role="switch"
         aria-checked={checked}
         onClick={() => onChange(!checked)}
-        className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${checked ? 'bg-[#E50914]' : 'bg-[#27272A]'}`}
+        className={`relative w-11 h-6 rounded-full transition-colors shrink-0 ${checked ? 'bg-[#8B5CF6]' : 'bg-white/[0.04]'}`}
       >
         <span
           className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform ${checked ? 'translate-x-5' : ''}`}
@@ -67,8 +67,8 @@ export const SettingsPage = () => {
 
       {/* Language */}
       <section className="space-y-4">
-        <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-          <Globe className="w-4 h-4 text-[#FF4D5A]" />
+        <h2 className="text-sm font-bold text-[#F8FAFC] uppercase tracking-[0.08em] flex items-center gap-2">
+          <Globe className="w-4 h-4 text-[#A78BFA]" />
           {t('settings.language', 'Til')}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -79,15 +79,15 @@ export const SettingsPage = () => {
               onClick={() => handleLanguageChange(l.code)}
               className={`flex items-center justify-between px-4 py-3 rounded-2xl border text-sm font-semibold transition-all ${
                 language === l.code
-                  ? 'bg-[#E50914]/15 border-[#E50914]/50 text-white'
-                  : 'bg-[#18181F] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-600'
+                  ? 'bg-[#8B5CF6]/15 border-[#8B5CF6]/50 text-[#F8FAFC]'
+                  : 'bg-[#171A22] border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] hover:border-white/[0.14]'
               }`}
             >
               <span className="flex items-center gap-2">
                 <span className="text-lg">{l.flag}</span>
                 {l.label}
               </span>
-              {language === l.code && <Check className="w-4 h-4 text-[#FF4D5A]" />}
+              {language === l.code && <Check className="w-4 h-4 text-[#A78BFA]" />}
             </button>
           ))}
         </div>
@@ -95,8 +95,8 @@ export const SettingsPage = () => {
 
       {/* Notifications */}
       <section className="space-y-4">
-        <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-          <Bell className="w-4 h-4 text-[#FF4D5A]" />
+        <h2 className="text-sm font-bold text-[#F8FAFC] uppercase tracking-[0.08em] flex items-center gap-2">
+          <Bell className="w-4 h-4 text-[#A78BFA]" />
           Bildirishnomalar
         </h2>
         <Toggle
@@ -112,8 +112,8 @@ export const SettingsPage = () => {
 
       {/* Privacy */}
       <section className="space-y-4">
-        <h2 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-          <Lock className="w-4 h-4 text-[#FF4D5A]" />
+        <h2 className="text-sm font-bold text-[#F8FAFC] uppercase tracking-[0.08em] flex items-center gap-2">
+          <Lock className="w-4 h-4 text-[#A78BFA]" />
           Maxfiylik
         </h2>
         <Toggle
@@ -125,8 +125,8 @@ export const SettingsPage = () => {
       </section>
 
       {/* Honest note about theme */}
-      <div className="bg-[#121216] border border-[#27272A] rounded-2xl p-4 text-xs text-zinc-400 leading-relaxed">
-        Mavzu (theme) doim <span className="text-white font-semibold">qorong'u (dark)</span> — bu Cineora brend identifikatori.
+      <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-4 text-xs text-[#9CA3AF] leading-relaxed">
+        Mavzu (theme) doim <span className="text-[#F8FAFC] font-semibold">qorong'u (dark)</span> — bu Cineora brend identifikatori.
         Sozlamalar qurilmangizda (localStorage) saqlanadi.
       </div>
     </div>

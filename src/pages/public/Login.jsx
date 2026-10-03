@@ -41,25 +41,25 @@ export const Login = () => {
 
   return (
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md bg-[#121216] border border-[#27272A] rounded-3xl p-8 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
+      <div className="w-full max-w-md bg-[#101218] border border-white/[0.08] rounded-2xl p-8 sm:p-10 shadow-2xl space-y-8 relative overflow-hidden">
         {/* Glow ambient background element */}
-        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#E50914]/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none" />
 
         {/* Header */}
         <div className="text-center space-y-2 relative z-10">
           <Link to="/" className="inline-flex items-center gap-2 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-[#18181F] border border-[#27272A] flex items-center justify-center text-[#E50914] shadow-md shadow-[#E50914]/20">
-              <Film className="w-5 h-5 text-[#E50914]" />
+            <div className="w-10 h-10 rounded-xl bg-[#171A22] border border-white/[0.08] flex items-center justify-center text-[#8B5CF6] shadow-md shadow-[#8B5CF6]/20">
+              <Film className="w-5 h-5 text-[#8B5CF6]" />
             </div>
-            <span className="text-2xl font-black text-white tracking-tight">
-              CINE<span className="text-[#E50914]">BOOK</span>
+            <span className="text-2xl font-black text-[#F8FAFC] tracking-tight">
+              CINE<span className="text-[#8B5CF6]">ORA</span>
             </span>
           </Link>
 
-          <h2 className="text-2xl font-extrabold text-white tracking-tight">
+          <h2 className="text-2xl font-extrabold text-[#F8FAFC] tracking-tight">
             Xush kelibsiz!
           </h2>
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-[#9CA3AF]">
             Shaxsiy profilingizga kirish uchun login ma'lumotlarini kiriting
           </p>
         </div>
@@ -87,16 +87,16 @@ export const Login = () => {
           />
 
           <div className="flex items-center justify-between text-xs pt-1">
-            <label className="flex items-center gap-2 text-zinc-400 hover:text-zinc-300 cursor-pointer select-none">
+            <label className="flex items-center gap-2 text-[#9CA3AF] hover:text-[#D1D5DB] cursor-pointer select-none">
               <input
                 type="checkbox"
-                className="w-4 h-4 rounded bg-[#18181F] border-[#27272A] text-[#E50914] focus:ring-[#E50914] accent-[#E50914]"
+                className="w-4 h-4 rounded bg-[#171A22] border-white/[0.08] text-[#8B5CF6] focus:ring-[#8B5CF6] accent-[#8B5CF6]"
                 {...register('rememberMe')}
               />
               <span>Meni eslab qol</span>
             </label>
 
-            <span className="text-zinc-500 hover:text-zinc-400 cursor-pointer">
+            <span className="text-[#6B7280] hover:text-[#9CA3AF] cursor-pointer">
               Parolni unutdingizmi?
             </span>
           </div>
@@ -107,19 +107,19 @@ export const Login = () => {
             size="lg"
             isLoading={isSubmitting}
             icon={LogIn}
-            className="w-full glow-red mt-2"
+            className="w-full glow-violet mt-2"
           >
             Kirish
           </Button>
         </form>
 
         {/* Footer Link */}
-        <div className="text-center pt-4 border-t border-[#27272A] relative z-10">
-          <p className="text-xs text-zinc-400">
+        <div className="text-center pt-4 border-t border-white/[0.08] relative z-10">
+          <p className="text-xs text-[#9CA3AF]">
             Hali akkauntingiz yo'qmi?{' '}
             <Link
               to="/register"
-              className="text-[#FF4D5A] hover:text-[#E50914] font-semibold transition-colors inline-flex items-center gap-1"
+              className="text-[#A78BFA] hover:text-[#8B5CF6] font-semibold transition-colors inline-flex items-center gap-1"
             >
               <span>Ro'yxatdan o'tish</span>
               <ArrowRight className="w-3.5 h-3.5" />

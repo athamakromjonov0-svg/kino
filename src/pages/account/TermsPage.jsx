@@ -53,7 +53,7 @@ export const TermsPage = () => {
         subtitle="Platformadan foydalanish qoidalari"
       />
 
-      <p className="text-xs text-zinc-500">
+      <p className="text-xs text-[#6B7280]">
         Oxirgi yangilanish: 2026-yil oktyabr.
       </p>
 
@@ -61,20 +61,20 @@ export const TermsPage = () => {
         {SECTIONS.map((s) => (
           <section
             key={s.title}
-            className="bg-[#121216] border border-[#27272A] rounded-2xl p-6 space-y-3"
+            className="bg-[#101218] border border-white/[0.08] rounded-2xl p-6 space-y-3"
           >
-            <h3 className="text-sm font-bold text-white">{s.title}</h3>
+            <h3 className="text-sm font-bold text-[#F8FAFC]">{s.title}</h3>
             {Array.isArray(s.body) ? (
               <ul className="space-y-2">
                 {s.body.map((p, i) => (
-                  <li key={i} className="text-xs sm:text-sm text-zinc-400 leading-relaxed flex items-start gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E50914] shrink-0 mt-1.5" />
+                  <li key={i} className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed flex items-start gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#8B5CF6] shrink-0 mt-1.5" />
                     <span>{p}</span>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">{s.body}</p>
+              <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">{s.body}</p>
             )}
           </section>
         ))}

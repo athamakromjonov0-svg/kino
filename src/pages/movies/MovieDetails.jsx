@@ -131,17 +131,18 @@ export const MovieDetails = () => {
   return (
     <div className="pb-24 space-y-12">
       {/* Hero Header with Background Backdrop */}
-      <div className="relative w-full bg-[#121216] border-b border-[#27272A] overflow-hidden pt-8 pb-12">
+      <div className="relative w-full bg-[#101218] border-b border-white/[0.08] overflow-hidden pt-8 pb-12">
         {/* Blurred ambient backdrop */}
-        <div className="absolute inset-0 opacity-20 filter blur-3xl scale-125 pointer-events-none">
+        <div className="absolute inset-0 opacity-25 filter blur-3xl scale-125 pointer-events-none">
           <img src={poster} alt="" className="w-full h-full object-cover" />
         </div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#08090D]/60 via-[#101218]/70 to-[#101218] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <button
             type="button"
             onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white mb-6 p-2 rounded-lg bg-[#18181F]/80 border border-[#27272A] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-[#9CA3AF] hover:text-[#F8FAFC] mb-6 p-2 rounded-lg bg-[#171A22]/80 border border-white/[0.08] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Ortga qaytish</span>
@@ -150,14 +151,14 @@ export const MovieDetails = () => {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
             {/* Poster Card */}
             <div className="md:col-span-4 lg:col-span-3">
-              <div className="relative aspect-[2/3] w-full rounded-2xl overflow-hidden border border-[#27272A] shadow-2xl bg-zinc-900">
+              <div className="relative aspect-[2/3] w-full rounded-2xl overflow-hidden border border-white/[0.08] shadow-[0_20px_55px_-20px_rgba(0,0,0,0.9)] bg-[#0B0D12]">
                 <img
                   src={poster}
                   alt={movie?.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-3 left-3">
-                  <span className="px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/10 text-xs font-mono font-bold text-zinc-300">
+                  <span className="px-2.5 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/10 text-xs font-mono font-bold text-[#D1D5DB]">
                     ID #{movie?.id}
                   </span>
                 </div>
@@ -168,47 +169,47 @@ export const MovieDetails = () => {
             <div className="md:col-span-8 lg:col-span-9 space-y-5">
               <div className="flex flex-wrap items-center gap-3">
                 {movie?.genre && (
-                  <span className="px-3 py-1 rounded-full bg-[#E50914] text-white text-xs font-bold uppercase tracking-wider shadow-md shadow-[#E50914]/20">
+                  <span className="px-3 py-1 rounded-full bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] text-[#F8FAFC] text-[11px] font-bold uppercase tracking-[0.1em] shadow-[0_4px_14px_-4px_rgba(139,92,246,0.85)]">
                     {movie.genre}
                   </span>
                 )}
-                <span className="text-xs text-zinc-400 font-medium">Kinoteatr Premyerasi</span>
+                <span className="text-xs text-[#9CA3AF] font-medium">Kinoteatr Premyerasi</span>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#F8FAFC] tracking-tight leading-tight">
                 {movie?.title}
               </h1>
 
               {movie?.description && (
                 <div className="space-y-2">
-                  <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">
+                  <h4 className="text-xs font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">
                     Tavsif
                   </h4>
-                  <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-3xl">
+                  <p className="text-sm sm:text-base text-[#D1D5DB] leading-relaxed max-w-3xl">
                     {movie.description}
                   </p>
                 </div>
               )}
 
               {/* Action buttons (Favorite & Share) */}
-              <div className="flex items-center gap-3 pt-4 border-t border-[#27272A]">
+              <div className="flex items-center gap-3 pt-4 border-t border-white/[0.08]">
                 <button
                   type="button"
                   onClick={toggleFavorite}
                   className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-semibold transition-all ${
                     isFavorite
-                      ? 'bg-red-950/40 border-red-500/50 text-[#FF4D5A]'
-                      : 'bg-[#18181F] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-600'
+                      ? 'bg-red-950/40 border-red-500/50 text-[#A78BFA]'
+                      : 'bg-[#171A22] border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] hover:border-white/[0.14]'
                   }`}
                 >
-                  <Heart className={`w-4 h-4 ${isFavorite ? 'fill-[#FF4D5A]' : ''}`} />
+                  <Heart className={`w-4 h-4 ${isFavorite ? 'fill-[#A78BFA]' : ''}`} />
                   <span>{isFavorite ? "Sevimlilardan o'chirish" : "Sevimlilarga qo'shish"}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={handleShare}
-                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-600 text-xs font-semibold transition-all"
+                  className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] hover:border-white/[0.14] text-xs font-semibold transition-all"
                 >
                   <Share2 className="w-4 h-4" />
                   <span>Ulashish</span>
@@ -221,22 +222,22 @@ export const MovieDetails = () => {
 
       {/* Available Sessions Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="flex items-center justify-between border-b border-[#27272A] pb-4">
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg bg-[#E50914]/20 border border-[#E50914]/30 flex items-center justify-center text-[#E50914]">
+            <div className="w-8 h-8 rounded-lg bg-[#8B5CF6]/20 border border-[#8B5CF6]/30 flex items-center justify-center text-[#8B5CF6]">
               <Clock className="w-4 h-4" />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-bold text-[#F8FAFC] tracking-tight">
                 Mavjud Seanslar
               </h2>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-[#9CA3AF]">
                 Seans vaqtini tanlang va chiptalarni bron qiling
               </p>
             </div>
           </div>
 
-          <span className="text-xs font-semibold text-zinc-400 bg-[#18181F] px-3 py-1.5 rounded-xl border border-[#27272A]">
+          <span className="text-xs font-semibold text-[#9CA3AF] bg-[#171A22] px-3 py-1.5 rounded-xl border border-white/[0.08]">
             {sessions.length} ta seans
           </span>
         </div>

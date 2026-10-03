@@ -84,7 +84,7 @@ export const CatalogPage = ({ variant = 'trending' }) => {
             <button
               type="button"
               onClick={() => setSortOrder((o) => (o === 'desc' ? 'asc' : 'desc'))}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#18181F] border border-[#27272A] text-xs font-semibold text-zinc-300 hover:text-white hover:border-zinc-500 transition-all"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-xs font-semibold text-[#D1D5DB] hover:text-[#F8FAFC] hover:border-white/[0.14] transition-all"
             >
               <ArrowUpDown className="w-3.5 h-3.5" />
               {sortOrder === 'desc' ? 'Kamayish tartibida' : 'O\'sish tartibida'}

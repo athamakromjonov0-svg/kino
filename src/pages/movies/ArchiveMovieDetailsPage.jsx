@@ -99,7 +99,7 @@ export const ArchiveMovieDetailsPage = () => {
       <button
         type="button"
         onClick={() => navigate('/catalog/archive')}
-        className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white p-2 rounded-lg bg-[#18181F] border border-[#27272A] transition-all"
+        className="inline-flex items-center gap-2 text-xs font-semibold text-[#9CA3AF] hover:text-[#F8FAFC] p-2 rounded-lg bg-[#171A22] border border-white/[0.08] transition-all"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Archive katalogga qaytish</span>
@@ -108,13 +108,13 @@ export const ArchiveMovieDetailsPage = () => {
       {source ? (
         <VideoPlayer source={source} movieTitle={movie.title} />
       ) : (
-        <div className="relative w-full aspect-video rounded-2xl bg-[#121216] border border-[#27272A] overflow-hidden flex flex-col items-center justify-center gap-4 text-center px-6">
-          <div className="w-16 h-16 rounded-2xl bg-[#18181F] border border-[#27272A] flex items-center justify-center">
-            <Clapperboard className="w-8 h-8 text-zinc-500" />
+        <div className="relative w-full aspect-video rounded-2xl bg-[#101218] border border-white/[0.08] overflow-hidden flex flex-col items-center justify-center gap-4 text-center px-6">
+          <div className="w-16 h-16 rounded-2xl bg-[#171A22] border border-white/[0.08] flex items-center justify-center">
+            <Clapperboard className="w-8 h-8 text-[#6B7280]" />
           </div>
           <div className="space-y-2 max-w-md">
-            <h2 className="text-xl font-bold text-white">Video fayl topilmadi</h2>
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            <h2 className="text-xl font-bold text-[#F8FAFC]">Video fayl topilmadi</h2>
+            <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
               Bu archive.org yozuvidan o'ynatiladigan video fayl topilmadi. Pastdagi
               tafsilotlardan foydalanib asl sahifani ochishingiz mumkin.
             </p>
@@ -125,7 +125,7 @@ export const ArchiveMovieDetailsPage = () => {
       {/* Quality / format switcher when the item ships several video files */}
       {source && (movie.files || []).length > 1 && (
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs text-zinc-500 font-semibold mr-1">Manba:</span>
+          <span className="text-xs text-[#6B7280] font-semibold mr-1">Manba:</span>
           {movie.files.map((file) => {
             const active = file.url === source.url;
             return (
@@ -135,8 +135,8 @@ export const ArchiveMovieDetailsPage = () => {
                 onClick={() => setSelectedUrl(file.url)}
                 className={`px-3 py-1.5 rounded-lg text-[11px] font-semibold border transition-all ${
                   active
-                    ? 'bg-[#E50914] border-[#E50914] text-white'
-                    : 'bg-[#18181F] border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-500'
+                    ? 'bg-[#8B5CF6] border-[#8B5CF6] text-[#F8FAFC]'
+                    : 'bg-[#171A22] border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] hover:border-white/[0.14]'
                 }`}
               >
                 {file.height ? `${file.height}p` : file.format || file.name}
@@ -149,7 +149,7 @@ export const ArchiveMovieDetailsPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Poster */}
         <div className="lg:col-span-1">
-          <div className="rounded-2xl overflow-hidden border border-[#27272A] bg-[#18181F]">
+          <div className="rounded-2xl overflow-hidden border border-white/[0.08] bg-[#171A22]">
             <img
               src={movie.poster}
               alt={movie.title}
@@ -165,17 +165,17 @@ export const ArchiveMovieDetailsPage = () => {
         <div className="lg:col-span-2 space-y-6">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="px-2.5 py-1 rounded-full bg-[#E50914]/90 text-[11px] font-semibold text-white">
+              <span className="px-2.5 py-1 rounded-full bg-[#8B5CF6]/90 text-[11px] font-semibold text-[#F8FAFC]">
                 {movie.genre}
               </span>
-              <span className="px-2.5 py-1 rounded-full bg-[#18181F] border border-[#27272A] text-[11px] font-semibold text-zinc-300">
+              <span className="px-2.5 py-1 rounded-full bg-[#171A22] border border-white/[0.08] text-[11px] font-semibold text-[#D1D5DB]">
                 Internet Archive
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
               {movie.title}
             </h1>
-            <p className="text-xs text-zinc-500 mt-1 font-mono">{movie.identifier}</p>
+            <p className="text-xs text-[#6B7280] mt-1 font-mono">{movie.identifier}</p>
           </div>
 
           {meta.length > 0 && (
@@ -183,34 +183,34 @@ export const ArchiveMovieDetailsPage = () => {
               {meta.map(({ icon: Icon, label, value }) => (
                 <div
                   key={label}
-                  className="bg-[#18181F] border border-[#27272A] rounded-xl p-3 space-y-1"
+                  className="bg-[#171A22] border border-white/[0.08] rounded-xl p-3 space-y-1"
                 >
-                  <div className="flex items-center gap-1.5 text-zinc-500">
+                  <div className="flex items-center gap-1.5 text-[#6B7280]">
                     <Icon className="w-3.5 h-3.5" />
-                    <span className="text-[10px] uppercase tracking-wider font-semibold">
+                    <span className="text-[10px] uppercase tracking-[0.08em] font-semibold">
                       {label}
                     </span>
                   </div>
-                  <p className="text-sm font-semibold text-white truncate">{value}</p>
+                  <p className="text-sm font-semibold text-[#F8FAFC] truncate">{value}</p>
                 </div>
               ))}
             </div>
           )}
 
           {movie.description && (
-            <div className="bg-[#18181F] border border-[#27272A] rounded-2xl p-5">
-              <h2 className="text-sm font-bold text-white mb-2">Tavsif</h2>
-              <p className="text-sm text-zinc-400 leading-relaxed whitespace-pre-line">
+            <div className="bg-[#171A22] border border-white/[0.08] rounded-2xl p-5">
+              <h2 className="text-sm font-bold text-[#F8FAFC] mb-2">Tavsif</h2>
+              <p className="text-sm text-[#9CA3AF] leading-relaxed whitespace-pre-line">
                 {movie.description}
               </p>
             </div>
           )}
 
-          <div className="bg-[#18181F] border border-[#27272A] rounded-2xl p-5 space-y-3">
-            <div className="flex items-start gap-2 text-xs text-zinc-400">
-              <Scale className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+          <div className="bg-[#171A22] border border-white/[0.08] rounded-2xl p-5 space-y-3">
+            <div className="flex items-start gap-2 text-xs text-[#9CA3AF]">
+              <Scale className="w-4 h-4 text-[#34D399] shrink-0 mt-0.5" />
               <span>
-                <span className="font-semibold text-white">License: </span>
+                <span className="font-semibold text-[#F8FAFC]">License: </span>
                 {movie.license || "Internet Archive ochiq kutubxonasi — faqat qonuniy manbalar"}
               </span>
             </div>
@@ -219,14 +219,14 @@ export const ArchiveMovieDetailsPage = () => {
                 href={movie.detailsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#27272A] hover:bg-[#3F3F46] text-white text-xs font-semibold transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-[#F8FAFC] text-xs font-semibold transition-all"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 archive.org'da ochish
               </a>
               <Link
                 to="/catalog/archive"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-semibold transition-all"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-semibold transition-all"
               >
                 <Play className="w-3.5 h-3.5" />
                 Bosh filmlar

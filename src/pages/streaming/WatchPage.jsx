@@ -94,7 +94,7 @@ export const WatchPage = () => {
         <button
           type="button"
           onClick={() => navigate(`/movies/${movie.id}`)}
-          className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white p-2 rounded-lg bg-[#18181F] border border-[#27272A] transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-semibold text-[#9CA3AF] hover:text-[#F8FAFC] p-2 rounded-lg bg-[#171A22] border border-white/[0.08] transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Film sahifasiga qaytish</span>
@@ -104,13 +104,13 @@ export const WatchPage = () => {
         {source ? (
           <VideoPlayer source={source} movieTitle={movie.title} />
         ) : (
-          <div className="relative w-full aspect-video rounded-2xl bg-[#121216] border border-[#27272A] overflow-hidden flex flex-col items-center justify-center gap-5 text-center px-6">
-            <div className="w-16 h-16 rounded-2xl bg-[#18181F] border border-[#27272A] flex items-center justify-center">
-              <MonitorPlay className="w-8 h-8 text-zinc-500" />
+          <div className="relative w-full aspect-video rounded-2xl bg-[#101218] border border-white/[0.08] overflow-hidden flex flex-col items-center justify-center gap-5 text-center px-6">
+            <div className="w-16 h-16 rounded-2xl bg-[#171A22] border border-white/[0.08] flex items-center justify-center">
+              <MonitorPlay className="w-8 h-8 text-[#6B7280]" />
             </div>
             <div className="space-y-2 max-w-md">
-              <h2 className="text-xl font-bold text-white">Streaming mavjud emas</h2>
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+              <h2 className="text-xl font-bold text-[#F8FAFC]">Streaming mavjud emas</h2>
+              <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
                 Ushbu film uchun hozircha qonuniy video manba ulanmagan. Biz ruxsatsiz
                 nusxalarni ko'rsatmaymiz — faqat litsenziyalangan yoki ommaviy manbalarni.
               </p>
@@ -120,7 +120,7 @@ export const WatchPage = () => {
                 <button
                   type="button"
                   onClick={() => setIsTrailerOpen(true)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-bold transition-colors"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-bold transition-colors"
                 >
                   <Play className="w-4 h-4 fill-white" />
                   Rasmiy treylerni ko'rish
@@ -128,7 +128,7 @@ export const WatchPage = () => {
               )}
               <Link
                 to="/movies"
-                className="px-5 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white text-xs font-semibold transition-colors"
+                className="px-5 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] text-xs font-semibold transition-colors"
               >
                 Boshqa filmlar
               </Link>
@@ -138,7 +138,7 @@ export const WatchPage = () => {
 
         {/* Trailer embed (lawful official source) */}
         {isTrailerOpen && movie.trailerUrl && (
-          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-[#27272A] bg-black">
+          <div className="w-full aspect-video rounded-2xl overflow-hidden border border-white/[0.08] bg-black">
             <iframe
               src={movie.trailerUrl}
               title={`${movie.title} — treyler`}
@@ -155,26 +155,26 @@ export const WatchPage = () => {
           <div className="lg:col-span-8 space-y-5">
             <div className="flex flex-wrap items-center gap-3">
               {movie.genre && (
-                <span className="px-3 py-1 rounded-full bg-[#E50914] text-white text-xs font-bold uppercase tracking-wider">
+                <span className="px-3 py-1 rounded-full bg-[#8B5CF6] text-[#F8FAFC] text-xs font-bold uppercase tracking-[0.08em]">
                   {movie.genre}
                 </span>
               )}
               {source?.ageRating && (
-                <span className="px-2.5 py-1 rounded-md bg-amber-500/20 border border-amber-500/30 text-amber-400 text-xs font-bold">
+                <span className="px-2.5 py-1 rounded-md bg-[#F59E0B]/[0.16] border border-[#F59E0B]/[0.3] text-[#FBBF24] text-xs font-bold">
                   {source.ageRating}
                 </span>
               )}
-              <span className="text-xs text-zinc-400 flex items-center gap-1.5">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="text-xs text-[#9CA3AF] flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#34D399]" />
                 Qonuniy manba orqali
               </span>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight">
               {movie.title}
             </h1>
             {movie.description && (
-              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed max-w-3xl">
+              <p className="text-sm sm:text-base text-[#D1D5DB] leading-relaxed max-w-3xl">
                 {movie.description}
               </p>
             )}
@@ -185,15 +185,15 @@ export const WatchPage = () => {
                 onClick={() => toggleFavorite(movie)}
                 className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border text-xs font-semibold transition-all ${
                   isFavorite(movie.id)
-                    ? 'bg-red-950/40 border-red-500/50 text-[#FF4D5A]'
-                    : 'bg-[#18181F] border-[#27272A] text-zinc-300 hover:text-white'
+                    ? 'bg-red-950/40 border-red-500/50 text-[#A78BFA]'
+                    : 'bg-[#171A22] border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC]'
                 }`}
               >
-                <Heart className={`w-4 h-4 ${isFavorite(movie.id) ? 'fill-[#FF4D5A]' : ''}`} />
+                <Heart className={`w-4 h-4 ${isFavorite(movie.id) ? 'fill-[#A78BFA]' : ''}`} />
                 {isFavorite(movie.id) ? 'Sevimlilarda' : 'Sevimlilarga'}
               </button>
               {!isAuthenticated && (
-                <span className="text-xs text-zinc-500 flex items-center gap-1.5">
+                <span className="text-xs text-[#6B7280] flex items-center gap-1.5">
                   <Info className="w-3.5 h-3.5" />
                   Bron va shaxsiy ro'yxatlar uchun tizimga kiring
                 </span>
@@ -203,18 +203,18 @@ export const WatchPage = () => {
 
           {/* Watchlist side card */}
           <div className="lg:col-span-4">
-            <div className="bg-[#121216] border border-[#27272A] rounded-2xl p-6 space-y-4">
-              <h3 className="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                <ListPlus className="w-4 h-4 text-[#FF4D5A]" />
+            <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-6 space-y-4">
+              <h3 className="text-sm font-bold text-[#F8FAFC] uppercase tracking-[0.08em] flex items-center gap-2">
+                <ListPlus className="w-4 h-4 text-[#A78BFA]" />
                 Keyinroq ko'rish
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">
+              <p className="text-xs text-[#9CA3AF] leading-relaxed">
                 Filmni watchlist'ga qo'shing — ro'yxat qurilmangizda (localStorage)
                 saqlanadi, serverga yuborilmaydi.
               </p>
               <Link
                 to="/watchlist"
-                className="block text-center px-4 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-200 hover:text-white text-xs font-semibold transition-colors"
+                className="block text-center px-4 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#E5E7EB] hover:text-[#F8FAFC] text-xs font-semibold transition-colors"
               >
                 Watchlist'ni ochish
               </Link>
@@ -224,7 +224,7 @@ export const WatchPage = () => {
 
         {/* Similar movies (simple metadata-based) */}
         <section className="space-y-6">
-          <h2 className="text-xl font-bold text-white border-b border-[#27272A] pb-4">
+          <h2 className="text-xl font-bold text-[#F8FAFC] border-b border-white/[0.08] pb-4">
             O'xshash filmlar (janr bo'yicha)
           </h2>
           <SimilarMovies genre={movie.genre} currentId={movie.id} />
@@ -259,7 +259,7 @@ const SimilarMovies = ({ genre, currentId }) => {
 
   if (isLoading) return <MovieGridSkeleton count={4} />;
   if (!movies || movies.length === 0) {
-    return <p className="text-xs text-zinc-500">O'xshash filmlar topilmadi.</p>;
+    return <p className="text-xs text-[#6B7280]">O'xshash filmlar topilmadi.</p>;
   }
   return (
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">

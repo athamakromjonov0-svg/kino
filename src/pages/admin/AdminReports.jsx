@@ -54,8 +54,8 @@ export const AdminReports = () => {
     <div className="space-y-8">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">Hisobotlar</h1>
-          <p className="text-xs text-zinc-400 mt-1">
+          <h1 className="text-2xl font-extrabold text-[#F8FAFC] tracking-tight">Hisobotlar</h1>
+          <p className="text-xs text-[#9CA3AF] mt-1">
             Ko'rsatilgan davrdagi jami bronlar: {totalBookings}
           </p>
         </div>
@@ -63,7 +63,7 @@ export const AdminReports = () => {
           type="button"
           onClick={exportCsv}
           disabled={!data.bookingsOverTime.length}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] hover:border-zinc-500 text-white text-xs font-bold transition-colors disabled:opacity-40"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] hover:border-white/[0.14] text-[#F8FAFC] text-xs font-bold transition-colors disabled:opacity-40"
         >
           <Download className="w-4 h-4" />
           CSV eksport
@@ -71,9 +71,9 @@ export const AdminReports = () => {
       </div>
 
       {data.isDemoPreview && (
-        <div className="flex items-start gap-3 bg-amber-500/10 border border-amber-500/30 rounded-2xl p-4">
-          <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-          <p className="text-xs text-amber-200/90 leading-relaxed">
+        <div className="flex items-start gap-3 bg-[#F59E0B]/[0.08] border border-[#F59E0B]/[0.3] rounded-2xl p-4">
+          <AlertTriangle className="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5" />
+          <p className="text-xs text-[#FDE68A]/90 leading-relaxed">
             <span className="font-bold">Demo preview.</span> Hisobot ma'lumotlari namunaviy —
             real vaqt statistikasi emas. CSV eksport aynan shu ko'rsatilgan ma'lumotlarni saqlaydi.
           </p>
@@ -81,30 +81,30 @@ export const AdminReports = () => {
       )}
 
       {/* Booking trend */}
-      <section className="bg-[#121216] border border-[#27272A] rounded-2xl p-5 space-y-4">
-        <h2 className="text-sm font-bold text-white flex items-center gap-2">
-          <BarChart3 className="w-4 h-4 text-[#FF4D5A]" />
+      <section className="bg-[#101218] border border-white/[0.08] rounded-2xl p-5 space-y-4">
+        <h2 className="text-sm font-bold text-[#F8FAFC] flex items-center gap-2">
+          <BarChart3 className="w-4 h-4 text-[#A78BFA]" />
           Kunlik bronlar
         </h2>
         {data.bookingsOverTime.length === 0 ? (
-          <p className="text-xs text-zinc-500 py-8 text-center">Ma'lumot yo'q</p>
+          <p className="text-xs text-[#6B7280] py-8 text-center">Ma'lumot yo'q</p>
         ) : (
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data.bookingsOverTime}>
-                <CartesianGrid stroke="#27272A" strokeDasharray="3 3" vertical={false} />
+                <CartesianGrid stroke="rgba(255,255,255,0.08)" strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="date" tick={{ fill: '#71717A', fontSize: 10 }} tickFormatter={(v) => v.slice(5)} />
                 <YAxis tick={{ fill: '#71717A', fontSize: 10 }} allowDecimals={false} />
                 <Tooltip
                   contentStyle={{
-                    backgroundColor: '#18181F',
-                    border: '1px solid #27272A',
+                    backgroundColor: '#171A22',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
                     borderRadius: '12px',
                     fontSize: '12px',
                     color: '#fff',
                   }}
                 />
-                <Bar dataKey="count" fill="#E50914" radius={[6, 6, 0, 0]} name="Bronlar" />
+                <Bar dataKey="count" fill="#8B5CF6" radius={[6, 6, 0, 0]} name="Bronlar" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -112,28 +112,28 @@ export const AdminReports = () => {
       </section>
 
       {/* Popular movies ranking */}
-      <section className="bg-[#121216] border border-[#27272A] rounded-2xl p-5 space-y-4">
-        <h2 className="text-sm font-bold text-white flex items-center gap-2">
-          <Film className="w-4 h-4 text-[#FF4D5A]" />
+      <section className="bg-[#101218] border border-white/[0.08] rounded-2xl p-5 space-y-4">
+        <h2 className="text-sm font-bold text-[#F8FAFC] flex items-center gap-2">
+          <Film className="w-4 h-4 text-[#A78BFA]" />
           Film reytingi
         </h2>
         {data.popularMovies.length === 0 ? (
-          <p className="text-xs text-zinc-500 py-8 text-center">Ma'lumot yo'q</p>
+          <p className="text-xs text-[#6B7280] py-8 text-center">Ma'lumot yo'q</p>
         ) : (
           <div className="space-y-3">
             {data.popularMovies.map((m, i) => {
               const max = Math.max(...data.popularMovies.map((x) => x.bookings || 0), 1);
               return (
                 <div key={m.movieId || i} className="flex items-center gap-4">
-                  <span className="w-6 text-xs font-bold text-zinc-500">{i + 1}</span>
+                  <span className="w-6 text-xs font-bold text-[#6B7280]">{i + 1}</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-3 mb-1">
-                      <p className="text-xs font-semibold text-white truncate">{m.title}</p>
-                      <span className="text-xs font-bold text-[#FF4D5A] shrink-0">{m.bookings}</span>
+                      <p className="text-xs font-semibold text-[#F8FAFC] truncate">{m.title}</p>
+                      <span className="text-xs font-bold text-[#A78BFA] shrink-0">{m.bookings}</span>
                     </div>
-                    <div className="w-full h-2 bg-[#27272A] rounded-full overflow-hidden">
+                    <div className="w-full h-2 bg-white/[0.04] rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-gradient-to-r from-[#E50914] to-[#FF4D5A] rounded-full"
+                        className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] rounded-full"
                         style={{ width: `${((m.bookings || 0) / max) * 100}%` }}
                       />
                     </div>

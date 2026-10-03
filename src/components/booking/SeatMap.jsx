@@ -52,15 +52,15 @@ export const SeatMap = ({
   };
 
   return (
-    <div className="w-full bg-[#121216] border border-[#27272A] rounded-2xl p-6 sm:p-8 flex flex-col items-center select-none shadow-xl">
+    <div className="w-full bg-[#101218] border border-white/[0.08] rounded-2xl p-6 sm:p-8 flex flex-col items-center select-none shadow-xl">
       {/* Cinema Screen Section */}
       <div className="w-full max-w-xl mb-12 flex flex-col items-center">
         {/* Curved Glowing Screen Bar */}
         <div className="relative w-full h-8 flex items-center justify-center">
-          <div className="w-full h-2.5 bg-gradient-to-r from-transparent via-[#E50914] to-transparent rounded-full shadow-[0_0_25px_rgba(229,9,20,0.8)]" />
-          <div className="absolute -top-3 w-4/5 h-6 bg-gradient-to-b from-[#E50914]/20 to-transparent blur-md rounded-t-full pointer-events-none" />
+          <div className="w-full h-2.5 bg-gradient-to-r from-transparent via-[#8B5CF6] to-transparent rounded-full shadow-[0_0_25px_rgba(139, 92, 246, 0.8)]" />
+          <div className="absolute -top-3 w-4/5 h-6 bg-gradient-to-b from-[#8B5CF6]/20 to-transparent blur-md rounded-t-full pointer-events-none" />
         </div>
-        <span className="text-[11px] uppercase tracking-[0.25em] text-zinc-400 font-bold mt-2">
+        <span className="text-[11px] uppercase tracking-[0.25em] text-[#9CA3AF] font-bold mt-2">
           CINEMA SCREEN
         </span>
       </div>
@@ -69,7 +69,7 @@ export const SeatMap = ({
       <div className="w-full overflow-x-auto pb-4 flex justify-center">
         <div className="space-y-3 min-w-max px-2">
           {sortedRows.length === 0 ? (
-            <div className="text-center py-10 text-zinc-500 text-sm">
+            <div className="text-center py-10 text-[#6B7280] text-sm">
               Joylar xaritasi mavjud emas yoki yuklanmoqda...
             </div>
           ) : (
@@ -78,7 +78,7 @@ export const SeatMap = ({
               return (
                 <div key={rowNum} className="flex items-center gap-2 sm:gap-3">
                   {/* Left Row Number */}
-                  <div className="w-6 text-center text-xs font-mono font-bold text-zinc-400">
+                  <div className="w-6 text-center text-xs font-mono font-bold text-[#9CA3AF]">
                     {rowNum}
                   </div>
 
@@ -102,7 +102,7 @@ export const SeatMap = ({
                   </div>
 
                   {/* Right Row Number */}
-                  <div className="w-6 text-center text-xs font-mono font-bold text-zinc-400">
+                  <div className="w-6 text-center text-xs font-mono font-bold text-[#9CA3AF]">
                     {rowNum}
                   </div>
                 </div>
@@ -113,20 +113,20 @@ export const SeatMap = ({
       </div>
 
       {/* Seats Legend */}
-      <div className="mt-8 pt-6 border-t border-[#27272A] w-full flex flex-wrap items-center justify-center gap-6 text-xs text-zinc-300">
+      <div className="mt-8 pt-6 border-t border-white/[0.08] w-full flex flex-wrap items-center justify-center gap-6 text-xs text-[#D1D5DB]">
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-t bg-[#27272A] border border-zinc-700" />
+          <div className="w-5 h-5 rounded-t bg-white/[0.04] border border-white/[0.1]" />
           <span>Bo'sh joy</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-t bg-[#E50914] border border-[#FF4D5A] shadow-sm shadow-[#E50914]" />
-          <span className="font-semibold text-white">Tanlangan</span>
+          <div className="w-5 h-5 rounded-t bg-[#8B5CF6] border border-[#A78BFA] shadow-sm shadow-[#8B5CF6]" />
+          <span className="font-semibold text-[#F8FAFC]">Tanlangan</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="w-5 h-5 rounded-t bg-[#18181F] border border-zinc-800 opacity-50" />
-          <span className="text-zinc-500">Band qilingan</span>
+          <div className="w-5 h-5 rounded-t bg-[#171A22] border border-white/[0.06] opacity-50" />
+          <span className="text-[#6B7280]">Band qilingan</span>
         </div>
       </div>
     </div>

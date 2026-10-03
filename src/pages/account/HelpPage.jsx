@@ -54,36 +54,36 @@ export const HelpPage = () => {
           <Link
             key={l.to}
             to={l.to}
-            className="bg-[#18181F] border border-[#27272A] hover:border-[#E50914]/50 rounded-2xl p-4 space-y-2 transition-colors group"
+            className="bg-[#171A22] border border-white/[0.08] hover:border-[#8B5CF6]/50 rounded-2xl p-4 space-y-2 transition-colors group"
           >
-            <l.icon className="w-5 h-5 text-[#FF4D5A]" />
-            <p className="text-xs font-bold text-white group-hover:text-[#FF4D5A] transition-colors">{l.title}</p>
-            <p className="text-[11px] text-zinc-500 leading-snug">{l.desc}</p>
+            <l.icon className="w-5 h-5 text-[#A78BFA]" />
+            <p className="text-xs font-bold text-[#F8FAFC] group-hover:text-[#A78BFA] transition-colors">{l.title}</p>
+            <p className="text-[11px] text-[#6B7280] leading-snug">{l.desc}</p>
           </Link>
         ))}
       </div>
 
       {/* FAQ accordion */}
       <section className="space-y-3">
-        <h2 className="text-lg font-bold text-white">Ko'p so'raladigan savollar</h2>
+        <h2 className="text-lg font-bold text-[#F8FAFC]">Ko'p so'raladigan savollar</h2>
         {FAQS.map((f, i) => (
           <div
             key={i}
-            className="bg-[#121216] border border-[#27272A] rounded-2xl overflow-hidden"
+            className="bg-[#101218] border border-white/[0.08] rounded-2xl overflow-hidden"
           >
             <button
               type="button"
               onClick={() => setOpenIndex(openIndex === i ? -1 : i)}
-              className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-[#18181F]/50 transition-colors"
+              className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left hover:bg-[#171A22]/50 transition-colors"
             >
-              <span className="text-sm font-semibold text-white">{f.q}</span>
+              <span className="text-sm font-semibold text-[#F8FAFC]">{f.q}</span>
               <ChevronDown
-                className={`w-4 h-4 text-zinc-400 shrink-0 transition-transform ${openIndex === i ? 'rotate-180' : ''}`}
+                className={`w-4 h-4 text-[#9CA3AF] shrink-0 transition-transform ${openIndex === i ? 'rotate-180' : ''}`}
               />
             </button>
             {openIndex === i && (
               <div className="px-5 pb-5">
-                <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed border-t border-[#27272A] pt-4">
+                <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed border-t border-white/[0.08] pt-4">
                   {f.a}
                 </p>
               </div>
@@ -92,10 +92,10 @@ export const HelpPage = () => {
         ))}
       </section>
 
-      <div className="bg-[#121216] border border-[#27272A] rounded-2xl p-5 text-center">
-        <p className="text-xs text-zinc-400">
+      <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-5 text-center">
+        <p className="text-xs text-[#9CA3AF]">
           Javob topa olmadingizmi?{' '}
-          <Link to="/contact" className="text-[#FF4D5A] font-semibold hover:text-white transition-colors">
+          <Link to="/contact" className="text-[#A78BFA] font-semibold hover:text-[#F8FAFC] transition-colors">
             Biz bilan bog'laning
           </Link>
         </p>

@@ -133,13 +133,13 @@ export const AdminSessions = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">Seanslarni boshqarish</h1>
-          <p className="text-xs text-zinc-400 mt-1">Jami: {data?.total ?? 0} ta seans</p>
+          <h1 className="text-2xl font-extrabold text-[#F8FAFC] tracking-tight">Seanslarni boshqarish</h1>
+          <p className="text-xs text-[#9CA3AF] mt-1">Jami: {data?.total ?? 0} ta seans</p>
         </div>
         <button
           type="button"
           onClick={openCreate}
-          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-bold transition-colors shrink-0"
+          className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-bold transition-colors shrink-0"
         >
           <Plus className="w-4 h-4" />
           Seans qo'shish
@@ -155,31 +155,31 @@ export const AdminSessions = () => {
           onAction={() => refetch()}
         />
       ) : (
-        <div className="bg-[#121216] border border-[#27272A] rounded-2xl overflow-hidden">
+        <div className="bg-[#101218] border border-white/[0.08] rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-[#27272A] bg-[#18181F]/60">
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">ID</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Film</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Zal</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Vaqt</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400 text-right">Amallar</th>
+                <tr className="border-b border-white/[0.08] bg-[#171A22]/60">
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">ID</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Film</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Zal</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Vaqt</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF] text-right">Amallar</th>
                 </tr>
               </thead>
               <tbody>
                 {sessions.map((s) => (
-                  <tr key={s.id} className="border-b border-[#27272A]/60 last:border-0 hover:bg-[#18181F]/40 transition-colors">
-                    <td className="px-4 py-3 text-xs font-mono text-zinc-400">#{s.id}</td>
-                    <td className="px-4 py-3 text-sm font-semibold text-white">{s.movieTitle || `Film #${s.movieId}`}</td>
-                    <td className="px-4 py-3 text-xs text-zinc-300">{s.hall}</td>
-                    <td className="px-4 py-3 text-xs text-zinc-300">{s.time ? formatDateTime(s.time) : '—'}</td>
+                  <tr key={s.id} className="border-b border-white/[0.08]/60 last:border-0 hover:bg-[#171A22]/40 transition-colors">
+                    <td className="px-4 py-3 text-xs font-mono text-[#9CA3AF]">#{s.id}</td>
+                    <td className="px-4 py-3 text-sm font-semibold text-[#F8FAFC]">{s.movieTitle || `Film #${s.movieId}`}</td>
+                    <td className="px-4 py-3 text-xs text-[#D1D5DB]">{s.hall}</td>
+                    <td className="px-4 py-3 text-xs text-[#D1D5DB]">{s.time ? formatDateTime(s.time) : '—'}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           type="button"
                           onClick={() => openEdit(s)}
-                          className="p-2 rounded-lg bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white transition-colors"
+                          className="p-2 rounded-lg bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] transition-colors"
                           aria-label="Tahrirlash"
                         >
                           <Pencil className="w-3.5 h-3.5" />
@@ -210,11 +210,11 @@ export const AdminSessions = () => {
       >
         <form onSubmit={handleSave} className="space-y-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Film *</label>
+            <label className="text-xs font-bold text-[#9CA3AF] uppercase tracking-[0.08em]">Film *</label>
             <select
               value={form.movieId}
               onChange={(e) => setForm({ ...form, movieId: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-sm text-white focus:outline-none focus:border-[#E50914]/60"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-sm text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]/60"
             >
               <option value="">Filmni tanlang...</option>
               {movies.map((m) => (
@@ -224,23 +224,23 @@ export const AdminSessions = () => {
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Zal *</label>
+            <label className="text-xs font-bold text-[#9CA3AF] uppercase tracking-[0.08em]">Zal *</label>
             <input
               type="text"
               value={form.hall}
               onChange={(e) => setForm({ ...form, hall: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-sm text-white focus:outline-none focus:border-[#E50914]/60"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-sm text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]/60"
               placeholder="Masalan: Zal 2 (Dolby Atmos)"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Vaqt *</label>
+            <label className="text-xs font-bold text-[#9CA3AF] uppercase tracking-[0.08em]">Vaqt *</label>
             <input
               type="datetime-local"
               value={form.time}
               onChange={(e) => setForm({ ...form, time: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-sm text-white focus:outline-none focus:border-[#E50914]/60"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-sm text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]/60"
             />
           </div>
 
@@ -248,14 +248,14 @@ export const AdminSessions = () => {
             <button
               type="submit"
               disabled={isSaving}
-              className="px-5 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] disabled:opacity-50 text-white text-sm font-bold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] disabled:opacity-50 text-[#F8FAFC] text-sm font-bold transition-colors"
             >
               {isSaving ? 'Saqlanmoqda...' : 'Saqlash'}
             </button>
             <button
               type="button"
               onClick={() => setModalState(null)}
-              className="px-5 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white text-sm font-semibold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] text-sm font-semibold transition-colors"
             >
               Bekor qilish
             </button>
@@ -266,8 +266,8 @@ export const AdminSessions = () => {
       {/* Delete confirmation */}
       <Modal isOpen={Boolean(deleteTarget)} onClose={() => setDeleteTarget(null)} title="Seansni o'chirish">
         <div className="space-y-5">
-          <p className="text-sm text-zinc-300 leading-relaxed">
-            <span className="font-bold text-white">#{deleteTarget?.id}</span> seans o'chiriladi.
+          <p className="text-sm text-[#D1D5DB] leading-relaxed">
+            <span className="font-bold text-[#F8FAFC]">#{deleteTarget?.id}</span> seans o'chiriladi.
             Bu seansga tegishli bronlar qoladi, lekin yangi bron ola maydi.
           </p>
           <div className="flex items-center gap-3">
@@ -275,14 +275,14 @@ export const AdminSessions = () => {
               type="button"
               onClick={handleDelete}
               disabled={isSaving}
-              className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white text-sm font-bold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-[#F8FAFC] text-sm font-bold transition-colors"
             >
               {isSaving ? 'O\'chirilmoqda...' : 'Ha, o\'chirish'}
             </button>
             <button
               type="button"
               onClick={() => setDeleteTarget(null)}
-              className="px-5 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white text-sm font-semibold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] text-sm font-semibold transition-colors"
             >
               Bekor qilish
             </button>

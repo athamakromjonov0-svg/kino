@@ -45,8 +45,8 @@ export const AdminUsers = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-white tracking-tight">Foydalanuvchilar</h1>
-        <p className="text-xs text-zinc-400 mt-1">Jami: {data?.total ?? 0} ta hisob</p>
+        <h1 className="text-2xl font-extrabold text-[#F8FAFC] tracking-tight">Foydalanuvchilar</h1>
+        <p className="text-xs text-[#9CA3AF] mt-1">Jami: {data?.total ?? 0} ta hisob</p>
       </div>
 
       {users.length === 0 ? (
@@ -58,36 +58,36 @@ export const AdminUsers = () => {
         />
       ) : (
         <>
-          <div className="bg-[#121216] border border-[#27272A] rounded-2xl overflow-hidden">
+          <div className="bg-[#101218] border border-white/[0.08] rounded-2xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-left">
                 <thead>
-                  <tr className="border-b border-[#27272A] bg-[#18181F]/60">
-                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">ID</th>
-                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Ism</th>
-                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Email</th>
-                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Rol</th>
+                  <tr className="border-b border-white/[0.08] bg-[#171A22]/60">
+                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">ID</th>
+                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Ism</th>
+                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Email</th>
+                    <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Rol</th>
                   </tr>
                 </thead>
                 <tbody>
                   {users.map((u) => (
-                    <tr key={u.id} className="border-b border-[#27272A]/60 last:border-0 hover:bg-[#18181F]/40 transition-colors">
-                      <td className="px-4 py-3 text-xs font-mono text-zinc-400">#{u.id}</td>
+                    <tr key={u.id} className="border-b border-white/[0.08]/60 last:border-0 hover:bg-[#171A22]/40 transition-colors">
+                      <td className="px-4 py-3 text-xs font-mono text-[#9CA3AF]">#{u.id}</td>
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
-                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#E50914] to-[#FF4D5A] flex items-center justify-center text-white text-xs font-bold uppercase shrink-0">
+                          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-[#8B5CF6] to-[#A78BFA] flex items-center justify-center text-[#F8FAFC] text-xs font-bold uppercase shrink-0">
                             {(u.name || u.email || 'U').charAt(0)}
                           </div>
-                          <span className="text-sm font-semibold text-white">{u.name}</span>
+                          <span className="text-sm font-semibold text-[#F8FAFC]">{u.name}</span>
                         </div>
                       </td>
-                      <td className="px-4 py-3 text-xs text-zinc-300">{u.email}</td>
+                      <td className="px-4 py-3 text-xs text-[#D1D5DB]">{u.email}</td>
                       <td className="px-4 py-3">
                         <span
                           className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold ${
                             u.role === 'admin'
-                              ? 'bg-amber-500/15 border border-amber-500/30 text-amber-400'
-                              : 'bg-zinc-500/15 border border-zinc-500/30 text-zinc-300'
+                              ? 'bg-[#F59E0B]/[0.12] border border-[#F59E0B]/[0.3] text-[#FBBF24]'
+                              : 'bg-white/[0.06] border border-white/[0.14]/30 text-[#D1D5DB]'
                           }`}
                         >
                           {u.role === 'admin' ? <ShieldCheck className="w-3 h-3" /> : <User className="w-3 h-3" />}
@@ -101,22 +101,22 @@ export const AdminUsers = () => {
             </div>
 
             {data.totalPages > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-[#27272A]">
+              <div className="flex items-center justify-between px-4 py-3 border-t border-white/[0.08]">
                 <button
                   type="button"
                   onClick={() => setPage((p) => Math.max(1, p - 1))}
                   disabled={page <= 1}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#18181F] border border-[#27272A] text-xs text-zinc-300 disabled:opacity-40 hover:text-white"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#171A22] border border-white/[0.08] text-xs text-[#D1D5DB] disabled:opacity-40 hover:text-[#F8FAFC]"
                 >
                   <ChevronLeft className="w-3.5 h-3.5" />
                   Oldingi
                 </button>
-                <span className="text-xs text-zinc-400">{page} / {data.totalPages}</span>
+                <span className="text-xs text-[#9CA3AF]">{page} / {data.totalPages}</span>
                 <button
                   type="button"
                   onClick={() => setPage((p) => Math.min(data.totalPages, p + 1))}
                   disabled={page >= data.totalPages}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#18181F] border border-[#27272A] text-xs text-zinc-300 disabled:opacity-40 hover:text-white"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#171A22] border border-white/[0.08] text-xs text-[#D1D5DB] disabled:opacity-40 hover:text-[#F8FAFC]"
                 >
                   Keyingi
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -125,7 +125,7 @@ export const AdminUsers = () => {
             )}
           </div>
 
-          <p className="text-[11px] text-zinc-500">
+          <p className="text-[11px] text-[#6B7280]">
             Parollar hech qachon ko'rsatilmaydi. Rollarni o'zgartirish uchun backendda
             PUT /users/:id/role endpointi kerak (README'da hujjatlashtirilgan).
           </p>

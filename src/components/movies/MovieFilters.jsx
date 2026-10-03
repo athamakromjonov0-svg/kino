@@ -24,8 +24,8 @@ export const MovieFilters = ({
 
   return (
     <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none py-1">
-      <div className="flex items-center gap-2 text-xs font-semibold text-zinc-400 mr-2 flex-shrink-0">
-        <Layers className="w-4 h-4 text-[#FF4D5A]" />
+      <div className="flex items-center gap-2 text-xs font-semibold text-[#9CA3AF] mr-2 flex-shrink-0">
+        <Layers className="w-4 h-4 text-[#A78BFA]" />
         <span>Janrlar:</span>
       </div>
 
@@ -39,8 +39,8 @@ export const MovieFilters = ({
               onClick={() => onSelectGenre(g.id)}
               className={`px-4 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-200 border ${
                 isActive
-                  ? 'bg-[#E50914] text-white border-[#E50914] shadow-md shadow-[#E50914]/25 scale-105'
-                  : 'bg-[#18181F] text-zinc-400 border-[#27272A] hover:border-zinc-600 hover:text-white'
+                  ? 'bg-[#8B5CF6] text-[#F8FAFC] border-[#8B5CF6] shadow-md shadow-[#8B5CF6]/25 scale-105'
+                  : 'bg-[#171A22] text-[#9CA3AF] border-white/[0.08] hover:border-white/[0.14] hover:text-[#F8FAFC]'
               }`}
             >
               {g.label}

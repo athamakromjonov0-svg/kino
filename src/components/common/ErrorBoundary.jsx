@@ -27,23 +27,23 @@ export class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen bg-[#09090B] text-white flex items-center justify-center p-6">
-          <div className="max-w-md w-full bg-[#121216] border border-red-500/20 rounded-3xl p-8 text-center space-y-6 shadow-2xl">
+        <div className="min-h-screen bg-[#08090D] text-[#F8FAFC] flex items-center justify-center p-6">
+          <div className="max-w-md w-full bg-[#101218] border border-red-500/20 rounded-2xl p-8 text-center space-y-6 shadow-2xl">
             <div className="w-16 h-16 rounded-2xl bg-red-950/40 border border-red-500/30 flex items-center justify-center text-red-500 mx-auto">
               <AlertTriangle className="w-8 h-8" />
             </div>
 
             <div className="space-y-2">
-              <h2 className="text-xl font-bold text-white">
+              <h2 className="text-xl font-bold text-[#F8FAFC]">
                 Kutilmagan xatolik yuz berdi
               </h2>
-              <p className="text-xs text-zinc-400">
+              <p className="text-xs text-[#9CA3AF]">
                 Ilovada kutilmagan dasturiy xatolik yuzaga keldi. Iltimos, sahifani yangilang.
               </p>
             </div>
 
             {this.state.error?.message && (
-              <div className="bg-[#18181F] p-3 rounded-xl border border-[#27272A] text-left">
+              <div className="bg-[#171A22] p-3 rounded-xl border border-white/[0.08] text-left">
                 <p className="text-[11px] font-mono text-red-400 line-clamp-3">
                   {this.state.error.message}
                 </p>
@@ -65,7 +65,7 @@ export class ErrorBoundary extends Component {
                 size="md"
                 icon={RefreshCw}
                 onClick={this.handleReload}
-                className="glow-red"
+                className="glow-violet"
               >
                 Yangilash
               </Button>

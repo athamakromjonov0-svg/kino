@@ -9,15 +9,15 @@ import ErrorState from '../../components/common/ErrorState';
 import { Layers } from 'lucide-react';
 
 const GENRE_META = {
-  Action: { emoji: '💥', bg: 'from-amber-500/20 to-red-500/20' },
-  'Sci-Fi': { emoji: '🚀', bg: 'from-blue-500/20 to-purple-500/20' },
-  Drama: { emoji: '🎭', bg: 'from-purple-500/20 to-pink-500/20' },
-  Comedy: { emoji: '😂', bg: 'from-yellow-500/20 to-orange-500/20' },
-  Horror: { emoji: '👻', bg: 'from-red-900/30 to-black' },
-  Animation: { emoji: '🎨', bg: 'from-emerald-500/20 to-teal-500/20' },
-  Thriller: { emoji: '🔪', bg: 'from-zinc-500/20 to-slate-700/20' },
-  Romance: { emoji: '❤️', bg: 'from-pink-500/20 to-rose-600/20' },
-  Documentary: { emoji: '📹', bg: 'from-cyan-500/20 to-blue-700/20' },
+  Action: { emoji: '💥', bg: 'from-[#8B5CF6]/14 to-[#8B5CF6]/[0.04]' },
+  'Sci-Fi': { emoji: '🚀', bg: 'from-[#A78BFA]/14 to-[#A78BFA]/[0.04]' },
+  Drama: { emoji: '🎭', bg: 'from-[#7C3AED]/14 to-[#7C3AED]/[0.04]' },
+  Comedy: { emoji: '😂', bg: 'from-[#8B5CF6]/10 to-[#A78BFA]/[0.03]' },
+  Horror: { emoji: '👻', bg: 'from-[#4C1D95]/20 to-[#0B0D12]' },
+  Animation: { emoji: '🎨', bg: 'from-[#A78BFA]/12 to-[#8B5CF6]/[0.04]' },
+  Thriller: { emoji: '🔪', bg: 'from-white/[0.06] to-white/[0.02]' },
+  Romance: { emoji: '❤️', bg: 'from-[#A78BFA]/12 to-[#8B5CF6]/[0.04]' },
+  Documentary: { emoji: '📹', bg: 'from-[#A78BFA]/12 to-[#8B5CF6]/[0.04]' },
 };
 
 export const GenresPage = () => {
@@ -60,21 +60,21 @@ export const GenresPage = () => {
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {genres.map((g) => {
-          const meta = GENRE_META[g] || { emoji: '🎬', bg: 'from-zinc-700/30 to-zinc-900/30' };
+          const meta = GENRE_META[g] || { emoji: '🎬', bg: 'from-white/[0.05] to-white/[0.01]' };
           const count = genreCounts[g] || 0;
           return (
             <Link
               key={g}
               to={`/genres/${encodeURIComponent(g)}`}
-              className={`group relative flex flex-col items-center justify-center p-6 rounded-2xl bg-gradient-to-br ${meta.bg} border border-[#27272A] hover:border-[#E50914]/60 transition-all hover:scale-105 text-center overflow-hidden`}
+              className={`group relative flex flex-col items-center justify-center p-6 rounded-2xl bg-gradient-to-br ${meta.bg} border border-white/[0.08] hover:border-[#8B5CF6]/60 transition-all hover:scale-105 text-center overflow-hidden`}
             >
               <span className="text-3xl mb-2 group-hover:scale-125 transition-transform">
                 {meta.emoji}
               </span>
-              <span className="text-sm font-bold text-white group-hover:text-[#FF4D5A] transition-colors">
+              <span className="text-sm font-bold text-[#F8FAFC] group-hover:text-[#A78BFA] transition-colors">
                 {g}
               </span>
-              <span className="text-[11px] text-zinc-400 mt-1 font-medium">
+              <span className="text-[11px] text-[#9CA3AF] mt-1 font-medium">
                 {count > 0 ? `${count} ta film` : "Katalogda yo'q"}
               </span>
             </Link>

@@ -73,24 +73,24 @@ export const SessionsPage = () => {
       />
 
       {/* Filters */}
-      <div className="bg-[#121216] border border-[#27272A] rounded-2xl p-4 flex flex-col sm:flex-row gap-3">
+      <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-4 flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-[#9CA3AF] absolute left-3.5 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Film yoki zal bo'yicha qidirish..."
-            className="w-full bg-[#18181F] text-white text-xs rounded-xl pl-10 pr-4 py-2.5 border border-[#27272A] focus:border-[#E50914] focus:outline-none transition-colors"
+            className="w-full bg-[#171A22] text-[#F8FAFC] text-xs rounded-xl pl-10 pr-4 py-2.5 border border-white/[0.08] focus:border-[#8B5CF6] focus:outline-none transition-colors"
           />
         </div>
 
         <div className="relative">
-          <Film className="w-4 h-4 text-zinc-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <Film className="w-4 h-4 text-[#9CA3AF] absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
           <select
             value={movieFilter}
             onChange={(e) => setMovieFilter(e.target.value)}
-            className="w-full sm:w-56 bg-[#18181F] text-white text-xs rounded-xl pl-10 pr-4 py-2.5 border border-[#27272A] focus:border-[#E50914] focus:outline-none appearance-none cursor-pointer"
+            className="w-full sm:w-56 bg-[#171A22] text-[#F8FAFC] text-xs rounded-xl pl-10 pr-4 py-2.5 border border-white/[0.08] focus:border-[#8B5CF6] focus:outline-none appearance-none cursor-pointer"
           >
             <option value="all">Barcha filmlar</option>
             {movieOptions.map((m) => (
@@ -105,7 +105,7 @@ export const SessionsPage = () => {
       {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {Array.from({ length: 4 }).map((_, i) => (
-            <div key={i} className="h-28 bg-[#18181F] rounded-2xl animate-pulse border border-[#27272A]" />
+            <div key={i} className="h-28 bg-[#171A22] rounded-2xl animate-pulse border border-white/[0.08]" />
           ))}
         </div>
       ) : error ? (
@@ -123,10 +123,10 @@ export const SessionsPage = () => {
           {filteredSessions.map((session, index) => (
             <div key={session.id || index} className="space-y-1.5">
               <div className="px-1 flex items-center gap-2">
-                <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-wider">
+                <span className="text-[11px] font-bold text-[#6B7280] uppercase tracking-[0.08em]">
                   {session.movie?.title}
                 </span>
-                <span className="px-2 py-0.5 rounded bg-[#27272A] text-[10px] font-semibold text-zinc-300">
+                <span className="px-2 py-0.5 rounded bg-white/[0.04] text-[10px] font-semibold text-[#D1D5DB]">
                   {session.movie?.genre}
                 </span>
               </div>

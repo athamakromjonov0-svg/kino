@@ -13,19 +13,19 @@ export const Unauthorized = () => {
 
   return (
     <div className="min-h-[75vh] flex items-center justify-center px-4 py-16">
-      <div className="max-w-md w-full text-center space-y-6 bg-[#121216] border border-[#27272A] rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
-        <div className="w-20 h-20 rounded-3xl bg-red-950/40 border border-red-500/30 flex items-center justify-center text-red-500 mx-auto shadow-inner">
+      <div className="max-w-md w-full text-center space-y-6 bg-[#101218] border border-white/[0.08] rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        <div className="w-20 h-20 rounded-2xl bg-red-950/40 border border-red-500/30 flex items-center justify-center text-red-500 mx-auto shadow-inner">
           <ShieldAlert className="w-10 h-10" />
         </div>
 
         <div className="space-y-2">
-          <span className="text-4xl sm:text-5xl font-black text-[#FF4D5A] tracking-wider block">
+          <span className="text-4xl sm:text-5xl font-black text-[#A78BFA] tracking-[0.08em] block">
             401 / 403
           </span>
-          <h2 className="text-2xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl font-bold text-[#F8FAFC] tracking-tight">
             Ruxsat cheklangan
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
             Ushbu sahifani ko'rish uchun profilingizga kirishingiz yoki tegishli ruxsatga ega bo'lishingiz kerak.
           </p>
         </div>
@@ -36,7 +36,7 @@ export const Unauthorized = () => {
             size="md"
             icon={LogIn}
             onClick={handleLogin}
-            className="w-full sm:w-auto glow-red"
+            className="w-full sm:w-auto glow-violet"
           >
             Tizimga kirish
           </Button>

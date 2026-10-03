@@ -51,21 +51,21 @@ export const CommunityPage = () => {
       icon: MessageSquare,
       title: 'Sharhlar',
       description: 'Filmlar haqidagi foydalanuvchi fikrlari bilan tanishing',
-      accent: 'from-[#E50914]/20 to-transparent',
+      accent: 'from-[#8B5CF6]/20 to-transparent',
     },
     {
       to: '/actors',
       icon: Users,
       title: 'Aktyorlar',
       description: 'Sevimli aktyorlaringiz va ularning filmografiyasi',
-      accent: 'from-purple-500/20 to-transparent',
+      accent: 'from-[#8B5CF6]/[0.16] to-transparent',
     },
     {
       to: '/collections',
       icon: Layers,
       title: 'Kolleksiyalar',
       description: 'Mavzuga qarab tuzilgan film to\'plamlari',
-      accent: 'from-emerald-500/20 to-transparent',
+      accent: 'from-[#22C55E]/[0.16] to-transparent',
     },
   ];
 
@@ -78,10 +78,10 @@ export const CommunityPage = () => {
       />
 
       {/* Honest status notice */}
-      <div className="flex items-start gap-3 bg-[#121216] border border-[#27272A] rounded-2xl p-4">
-        <Info className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-        <p className="text-xs text-zinc-400 leading-relaxed">
-          Hamjamiyat moduli hozircha <span className="text-white font-semibold">sharhlar, aktyorlar va kolleksiyalar</span> ustida ishlaydi.
+      <div className="flex items-start gap-3 bg-[#101218] border border-white/[0.08] rounded-2xl p-4">
+        <Info className="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5" />
+        <p className="text-xs text-[#9CA3AF] leading-relaxed">
+          Hamjamiyat moduli hozircha <span className="text-[#F8FAFC] font-semibold">sharhlar, aktyorlar va kolleksiyalar</span> ustida ishlaydi.
           Forum va foydalanuvchi guruhlari uchun alohida community API kerak — u backend kengaytmasi sifatida README'da hujjatlashtirilgan.
         </p>
       </div>
@@ -92,16 +92,16 @@ export const CommunityPage = () => {
           <Link
             key={t.to}
             to={t.to}
-            className={`group relative bg-[#121216] border border-[#27272A] hover:border-[#E50914]/50 rounded-3xl p-6 overflow-hidden transition-all hover:-translate-y-1`}
+            className={`group relative bg-[#101218] border border-white/[0.08] hover:border-[#8B5CF6]/50 rounded-2xl p-6 overflow-hidden transition-all hover:-translate-y-1`}
           >
             <div className={`absolute inset-0 bg-gradient-to-br ${t.accent} opacity-0 group-hover:opacity-100 transition-opacity`} />
             <div className="relative space-y-3">
-              <div className="w-12 h-12 rounded-xl bg-[#18181F] border border-[#27272A] flex items-center justify-center text-[#FF4D5A]">
+              <div className="w-12 h-12 rounded-xl bg-[#171A22] border border-white/[0.08] flex items-center justify-center text-[#A78BFA]">
                 <t.icon className="w-6 h-6" />
               </div>
-              <h3 className="text-lg font-bold text-white">{t.title}</h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">{t.description}</p>
-              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF4D5A]">
+              <h3 className="text-lg font-bold text-[#F8FAFC]">{t.title}</h3>
+              <p className="text-xs text-[#9CA3AF] leading-relaxed">{t.description}</p>
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#A78BFA]">
                 O'tish
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </span>
@@ -112,12 +112,12 @@ export const CommunityPage = () => {
 
       {/* Latest reviews preview */}
       <section className="space-y-5">
-        <div className="flex items-center justify-between border-b border-[#27272A] pb-4">
-          <h2 className="text-xl font-bold text-white flex items-center gap-3">
-            <TrendingUp className="w-5 h-5 text-[#E50914]" />
+        <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+          <h2 className="text-xl font-bold text-[#F8FAFC] flex items-center gap-3">
+            <TrendingUp className="w-5 h-5 text-[#8B5CF6]" />
             So'nggi sharhlar
           </h2>
-          <Link to="/reviews" className="text-xs font-semibold text-zinc-300 hover:text-white transition-colors">
+          <Link to="/reviews" className="text-xs font-semibold text-[#D1D5DB] hover:text-[#F8FAFC] transition-colors">
             Barchasi →
           </Link>
         </div>
@@ -125,30 +125,30 @@ export const CommunityPage = () => {
         {isLoading ? (
           <div className="space-y-3">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-24 rounded-2xl bg-[#18181F] border border-[#27272A] animate-pulse" />
+              <div key={i} className="h-24 rounded-2xl bg-[#171A22] border border-white/[0.08] animate-pulse" />
             ))}
           </div>
         ) : latestReviews.length === 0 ? (
-          <p className="text-xs text-zinc-500">Hozircha sharhlar mavjud emas.</p>
+          <p className="text-xs text-[#6B7280]">Hozircha sharhlar mavjud emas.</p>
         ) : (
           <div className="space-y-3">
             {latestReviews.map((r) => (
               <Link
                 key={r.id || r.createdAt}
                 to={`/movies/${r.movieId}`}
-                className="block bg-[#18181F] border border-[#27272A] hover:border-[#E50914]/40 rounded-2xl p-4 sm:p-5 transition-colors"
+                className="block bg-[#171A22] border border-white/[0.08] hover:border-[#8B5CF6]/40 rounded-2xl p-4 sm:p-5 transition-colors"
               >
                 <div className="flex items-center justify-between gap-3 mb-2">
-                  <span className="text-sm font-bold text-white">{r.user || 'Anonim'}</span>
+                  <span className="text-sm font-bold text-[#F8FAFC]">{r.user || 'Anonim'}</span>
                   {r.rating != null && (
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-400">
-                      <Star className="w-3.5 h-3.5 fill-amber-400" />
+                    <span className="inline-flex items-center gap-1 text-xs font-bold text-[#FBBF24]">
+                      <Star className="w-3.5 h-3.5 fill-[#FBBF24]" />
                       {r.rating}/10
                     </span>
                   )}
                 </div>
-                <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">{r.text}</p>
-                <p className="text-[11px] text-zinc-600 mt-2">{formatDateTime(r.createdAt)}</p>
+                <p className="text-xs text-[#9CA3AF] line-clamp-2 leading-relaxed">{r.text}</p>
+                <p className="text-[11px] text-[#6B7280] mt-2">{formatDateTime(r.createdAt)}</p>
               </Link>
             ))}
           </div>
@@ -158,12 +158,12 @@ export const CommunityPage = () => {
       {/* Top actors preview */}
       {topActors.length > 0 && (
         <section className="space-y-5">
-          <div className="flex items-center justify-between border-b border-[#27272A] pb-4">
-            <h2 className="text-xl font-bold text-white flex items-center gap-3">
-              <Clapperboard className="w-5 h-5 text-[#E50914]" />
+          <div className="flex items-center justify-between border-b border-white/[0.08] pb-4">
+            <h2 className="text-xl font-bold text-[#F8FAFC] flex items-center gap-3">
+              <Clapperboard className="w-5 h-5 text-[#8B5CF6]" />
               Mashhur aktyorlar
             </h2>
-            <Link to="/actors" className="text-xs font-semibold text-zinc-300 hover:text-white transition-colors">
+            <Link to="/actors" className="text-xs font-semibold text-[#D1D5DB] hover:text-[#F8FAFC] transition-colors">
               Barchasi →
             </Link>
           </div>
@@ -175,10 +175,10 @@ export const CommunityPage = () => {
                 onClick={() => navigate(`/actors/${a.id || a._id}`)}
                 className="group text-left"
               >
-                <div className="aspect-square w-full rounded-2xl overflow-hidden border border-[#27272A] group-hover:border-[#E50914]/50 transition-colors bg-zinc-900">
+                <div className="aspect-square w-full rounded-2xl overflow-hidden border border-white/[0.08] group-hover:border-[#8B5CF6]/50 transition-colors bg-[#0B0D12]">
                   <img src={a.image || a.photo} alt={a.name} loading="lazy" className="w-full h-full object-cover" />
                 </div>
-                <p className="mt-2 text-xs font-bold text-white group-hover:text-[#FF4D5A] transition-colors truncate">
+                <p className="mt-2 text-xs font-bold text-[#F8FAFC] group-hover:text-[#A78BFA] transition-colors truncate">
                   {a.name}
                 </p>
               </button>
@@ -189,19 +189,19 @@ export const CommunityPage = () => {
 
       {/* Collections count teaser */}
       {collectionsCount > 0 && (
-        <section className="bg-gradient-to-r from-[#18181F] to-[#121216] border border-[#27272A] rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <section className="bg-gradient-to-r from-[#171A22] to-[#101218] border border-white/[0.08] rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-[#E50914]/15 border border-[#E50914]/30 flex items-center justify-center text-[#FF4D5A]">
+            <div className="w-12 h-12 rounded-xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 flex items-center justify-center text-[#A78BFA]">
               <Layers className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">{collectionsCount} ta mavzuiy kolleksiya</h3>
-              <p className="text-xs text-zinc-400">Sci-Fi dan Nolan klassikalarigacha</p>
+              <h3 className="text-base font-bold text-[#F8FAFC]">{collectionsCount} ta mavzuiy kolleksiya</h3>
+              <p className="text-xs text-[#9CA3AF]">Sci-Fi dan Nolan klassikalarigacha</p>
             </div>
           </div>
           <Link
             to="/collections"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-bold transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-bold transition-colors"
           >
             Ko'rish
             <ArrowRight className="w-3.5 h-3.5" />

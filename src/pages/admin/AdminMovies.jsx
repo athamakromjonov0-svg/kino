@@ -127,24 +127,24 @@ export const AdminMovies = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white tracking-tight">Filmlarni boshqarish</h1>
-          <p className="text-xs text-zinc-400 mt-1">Jami: {data?.total ?? 0} ta film</p>
+          <h1 className="text-2xl font-extrabold text-[#F8FAFC] tracking-tight">Filmlarni boshqarish</h1>
+          <p className="text-xs text-[#9CA3AF] mt-1">Jami: {data?.total ?? 0} ta film</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7280]" />
             <input
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Qidirish..."
-              className="pl-9 pr-4 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E50914]/60 w-44 sm:w-56"
+              className="pl-9 pr-4 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-sm text-[#F8FAFC] placeholder-[#6B7280] focus:outline-none focus:border-[#8B5CF6]/60 w-44 sm:w-56"
             />
           </div>
           <button
             type="button"
             onClick={openCreate}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-bold transition-colors shrink-0"
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-bold transition-colors shrink-0"
           >
             <Plus className="w-4 h-4" />
             Film qo'shish
@@ -162,39 +162,39 @@ export const AdminMovies = () => {
           onAction={() => refetch()}
         />
       ) : (
-        <div className="bg-[#121216] border border-[#27272A] rounded-2xl overflow-hidden">
+        <div className="bg-[#101218] border border-white/[0.08] rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-[#27272A] bg-[#18181F]/60">
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Film</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Janr</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Seanslar</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400 text-right">Amallar</th>
+                <tr className="border-b border-white/[0.08] bg-[#171A22]/60">
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Film</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Janr</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Seanslar</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF] text-right">Amallar</th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.map((m) => (
-                  <tr key={m.id} className="border-b border-[#27272A]/60 last:border-0 hover:bg-[#18181F]/40 transition-colors">
+                  <tr key={m.id} className="border-b border-white/[0.08]/60 last:border-0 hover:bg-[#171A22]/40 transition-colors">
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
                         <img
                           src={m.poster || FALLBACK_POSTER}
                           alt={m.title}
-                          className="w-9 h-12 object-cover rounded-lg border border-[#27272A]"
+                          className="w-9 h-12 object-cover rounded-lg border border-white/[0.08]"
                         />
                         <div className="min-w-0">
-                          <p className="text-sm font-bold text-white truncate max-w-[220px]">{m.title}</p>
-                          <p className="text-[11px] text-zinc-500">ID: #{m.id}</p>
+                          <p className="text-sm font-bold text-[#F8FAFC] truncate max-w-[220px]">{m.title}</p>
+                          <p className="text-[11px] text-[#6B7280]">ID: #{m.id}</p>
                         </div>
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <span className="px-2 py-0.5 rounded-md bg-[#E50914]/15 border border-[#E50914]/30 text-[#FF4D5A] text-[11px] font-bold">
+                      <span className="px-2 py-0.5 rounded-md bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-[11px] font-bold">
                         {m.genre}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-xs text-zinc-300">
+                    <td className="px-4 py-3 text-xs text-[#D1D5DB]">
                       {(m.sessions || []).length} ta
                     </td>
                     <td className="px-4 py-3">
@@ -202,7 +202,7 @@ export const AdminMovies = () => {
                         <button
                           type="button"
                           onClick={() => openEdit(m)}
-                          className="p-2 rounded-lg bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white hover:border-zinc-500 transition-colors"
+                          className="p-2 rounded-lg bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] hover:border-white/[0.14] transition-colors"
                           aria-label="Tahrirlash"
                           title="Tahrirlash"
                         >
@@ -227,21 +227,21 @@ export const AdminMovies = () => {
 
           {/* Pagination */}
           {totalPages > 1 && !query && (
-            <div className="flex items-center justify-between px-4 py-3 border-t border-[#27272A]">
+            <div className="flex items-center justify-between px-4 py-3 border-t border-white/[0.08]">
               <button
                 type="button"
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page <= 1}
-                className="px-3 py-1.5 rounded-lg bg-[#18181F] border border-[#27272A] text-xs text-zinc-300 disabled:opacity-40 hover:text-white"
+                className="px-3 py-1.5 rounded-lg bg-[#171A22] border border-white/[0.08] text-xs text-[#D1D5DB] disabled:opacity-40 hover:text-[#F8FAFC]"
               >
                 Oldingi
               </button>
-              <span className="text-xs text-zinc-400">{page} / {totalPages}</span>
+              <span className="text-xs text-[#9CA3AF]">{page} / {totalPages}</span>
               <button
                 type="button"
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page >= totalPages}
-                className="px-3 py-1.5 rounded-lg bg-[#18181F] border border-[#27272A] text-xs text-zinc-300 disabled:opacity-40 hover:text-white"
+                className="px-3 py-1.5 rounded-lg bg-[#171A22] border border-white/[0.08] text-xs text-[#D1D5DB] disabled:opacity-40 hover:text-[#F8FAFC]"
               >
                 Keyingi
               </button>
@@ -258,22 +258,22 @@ export const AdminMovies = () => {
       >
         <form onSubmit={handleSave} className="space-y-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Nomi *</label>
+            <label className="text-xs font-bold text-[#9CA3AF] uppercase tracking-[0.08em]">Nomi *</label>
             <input
               type="text"
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-sm text-white focus:outline-none focus:border-[#E50914]/60"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-sm text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]/60"
               placeholder="Film nomi"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Janr</label>
+            <label className="text-xs font-bold text-[#9CA3AF] uppercase tracking-[0.08em]">Janr</label>
             <select
               value={form.genre}
               onChange={(e) => setForm({ ...form, genre: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-sm text-white focus:outline-none focus:border-[#E50914]/60"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-sm text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]/60"
             >
               {KNOWN_GENRES.map((g) => (
                 <option key={g} value={g}>{g}</option>
@@ -282,23 +282,23 @@ export const AdminMovies = () => {
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Tavsif</label>
+            <label className="text-xs font-bold text-[#9CA3AF] uppercase tracking-[0.08em]">Tavsif</label>
             <textarea
               rows={3}
               value={form.description}
               onChange={(e) => setForm({ ...form, description: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-sm text-white focus:outline-none focus:border-[#E50914]/60 resize-none"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-sm text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]/60 resize-none"
               placeholder="Film haqida qisqacha..."
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-bold text-zinc-400 uppercase tracking-wider">Poster URL</label>
+            <label className="text-xs font-bold text-[#9CA3AF] uppercase tracking-[0.08em]">Poster URL</label>
             <input
               type="url"
               value={form.poster}
               onChange={(e) => setForm({ ...form, poster: e.target.value })}
-              className="w-full px-4 py-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-sm text-white focus:outline-none focus:border-[#E50914]/60"
+              className="w-full px-4 py-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-sm text-[#F8FAFC] focus:outline-none focus:border-[#8B5CF6]/60"
               placeholder="https://..."
             />
           </div>
@@ -307,14 +307,14 @@ export const AdminMovies = () => {
             <button
               type="submit"
               disabled={isSaving}
-              className="px-5 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] disabled:opacity-50 text-white text-sm font-bold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] disabled:opacity-50 text-[#F8FAFC] text-sm font-bold transition-colors"
             >
               {isSaving ? 'Saqlanmoqda...' : modalState?.mode === 'edit' ? 'Saqlash' : 'Qo\'shish'}
             </button>
             <button
               type="button"
               onClick={() => setModalState(null)}
-              className="px-5 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white text-sm font-semibold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] text-sm font-semibold transition-colors"
             >
               Bekor qilish
             </button>
@@ -329,8 +329,8 @@ export const AdminMovies = () => {
         title="Filmni o'chirish"
       >
         <div className="space-y-5">
-          <p className="text-sm text-zinc-300 leading-relaxed">
-            <span className="font-bold text-white">{deleteTarget?.title}</span> filmi va uning barcha
+          <p className="text-sm text-[#D1D5DB] leading-relaxed">
+            <span className="font-bold text-[#F8FAFC]">{deleteTarget?.title}</span> filmi va uning barcha
             seanslari o'chiriladi. Bu amalni qaytarib bo'lmaydi.
           </p>
           <div className="flex items-center gap-3">
@@ -338,14 +338,14 @@ export const AdminMovies = () => {
               type="button"
               onClick={handleDelete}
               disabled={isSaving}
-              className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white text-sm font-bold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 disabled:opacity-50 text-[#F8FAFC] text-sm font-bold transition-colors"
             >
               {isSaving ? 'O\'chirilmoqda...' : 'Ha, o\'chirish'}
             </button>
             <button
               type="button"
               onClick={() => setDeleteTarget(null)}
-              className="px-5 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white text-sm font-semibold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] text-sm font-semibold transition-colors"
             >
               Bekor qilish
             </button>

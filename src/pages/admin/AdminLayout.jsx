@@ -25,17 +25,17 @@ export const AdminLayout = () => {
   return (
     <div className="min-h-screen bg-[#08090D] flex flex-col lg:flex-row">
       {/* Sidebar */}
-      <aside className="lg:w-64 lg:min-h-screen bg-[#121216] border-b lg:border-b-0 lg:border-r border-[#27272A] lg:sticky lg:top-0 lg:h-screen flex flex-col">
-        <div className="p-5 border-b border-[#27272A] flex items-center justify-between">
+      <aside className="lg:w-64 lg:min-h-screen bg-[#101218] border-b lg:border-b-0 lg:border-r border-white/[0.08] lg:sticky lg:top-0 lg:h-screen flex flex-col">
+        <div className="p-5 border-b border-white/[0.08] flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-[#E50914] flex items-center justify-center">
-              <ShieldCheck className="w-5 h-5 text-white" />
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#8B5CF6] to-[#7C3AED] flex items-center justify-center">
+              <ShieldCheck className="w-5 h-5 text-[#F8FAFC]" />
             </div>
             <div>
-              <p className="text-sm font-extrabold text-white tracking-tight">
-                CINE<span className="text-[#E50914]">BOOK</span>
+              <p className="text-sm font-extrabold text-[#F8FAFC] tracking-tight">
+                CINE<span className="text-[#8B5CF6]">ORA</span>
               </p>
-              <p className="text-[10px] uppercase tracking-widest text-[#FF4D5A] font-bold">
+              <p className="text-[10px] uppercase tracking-widest text-[#A78BFA] font-bold">
                 Admin Panel
               </p>
             </div>
@@ -51,8 +51,8 @@ export const AdminLayout = () => {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
                   isActive
-                    ? 'bg-[#E50914]/15 border border-[#E50914]/40 text-white'
-                    : 'border border-transparent text-zinc-400 hover:text-white hover:bg-[#18181F]'
+                    ? 'bg-[#8B5CF6]/15 border border-[#8B5CF6]/40 text-[#F8FAFC]'
+                    : 'border border-transparent text-[#9CA3AF] hover:text-[#F8FAFC] hover:bg-[#171A22]'
                 }`
               }
             >
@@ -62,11 +62,11 @@ export const AdminLayout = () => {
           ))}
         </nav>
 
-        <div className="mt-auto p-3 border-t border-[#27272A] hidden lg:block">
+        <div className="mt-auto p-3 border-t border-white/[0.08] hidden lg:block">
           <button
             type="button"
             onClick={() => navigate('/')}
-            className="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-zinc-400 hover:text-white hover:bg-[#18181F] transition-colors"
+            className="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold text-[#9CA3AF] hover:text-[#F8FAFC] hover:bg-[#171A22] transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Saytga qaytish

@@ -3,7 +3,7 @@ import React from 'react';
 export const Skeleton = ({ className = '', ...props }) => {
   return (
     <div
-      className={`animate-pulse bg-[#18181F] border border-[#27272A]/40 rounded-lg ${className}`}
+      className={`shimmer rounded-lg ${className}`}
       {...props}
     />
   );
@@ -11,7 +11,7 @@ export const Skeleton = ({ className = '', ...props }) => {
 
 export const MovieCardSkeleton = () => {
   return (
-    <div className="bg-[#18181F] rounded-2xl overflow-hidden border border-[#27272A] p-3 flex flex-col space-y-3">
+    <div className="bg-[#171A22] rounded-2xl overflow-hidden border border-white/[0.08] p-3 flex flex-col space-y-3">
       {/* Poster skeleton */}
       <Skeleton className="w-full aspect-[2/3] rounded-xl" />
       
@@ -35,7 +35,7 @@ export const MovieCardSkeleton = () => {
 
 export const MovieGridSkeleton = ({ count = 8 }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-5">
       {Array.from({ length: count }).map((_, i) => (
         <MovieCardSkeleton key={i} />
       ))}

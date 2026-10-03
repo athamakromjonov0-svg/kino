@@ -55,7 +55,7 @@ export const CollectionsPage = () => {
         title="Kolleksiyalar"
         subtitle="Mavzuga qarab tuzilgan film to'plamlari"
         badge={
-          <span className="px-3 py-1.5 rounded-xl bg-[#18181F] border border-[#27272A] text-xs font-semibold text-zinc-300">
+          <span className="px-3 py-1.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-xs font-semibold text-[#D1D5DB]">
             {collections.length} ta kolleksiya
           </span>
         }
@@ -78,23 +78,23 @@ export const CollectionsPage = () => {
                 key={c.id || c._id}
                 type="button"
                 onClick={() => navigate(`/collections/${c.id || c._id}`)}
-                className="group bg-[#121216] border border-[#27272A] hover:border-[#E50914]/50 rounded-3xl p-6 text-left space-y-4 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#E50914]/10 focus:outline-none"
+                className="group bg-[#101218] border border-white/[0.08] hover:border-[#8B5CF6]/50 rounded-2xl p-6 text-left space-y-4 transition-all hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#8B5CF6]/10 focus:outline-none"
               >
                 <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-[#E50914]/15 border border-[#E50914]/30 flex items-center justify-center text-[#FF4D5A]">
+                  <div className="w-12 h-12 rounded-xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 flex items-center justify-center text-[#A78BFA]">
                     <Layers className="w-6 h-6" />
                   </div>
-                  <span className="px-2.5 py-1 rounded-lg bg-[#18181F] border border-[#27272A] text-[11px] font-bold text-zinc-300">
+                  <span className="px-2.5 py-1 rounded-lg bg-[#171A22] border border-white/[0.08] text-[11px] font-bold text-[#D1D5DB]">
                     {movies.length} ta film
                   </span>
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-bold text-white group-hover:text-[#FF4D5A] transition-colors">
+                  <h3 className="text-lg font-bold text-[#F8FAFC] group-hover:text-[#A78BFA] transition-colors">
                     {c.name}
                   </h3>
                   {c.description && (
-                    <p className="text-xs text-zinc-400 mt-1 leading-relaxed line-clamp-2">
+                    <p className="text-xs text-[#9CA3AF] mt-1 leading-relaxed line-clamp-2">
                       {c.description}
                     </p>
                   )}
@@ -109,19 +109,19 @@ export const CollectionsPage = () => {
                         src={m.poster || FALLBACK_POSTER}
                         alt={m.title}
                         loading="lazy"
-                        className="w-16 aspect-[2/3] object-cover rounded-lg border-2 border-[#121216] shadow-md"
+                        className="w-16 aspect-[2/3] object-cover rounded-lg border-2 border-[#101218] shadow-md"
                         style={{ zIndex: movies.slice(0, 4).length - i }}
                       />
                     ))}
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 text-[11px] text-zinc-500">
+                  <div className="flex items-center gap-2 text-[11px] text-[#6B7280]">
                     <Film className="w-3.5 h-3.5" />
                     Filmlar backendda bog'lanmagan
                   </div>
                 )}
 
-                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#FF4D5A]">
+                <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#A78BFA]">
                   Kolleksiyani ko'rish
                   <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </span>

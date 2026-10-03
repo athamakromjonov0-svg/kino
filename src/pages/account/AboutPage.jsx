@@ -29,14 +29,14 @@ export const AboutPage = () => {
       />
 
       {/* Hero statement */}
-      <section className="bg-gradient-to-r from-[#18181F] to-[#121216] border border-[#27272A] rounded-3xl p-8 sm:p-12 text-center space-y-4">
-        <div className="w-16 h-16 mx-auto rounded-2xl bg-[#E50914] flex items-center justify-center shadow-2xl shadow-[#E50914]/30">
-          <Film className="w-8 h-8 text-white" />
+      <section className="bg-gradient-to-r from-[#171A22] to-[#101218] border border-white/[0.08] rounded-2xl p-8 sm:p-12 text-center space-y-4">
+        <div className="w-16 h-16 mx-auto rounded-2xl bg-[#8B5CF6] flex items-center justify-center shadow-2xl shadow-[#8B5CF6]/30">
+          <Film className="w-8 h-8 text-[#F8FAFC]" />
         </div>
-        <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
           Har bir hikoya shu yerdan boshlanadi
         </h2>
-        <p className="text-sm text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+        <p className="text-sm text-[#9CA3AF] leading-relaxed max-w-2xl mx-auto">
           Cineora — bu streaming, kinoteatr chiptalari, film ma'lumotlar bazasi va
           kino hamjamiyatini birlashtirgan zamonaviy platforma. Bizning maqsadimiz — kino
           sevgililariga eng qulay va ishonchli tajribani taqdim etish.
@@ -45,16 +45,16 @@ export const AboutPage = () => {
 
       {/* Features grid */}
       <section className="space-y-6">
-        <h3 className="text-lg font-bold text-white">Nimalarni taklif qilamiz</h3>
+        <h3 className="text-lg font-bold text-[#F8FAFC]">Nimalarni taklif qilamiz</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {FEATURES.map((f) => (
             <div
               key={f.title}
-              className="bg-[#121216] border border-[#27272A] rounded-2xl p-5 space-y-2 hover:border-[#E50914]/40 transition-colors"
+              className="bg-[#101218] border border-white/[0.08] rounded-2xl p-5 space-y-2 hover:border-[#8B5CF6]/40 transition-colors"
             >
-              <f.icon className="w-6 h-6 text-[#E50914]" />
-              <h4 className="text-sm font-bold text-white">{f.title}</h4>
-              <p className="text-xs text-zinc-400 leading-relaxed">{f.desc}</p>
+              <f.icon className="w-6 h-6 text-[#8B5CF6]" />
+              <h4 className="text-sm font-bold text-[#F8FAFC]">{f.title}</h4>
+              <p className="text-xs text-[#9CA3AF] leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -62,19 +62,19 @@ export const AboutPage = () => {
 
       {/* Principles */}
       <section className="space-y-4">
-        <h3 className="text-lg font-bold text-white">Bizning tamoyillar</h3>
-        <div className="bg-[#121216] border border-[#27272A] rounded-2xl p-6 space-y-4 text-sm text-zinc-300 leading-relaxed">
+        <h3 className="text-lg font-bold text-[#F8FAFC]">Bizning tamoyillar</h3>
+        <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-6 space-y-4 text-sm text-[#D1D5DB] leading-relaxed">
           <div className="flex items-start gap-3">
-            <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+            <ShieldCheck className="w-5 h-5 text-[#34D399] shrink-0 mt-0.5" />
             <p>
-              <span className="font-bold text-white">Qonuniy kontent.</span> Biz faqat litsenziyalangan
+              <span className="font-bold text-[#F8FAFC]">Qonuniy kontent.</span> Biz faqat litsenziyalangan
               yoki ommaviy video manbalardan foydalanamiz va ruxsatsiz nusxalarni hech qachon ko'rsatmaymiz.
             </p>
           </div>
           <div className="flex items-start gap-3">
-            <Layers className="w-5 h-5 text-[#FF4D5A] shrink-0 mt-0.5" />
+            <Layers className="w-5 h-5 text-[#A78BFA] shrink-0 mt-0.5" />
             <p>
-              <span className="font-bold text-white">Shaffoflik.</span> Qaysi ma'lumot qayerdan olingani
+              <span className="font-bold text-[#F8FAFC]">Shaffoflik.</span> Qaysi ma'lumot qayerdan olingani
               va qaysi funksiyalar qurilmangizda saqlani aniqligicha ko'rsatiladi.
             </p>
           </div>
@@ -83,12 +83,12 @@ export const AboutPage = () => {
 
       {/* Tech stack */}
       <section className="space-y-4">
-        <h3 className="text-lg font-bold text-white">Texnologiyalar</h3>
+        <h3 className="text-lg font-bold text-[#F8FAFC]">Texnologiyalar</h3>
         <div className="flex flex-wrap gap-2">
           {STACK.map((s) => (
             <span
               key={s}
-              className="px-3 py-1.5 rounded-lg bg-[#18181F] border border-[#27272A] text-xs font-semibold text-zinc-300"
+              className="px-3 py-1.5 rounded-lg bg-[#171A22] border border-white/[0.08] text-xs font-semibold text-[#D1D5DB]"
             >
               {s}
             </span>
@@ -99,7 +99,7 @@ export const AboutPage = () => {
       <div className="text-center">
         <Link
           to="/movies"
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-sm font-bold transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-sm font-bold transition-colors"
         >
           Katalogni kashf qilish
         </Link>

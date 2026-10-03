@@ -22,15 +22,15 @@ export const Input = forwardRef(({
       {label && (
         <label
           htmlFor={inputId}
-          className="block text-xs font-semibold text-zinc-300 tracking-wide uppercase"
+          className="block text-[11px] font-semibold text-[#9CA3AF] tracking-[0.08em] uppercase"
         >
-          {label} {required && <span className="text-[#E50914]">*</span>}
+          {label} {required && <span className="text-[#8B5CF6]">*</span>}
         </label>
       )}
 
       <div className="relative flex items-center">
         {Icon && (
-          <div className="absolute left-3.5 text-zinc-400 pointer-events-none flex items-center">
+          <div className="absolute left-3.5 text-[#6B7280] pointer-events-none flex items-center transition-colors peer-focus:text-[#A78BFA]">
             <Icon className="w-4 h-4" />
           </div>
         )}
@@ -40,13 +40,13 @@ export const Input = forwardRef(({
           id={inputId}
           type={effectiveType}
           placeholder={placeholder}
-          className={`w-full bg-[#18181F] text-white placeholder-zinc-500 text-sm rounded-lg border ${
+          className={`w-full bg-[#101218] text-[#F8FAFC] placeholder-[#52525B] text-sm rounded-xl border ${
             error
-              ? 'border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500'
-              : 'border-[#27272A] hover:border-zinc-700 focus:border-[#E50914] focus:ring-1 focus:ring-[#E50914]'
+              ? 'border-red-500/70 focus:border-red-500 focus:ring-2 focus:ring-red-500/25'
+              : 'border-white/[0.08] hover:border-white/[0.14] focus:border-[#8B5CF6] focus:ring-2 focus:ring-[#8B5CF6]/25'
           } ${Icon ? 'pl-10' : 'pl-3.5'} ${
             isPassword ? 'pr-10' : 'pr-3.5'
-          } py-2.5 outline-none transition-all duration-200 disabled:opacity-50 disabled:bg-zinc-900 ${className}`}
+          } py-2.5 outline-none transition-all duration-200 ease-premium disabled:opacity-40 disabled:bg-[#0B0D12] ${className}`}
           {...props}
         />
 
@@ -55,7 +55,7 @@ export const Input = forwardRef(({
             type="button"
             tabIndex={-1}
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 text-zinc-400 hover:text-white transition-colors focus:outline-none p-1"
+            className="absolute right-3 text-[#6B7280] hover:text-[#A78BFA] transition-colors focus:outline-none p-1"
             aria-label={showPassword ? "Parolni yashirish" : "Parolni ko'rsatish"}
           >
             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}

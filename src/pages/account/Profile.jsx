@@ -31,11 +31,11 @@ export const Profile = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24 space-y-8">
       {/* Page Header */}
-      <div className="border-b border-[#27272A] pb-4">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+      <div className="border-b border-white/[0.08] pb-4">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
           Foydalanuvchi Profili
         </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+        <p className="text-xs sm:text-sm text-[#9CA3AF] mt-1">
           Shaxsiy hisob ma'lumotlari va faoliyatingiz
         </p>
       </div>
@@ -49,26 +49,26 @@ export const Profile = () => {
         {/* Right Main Profile Content */}
         <div className="md:col-span-8 lg:col-span-9 space-y-6">
           {/* User Card */}
-          <div className="bg-[#121216] border border-[#27272A] rounded-3xl p-6 sm:p-8 space-y-6">
+          <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-6 sm:p-8 space-y-6">
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 text-center sm:text-left">
-              <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#E50914] to-[#FF4D5A] flex items-center justify-center text-white text-3xl font-black shadow-xl shadow-[#E50914]/20 border-2 border-white/10 flex-shrink-0">
+              <div className="w-24 h-24 rounded-2xl bg-gradient-to-tr from-[#8B5CF6] to-[#A78BFA] flex items-center justify-center text-[#F8FAFC] text-3xl font-black shadow-xl shadow-[#8B5CF6]/20 border-2 border-white/10 flex-shrink-0">
                 {userInitial}
               </div>
 
               <div className="space-y-2 flex-1">
                 <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3">
-                  <h2 className="text-2xl font-bold text-white">{displayName}</h2>
-                  <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold flex items-center gap-1.5">
+                  <h2 className="text-2xl font-bold text-[#F8FAFC]">{displayName}</h2>
+                  <span className="px-3 py-1 rounded-full bg-[#22C55E]/[0.10] border border-[#22C55E]/[0.22] text-[#34D399] text-xs font-semibold flex items-center gap-1.5">
                     <ShieldCheck className="w-3.5 h-3.5" />
                     Tasdiqlangan Foydalanuvchi
                   </span>
                 </div>
-                <p className="text-xs text-zinc-400 flex items-center justify-center sm:justify-start gap-1.5">
-                  <Mail className="w-3.5 h-3.5 text-zinc-500" />
+                <p className="text-xs text-[#9CA3AF] flex items-center justify-center sm:justify-start gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[#6B7280]" />
                   <span>{user?.email || "Email ko'rsatilmagan"}</span>
                 </p>
                 {user?.id && (
-                  <p className="text-xs font-mono text-zinc-500">
+                  <p className="text-xs font-mono text-[#6B7280]">
                     Foydalanuvchi ID: #{user.id}
                   </p>
                 )}
@@ -76,47 +76,47 @@ export const Profile = () => {
             </div>
 
             {/* Quick Actions */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-[#27272A]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-white/[0.08]">
               <Link
                 to="/my-bookings"
-                className="flex items-center justify-between p-4 rounded-2xl bg-[#18181F] border border-[#27272A] hover:border-[#E50914]/50 transition-all group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-[#171A22] border border-white/[0.08] hover:border-[#8B5CF6]/50 transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#E50914]/10 text-[#E50914] flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-[#8B5CF6]/10 text-[#8B5CF6] flex items-center justify-center">
                     <Ticket className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white">Mening bronlarim</h4>
-                    <p className="text-xs text-zinc-400">Buyurtma qilingan chiptalar</p>
+                    <h4 className="text-sm font-bold text-[#F8FAFC]">Mening bronlarim</h4>
+                    <p className="text-xs text-[#9CA3AF]">Buyurtma qilingan chiptalar</p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-[#6B7280] group-hover:text-[#F8FAFC] group-hover:translate-x-1 transition-all" />
               </Link>
 
               <Link
                 to="/movies"
-                className="flex items-center justify-between p-4 rounded-2xl bg-[#18181F] border border-[#27272A] hover:border-zinc-600 transition-all group"
+                className="flex items-center justify-between p-4 rounded-2xl bg-[#171A22] border border-white/[0.08] hover:border-white/[0.14] transition-all group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-xl bg-[#8B5CF6]/[0.10] text-[#A78BFA] flex items-center justify-center">
                     <Film className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-bold text-white">Filmlarni ko'rish</h4>
-                    <p className="text-xs text-zinc-400">Yangi premyerlar katalogi</p>
+                    <h4 className="text-sm font-bold text-[#F8FAFC]">Filmlarni ko'rish</h4>
+                    <p className="text-xs text-[#9CA3AF]">Yangi premyerlar katalogi</p>
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-zinc-500 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-[#6B7280] group-hover:text-[#F8FAFC] group-hover:translate-x-1 transition-all" />
               </Link>
             </div>
           </div>
 
           {/* Favorite Movies Section (Bonus) */}
-          <div className="bg-[#121216] border border-[#27272A] rounded-3xl p-6 sm:p-8 space-y-4">
-            <div className="flex items-center justify-between border-b border-[#27272A] pb-3">
+          <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-6 sm:p-8 space-y-4">
+            <div className="flex items-center justify-between border-b border-white/[0.08] pb-3">
               <div className="flex items-center gap-2">
-                <Heart className="w-5 h-5 text-[#E50914] fill-[#E50914]" />
-                <h3 className="text-base font-bold text-white">
+                <Heart className="w-5 h-5 text-[#8B5CF6] fill-[#8B5CF6]" />
+                <h3 className="text-base font-bold text-[#F8FAFC]">
                   Sevimli filmlar ({favorites.length})
                 </h3>
               </div>
@@ -128,7 +128,7 @@ export const Profile = () => {
                     localStorage.removeItem(FAVORITES_KEY);
                     setFavorites([]);
                   }}
-                  className="text-xs text-zinc-400 hover:text-red-400 transition-colors"
+                  className="text-xs text-[#9CA3AF] hover:text-red-400 transition-colors"
                 >
                   Tozalash
                 </button>
@@ -136,7 +136,7 @@ export const Profile = () => {
             </div>
 
             {favorites.length === 0 ? (
-              <p className="text-xs text-zinc-500 py-4 text-center">
+              <p className="text-xs text-[#6B7280] py-4 text-center">
                 Siz hali sevimli filmlar ro'yxatini yaratmadingiz. Filmlar kartasidagi yurakcha belgisini bosing!
               </p>
             ) : (
@@ -145,9 +145,9 @@ export const Profile = () => {
                   <Link
                     key={m.id}
                     to={`/movies/${m.id}`}
-                    className="group bg-[#18181F] rounded-xl overflow-hidden border border-[#27272A] hover:border-[#E50914]/40 transition-all flex flex-col"
+                    className="group bg-[#171A22] rounded-xl overflow-hidden border border-white/[0.08] hover:border-[#8B5CF6]/40 transition-all flex flex-col"
                   >
-                    <div className="aspect-[2/3] bg-zinc-900 overflow-hidden">
+                    <div className="aspect-[2/3] bg-[#0B0D12] overflow-hidden">
                       <img
                         src={m.poster}
                         alt={m.title}
@@ -155,7 +155,7 @@ export const Profile = () => {
                       />
                     </div>
                     <div className="p-2.5">
-                      <h5 className="text-xs font-bold text-white truncate group-hover:text-[#FF4D5A]">
+                      <h5 className="text-xs font-bold text-[#F8FAFC] truncate group-hover:text-[#A78BFA]">
                         {m.title}
                       </h5>
                     </div>

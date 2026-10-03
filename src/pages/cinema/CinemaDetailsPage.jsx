@@ -49,7 +49,7 @@ export const CinemaDetailsPage = () => {
   return (
     <div className="pb-24 space-y-8">
       {/* Banner */}
-      <div className="relative w-full h-64 sm:h-80 bg-[#121216] overflow-hidden border-b border-[#27272A]">
+      <div className="relative w-full h-64 sm:h-80 bg-[#101218] overflow-hidden border-b border-white/[0.08]">
         {cinema.image && (
           <img
             src={cinema.image}
@@ -57,58 +57,58 @@ export const CinemaDetailsPage = () => {
             className="w-full h-full object-cover opacity-40"
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#09090B] via-[#09090B]/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#08090D] via-[#08090D]/60 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 space-y-3">
           <button
             type="button"
             onClick={() => navigate('/cinemas')}
-            className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-300 hover:text-white p-2 rounded-lg bg-black/50 border border-white/10 transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-semibold text-[#D1D5DB] hover:text-[#F8FAFC] p-2 rounded-lg bg-black/50 border border-white/10 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Kinoteatrlar</span>
           </button>
 
-          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight flex items-center gap-3">
-            <Building2 className="w-8 h-8 text-[#E50914]" />
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-[#F8FAFC] tracking-tight flex items-center gap-3">
+            <Building2 className="w-8 h-8 text-[#8B5CF6]" />
             {cinema.name}
           </h1>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-        <div className="bg-[#121216] border border-[#27272A] rounded-2xl p-6 space-y-4">
+        <div className="bg-[#101218] border border-white/[0.08] rounded-2xl p-6 space-y-4">
           {cinema.address && (
             <div className="flex items-start gap-3">
-              <MapPin className="w-5 h-5 text-[#FF4D5A] flex-shrink-0 mt-0.5" />
+              <MapPin className="w-5 h-5 text-[#A78BFA] flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                <h4 className="text-xs font-bold uppercase tracking-[0.08em] text-[#9CA3AF] mb-1">
                   Manzil
                 </h4>
-                <p className="text-sm text-white">{cinema.address}</p>
+                <p className="text-sm text-[#F8FAFC]">{cinema.address}</p>
               </div>
             </div>
           )}
 
           {cinema.halls && (
             <div className="flex items-start gap-3">
-              <DoorOpen className="w-5 h-5 text-emerald-400 flex-shrink-0 mt-0.5" />
+              <DoorOpen className="w-5 h-5 text-[#34D399] flex-shrink-0 mt-0.5" />
               <div>
-                <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">
+                <h4 className="text-xs font-bold uppercase tracking-[0.08em] text-[#9CA3AF] mb-1">
                   Zallar
                 </h4>
-                <p className="text-sm text-white">{cinema.halls} ta zal mavjud</p>
+                <p className="text-sm text-[#F8FAFC]">{cinema.halls} ta zal mavjud</p>
               </div>
             </div>
           )}
 
           <div className="flex items-start gap-3">
-            <Info className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+            <Info className="w-5 h-5 text-[#60A5FA] flex-shrink-0 mt-0.5" />
             <div>
-              <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400 mb-1">
+              <h4 className="text-xs font-bold uppercase tracking-[0.08em] text-[#9CA3AF] mb-1">
                 Ma'lumot
               </h4>
-              <p className="text-xs text-zinc-400 leading-relaxed">
+              <p className="text-xs text-[#9CA3AF] leading-relaxed">
                 Kinoteatr zallari haqida batafsil ma'lumot va jadval backend kengaytmasi orqali
                 qo'shiladi. Hozircha seanslar film sahifalari orqali ko'rsatiladi.
               </p>
@@ -120,7 +120,7 @@ export const CinemaDetailsPage = () => {
           <button
             type="button"
             onClick={() => navigate('/movies')}
-            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-sm font-bold shadow-lg shadow-[#E50914]/20 transition-all"
+            className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-sm font-bold shadow-lg shadow-[#8B5CF6]/20 transition-all"
           >
             <Ticket className="w-4 h-4" />
             <span>Filmlar va seanslarni ko'rish</span>

@@ -62,10 +62,10 @@ export const MainLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#09090B] text-white flex flex-col antialiased selection:bg-[#E50914] selection:text-white">
+    <div className="min-h-screen bg-[#08090D] text-[#F8FAFC] flex flex-col antialiased selection:bg-[#8B5CF6] selection:text-[#F8FAFC]">
       {/* Offline warning banner */}
       {isOffline && (
-        <div className="bg-[#E50914] text-white text-xs font-semibold py-2 px-4 text-center flex items-center justify-center gap-2 sticky top-0 z-50 shadow-md">
+        <div className="bg-[#8B5CF6] text-[#F8FAFC] text-xs font-semibold py-2 px-4 text-center flex items-center justify-center gap-2 sticky top-0 z-50 shadow-md">
           <WifiOff className="w-4 h-4 animate-bounce" />
           <span>Internet bilan aloqa uzildi. Iltimos, tarmoqni tekshiring.</span>
         </div>
@@ -91,7 +91,7 @@ export const MainLayout = () => {
         <button
           type="button"
           onClick={scrollToTop}
-          className="fixed bottom-6 right-6 p-3 rounded-xl bg-[#18181F] hover:bg-[#E50914] text-white border border-[#27272A] hover:border-[#E50914] shadow-2xl transition-all duration-300 z-40 hover:scale-110 focus:outline-none"
+          className="fixed bottom-6 right-6 p-3 rounded-xl bg-[#171A22] hover:bg-[#8B5CF6] text-[#F8FAFC] border border-white/[0.08] hover:border-[#8B5CF6] shadow-2xl transition-all duration-300 z-40 hover:scale-110 focus:outline-none"
           aria-label="Yuqoriga qaytish"
           title="Yuqoriga qaytish"
         >

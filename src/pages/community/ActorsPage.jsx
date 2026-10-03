@@ -56,7 +56,7 @@ export const ActorsPage = () => {
         title="Aktyorlar"
         subtitle="Kino olamining mashhur yuzlari"
         badge={
-          <span className="px-3 py-1.5 rounded-xl bg-[#18181F] border border-[#27272A] text-xs font-semibold text-zinc-300">
+          <span className="px-3 py-1.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-xs font-semibold text-[#D1D5DB]">
             {total} ta aktyor
           </span>
         }
@@ -64,13 +64,13 @@ export const ActorsPage = () => {
 
       {/* Search (within loaded page) */}
       <div className="relative max-w-md">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B7280]" />
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Aktyor ismi bo'yicha qidirish..."
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#E50914]/60"
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-sm text-[#F8FAFC] placeholder-[#6B7280] focus:outline-none focus:border-[#8B5CF6]/60"
         />
       </div>
 
@@ -104,7 +104,7 @@ export const ActorsPage = () => {
                 onClick={() => navigate(`/actors/${actor.id || actor._id}`)}
                 className="group text-left focus:outline-none"
               >
-                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-[#27272A] group-hover:border-[#E50914]/60 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-[#E50914]/10 bg-zinc-900">
+                <div className="relative aspect-[3/4] w-full rounded-2xl overflow-hidden border border-white/[0.08] group-hover:border-[#8B5CF6]/60 transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-[#8B5CF6]/10 bg-[#0B0D12]">
                   <img
                     src={actor.image || actor.photo || FALLBACK_PORTRAIT}
                     alt={actor.name}
@@ -113,13 +113,13 @@ export const ActorsPage = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                   <div className="absolute bottom-2 left-2 right-2">
-                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-zinc-300 bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md border border-white/10">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-[#D1D5DB] bg-black/60 backdrop-blur-md px-2 py-0.5 rounded-md border border-white/10">
                       <Clapperboard className="w-3 h-3" />
                       {actor.knownFor || 'Kino'}
                     </span>
                   </div>
                 </div>
-                <h3 className="mt-3 text-sm font-bold text-white group-hover:text-[#FF4D5A] transition-colors truncate">
+                <h3 className="mt-3 text-sm font-bold text-[#F8FAFC] group-hover:text-[#A78BFA] transition-colors truncate">
                   {actor.name}
                 </h3>
               </button>
@@ -133,19 +133,19 @@ export const ActorsPage = () => {
                 type="button"
                 onClick={() => setPage((p) => Math.max(1, p - 1))}
                 disabled={page <= 1}
-                className="p-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 disabled:opacity-40 disabled:cursor-not-allowed hover:text-white transition-colors"
+                className="p-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] disabled:opacity-40 disabled:cursor-not-allowed hover:text-[#F8FAFC] transition-colors"
                 aria-label="Oldingi sahifa"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
-              <span className="text-xs text-zinc-400 font-semibold">
+              <span className="text-xs text-[#9CA3AF] font-semibold">
                 {page} / {totalPages}
               </span>
               <button
                 type="button"
                 onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
                 disabled={page >= totalPages}
-                className="p-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 disabled:opacity-40 disabled:cursor-not-allowed hover:text-white transition-colors"
+                className="p-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] disabled:opacity-40 disabled:cursor-not-allowed hover:text-[#F8FAFC] transition-colors"
                 aria-label="Keyingi sahifa"
               >
                 <ChevronRight className="w-4 h-4" />

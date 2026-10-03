@@ -38,12 +38,12 @@ export const MyBookings = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-24 space-y-8">
       {/* Header */}
-      <div className="border-b border-[#27272A] pb-4">
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight flex items-center gap-3">
-          <Ticket className="w-8 h-8 text-[#E50914]" />
+      <div className="border-b border-white/[0.08] pb-4">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight flex items-center gap-3">
+          <Ticket className="w-8 h-8 text-[#8B5CF6]" />
           <span>Mening Chiptalarim & Bronlarim</span>
         </h1>
-        <p className="text-xs sm:text-sm text-zinc-400 mt-1">
+        <p className="text-xs sm:text-sm text-[#9CA3AF] mt-1">
           Siz tomoningizdan band qilingan barcha kino seanslari va joylar
         </p>
       </div>
@@ -61,7 +61,7 @@ export const MyBookings = () => {
               {Array.from({ length: 3 }).map((_, i) => (
                 <div
                   key={i}
-                  className="h-28 bg-[#18181F] rounded-2xl animate-pulse border border-[#27272A]"
+                  className="h-28 bg-[#171A22] rounded-2xl animate-pulse border border-white/[0.08]"
                 />
               ))}
             </div>
@@ -81,7 +81,7 @@ export const MyBookings = () => {
             />
           ) : (
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-xs text-zinc-400 px-1">
+              <div className="flex items-center justify-between text-xs text-[#9CA3AF] px-1">
                 <span>Jami bronlar soni: {bookings.length} ta</span>
               </div>
 
@@ -96,33 +96,33 @@ export const MyBookings = () => {
                 return (
                   <div
                     key={bookingId}
-                    className="bg-[#18181F] border border-[#27272A] hover:border-[#E50914]/40 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 transition-all shadow-lg"
+                    className="bg-[#171A22] border border-white/[0.08] hover:border-[#8B5CF6]/40 rounded-2xl p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 transition-all shadow-lg"
                   >
                     <div className="space-y-3 flex-1">
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="px-3 py-1 rounded-lg bg-[#E50914]/20 border border-[#E50914]/30 text-[#FF4D5A] text-xs font-mono font-bold">
+                        <span className="px-3 py-1 rounded-lg bg-[#8B5CF6]/20 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-mono font-bold">
                           Bron ID: #{bookingId}
                         </span>
 
-                        <span className="px-3 py-1 rounded-lg bg-[#27272A] text-zinc-300 text-xs font-mono font-semibold">
+                        <span className="px-3 py-1 rounded-lg bg-white/[0.04] text-[#D1D5DB] text-xs font-mono font-semibold">
                           Seans ID: #{sessionId}
                         </span>
 
-                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-semibold">
+                        <span className="px-2.5 py-0.5 rounded-full bg-[#22C55E]/[0.10] border border-[#22C55E]/[0.22] text-[#34D399] text-[11px] font-semibold">
                           {status}
                         </span>
                       </div>
 
                       {/* Seat details */}
-                      <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-white pt-1">
-                        <div className="flex items-center gap-2 bg-[#121216] px-3 py-1.5 rounded-xl border border-[#27272A]">
-                          <span className="text-zinc-400 text-xs font-normal">Qator:</span>
-                          <span className="text-[#FF4D5A] font-mono text-base">{row}</span>
+                      <div className="flex flex-wrap items-center gap-4 text-sm font-semibold text-[#F8FAFC] pt-1">
+                        <div className="flex items-center gap-2 bg-[#101218] px-3 py-1.5 rounded-xl border border-white/[0.08]">
+                          <span className="text-[#9CA3AF] text-xs font-normal">Qator:</span>
+                          <span className="text-[#A78BFA] font-mono text-base">{row}</span>
                         </div>
 
-                        <div className="flex items-center gap-2 bg-[#121216] px-3 py-1.5 rounded-xl border border-[#27272A]">
-                          <span className="text-zinc-400 text-xs font-normal">Joy:</span>
-                          <span className="text-[#FF4D5A] font-mono text-base">{seat}</span>
+                        <div className="flex items-center gap-2 bg-[#101218] px-3 py-1.5 rounded-xl border border-white/[0.08]">
+                          <span className="text-[#9CA3AF] text-xs font-normal">Joy:</span>
+                          <span className="text-[#A78BFA] font-mono text-base">{seat}</span>
                         </div>
                       </div>
                     </div>
@@ -159,16 +159,16 @@ export const MyBookings = () => {
             <AlertTriangle className="w-6 h-6" />
           </div>
 
-          <p className="text-sm text-zinc-300 text-center leading-relaxed">
+          <p className="text-sm text-[#D1D5DB] text-center leading-relaxed">
             Haqiqatan ham ushbu bronni bekor qilmoqchimisiz?
             {bookingToCancel && (
-              <span className="block mt-2 font-mono font-bold text-white">
+              <span className="block mt-2 font-mono font-bold text-[#F8FAFC]">
                 Bron ID: #{bookingToCancel.id || bookingToCancel._id} (Qator {bookingToCancel.row}, Joy {bookingToCancel.seat})
               </span>
             )}
           </p>
 
-          <p className="text-xs text-zinc-500 text-center">
+          <p className="text-xs text-[#6B7280] text-center">
             Bekor qilingan chipta qayta tiklanmaydi va ushbu joy boshqa tomoshabinlar uchun ochiladi.
           </p>
 

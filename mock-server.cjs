@@ -56,15 +56,15 @@ const SWAGGER_HTML = `<!DOCTYPE html>
   <style>
     /* ---------- Cineora design tokens (tailwind.config.js bilan bir xil) ---------- */
     :root {
-      --cb-bg: #09090B;
-      --cb-surface: #121216;
-      --cb-card: #18181F;
-      --cb-border: #27272A;
-      --cb-muted: #A1A1AA;
-      --cb-text: #FFFFFF;
-      --cb-red: #E50914;
-      --cb-red-hover: #c40811;
-      --cb-accent: #FF4D5A;
+      --cb-bg: #08090D;
+      --cb-surface: #101218;
+      --cb-card: #171A22;
+      --cb-border: rgba(255, 255, 255, 0.08);
+      --cb-muted: #9CA3AF;
+      --cb-text: #F8FAFC;
+      --cb-red: #8B5CF6;
+      --cb-red-hover: #7C3AED;
+      --cb-accent: #A78BFA;
       --cb-success: #22C55E;
       --cb-warning: #F59E0B;
       --cb-info: #38BDF8;
@@ -193,13 +193,13 @@ const SWAGGER_HTML = `<!DOCTYPE html>
       border-color: var(--cb-border);
       color: var(--cb-muted);
     }
-    .swagger-ui .btn.cancel:hover { color: var(--cb-text); border-color: #3f3f46; }
+    .swagger-ui .btn.cancel:hover { color: var(--cb-text); border-color: rgba(255, 255, 255, 0.16); }
     .swagger-ui .btn.copy-to-clipboard {
       background: var(--cb-surface);
       border-color: var(--cb-border);
       color: var(--cb-muted);
     }
-    .swagger-ui .btn.copy-to-clipboard:hover { color: var(--cb-text); border-color: #3f3f46; }
+    .swagger-ui .btn.copy-to-clipboard:hover { color: var(--cb-text); border-color: rgba(255, 255, 255, 0.16); }
     .swagger-ui .btn.authorize {
       border-color: var(--cb-red);
       color: #fff;
@@ -272,10 +272,10 @@ const SWAGGER_HTML = `<!DOCTYPE html>
     .swagger-ui .opblock .opblock-summary-path { color: var(--cb-text); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13.5px; font-weight: 500; }
     .swagger-ui .opblock .opblock-summary-path__deprecated { color: var(--cb-warning); }
     .swagger-ui .opblock .opblock-summary-description { color: var(--cb-muted); font-size: 12.5px; font-family: inherit; }
-    .swagger-ui .opblock:hover .opblock-summary { border-color: #3f3f46; }
+    .swagger-ui .opblock:hover .opblock-summary { border-color: rgba(255, 255, 255, 0.16); }
     .swagger-ui .opblock .opblock-body { background: var(--cb-surface); }
     .swagger-ui .opblock-section-header { background: var(--cb-surface); box-shadow: none; border-bottom: 1px solid var(--cb-border); }
-    .swagger-ui .opblock-title_normal { color: #71717a; font-size: 12px; font-family: inherit; text-transform: uppercase; letter-spacing: 0.06em; }
+    .swagger-ui .opblock-title_normal { color: var(--cb-muted); font-size: 12px; font-family: inherit; text-transform: uppercase; letter-spacing: 0.06em; }
     .swagger-ui .parameter__name { color: var(--cb-text); font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 12.5px; }
     .swagger-ui .parameter__name.required { font-weight: 700; }
     .swagger-ui .parameter__name.required span { color: var(--cb-red); }
@@ -301,12 +301,12 @@ const SWAGGER_HTML = `<!DOCTYPE html>
     /* Jadvalar */
     .swagger-ui table { color: var(--cb-muted); font-family: inherit; font-size: 12.5px; border-collapse: collapse; }
     .swagger-ui .parameters-col_description { color: var(--cb-text); }
-    .swagger-ui table thead tr th { border-bottom-color: var(--cb-border); color: #71717a; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .swagger-ui table thead tr th { border-bottom-color: var(--cb-border); color: var(--cb-muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; }
     .swagger-ui table tbody tr td { border-bottom: 1px solid rgba(39, 39, 42, 0.6); padding: 10px 0; }
 
     /* Kod / misollar */
     .swagger-ui .highlight-code, .swagger-ui .microlight { background: var(--cb-bg) !important; border: 1px solid var(--cb-border); border-radius: 10px; }
-    .swagger-ui code, .swagger-ui pre { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; color: #d4d4d8; }
+    .swagger-ui code, .swagger-ui pre { font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace; font-size: 12px; color: var(--cb-text); }
     .swagger-ui .model-box { background: var(--cb-bg); border: 1px solid var(--cb-border); border-radius: 10px; }
     .swagger-ui .model-title { color: var(--cb-accent); font-size: 13px; font-weight: 600; }
     .swagger-ui section.models { border: 1px solid var(--cb-border); border-radius: var(--cb-radius); background: var(--cb-card); margin-top: 40px; }
@@ -322,7 +322,7 @@ const SWAGGER_HTML = `<!DOCTYPE html>
     .swagger-ui .response-col_description { color: var(--cb-muted); font-size: 12.5px; }
     .swagger-ui .response-col_description__inner p { color: var(--cb-muted); }
     .swagger-ui .live-responses-table { background: var(--cb-card); }
-    .swagger-ui .curl, .swagger-ui .microlight { color: #d4d4d8; }
+    .swagger-ui .curl, .swagger-ui .microlight { color: var(--cb-text); }
 
     /* Modal (Authorize) */
     .swagger-ui .dialog-ux .modal-ux {
@@ -345,8 +345,8 @@ const SWAGGER_HTML = `<!DOCTYPE html>
     /* Scrollbar */
     ::-webkit-scrollbar { width: 11px; height: 11px; }
     ::-webkit-scrollbar-track { background: var(--cb-bg); }
-    ::-webkit-scrollbar-thumb { background: #2f2f37; border-radius: 999px; border: 2px solid var(--cb-bg); }
-    ::-webkit-scrollbar-thumb:hover { background: #45454f; }
+    ::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.14); border-radius: 999px; border: 2px solid var(--cb-bg); }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.6); }
 
     /* Footer */
     .cb-footer {
@@ -378,8 +378,8 @@ const SWAGGER_HTML = `<!DOCTYPE html>
       <div class="cb-logo">
         <div class="cb-logo-mark">
           <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect x="18" y="18" width="164" height="164" rx="34" fill="none" stroke="#E50914" stroke-width="12"/>
-            <path d="M78 66L140 100L78 134V66Z" fill="#E50914"/>
+            <rect x="18" y="18" width="164" height="164" rx="34" fill="none" stroke="#8B5CF6" stroke-width="12"/>
+            <path d="M78 66L140 100L78 134V66Z" fill="#8B5CF6"/>
           </svg>
         </div>
         <div class="cb-logo-text">

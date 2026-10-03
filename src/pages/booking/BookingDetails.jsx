@@ -53,20 +53,20 @@ export const BookingDetails = () => {
       <button
         type="button"
         onClick={() => navigate('/my-bookings')}
-        className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white p-2 rounded-lg bg-[#18181F] border border-[#27272A] transition-colors"
+        className="inline-flex items-center gap-2 text-xs font-semibold text-[#9CA3AF] hover:text-[#F8FAFC] p-2 rounded-lg bg-[#171A22] border border-white/[0.08] transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Mening bronlarim</span>
       </button>
 
-      <div className="bg-[#121216] border border-[#27272A] rounded-3xl overflow-hidden">
-        <div className="bg-gradient-to-r from-[#E50914]/20 to-transparent px-6 py-4 border-b border-[#27272A] flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-widest text-[#FF4D5A]">Bron tafsilotlari</span>
+      <div className="bg-[#101218] border border-white/[0.08] rounded-2xl overflow-hidden">
+        <div className="bg-gradient-to-r from-[#8B5CF6]/20 to-transparent px-6 py-4 border-b border-white/[0.08] flex items-center justify-between">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#A78BFA]">Bron tafsilotlari</span>
           <span
             className={`px-2.5 py-1 rounded-md text-[11px] font-bold ${
               isPast
-                ? 'bg-zinc-500/15 border border-zinc-500/30 text-zinc-300'
-                : 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-400'
+                ? 'bg-white/[0.06] border border-white/[0.14]/30 text-[#D1D5DB]'
+                : 'bg-[#22C55E]/[0.14] border border-[#22C55E]/[0.28] text-[#34D399]'
             }`}
           >
             {isPast ? 'O\'tgan' : booking.status || 'Tasdiqlangan'}
@@ -76,52 +76,52 @@ export const BookingDetails = () => {
         <div className="p-6 sm:p-8 space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="space-y-1.5">
-              <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold flex items-center gap-1.5">
+              <p className="text-[11px] uppercase tracking-[0.08em] text-[#6B7280] font-bold flex items-center gap-1.5">
                 <Ticket className="w-3.5 h-3.5" />
                 Bron raqami
               </p>
-              <p className="text-base font-bold text-white">#{booking.id}</p>
+              <p className="text-base font-bold text-[#F8FAFC]">#{booking.id}</p>
             </div>
             <div className="space-y-1.5">
-              <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold flex items-center gap-1.5">
+              <p className="text-[11px] uppercase tracking-[0.08em] text-[#6B7280] font-bold flex items-center gap-1.5">
                 <Film className="w-3.5 h-3.5" />
                 Seans
               </p>
-              <p className="text-base font-bold text-white">#{booking.sessionId}</p>
+              <p className="text-base font-bold text-[#F8FAFC]">#{booking.sessionId}</p>
             </div>
             <div className="space-y-1.5">
-              <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold flex items-center gap-1.5">
+              <p className="text-[11px] uppercase tracking-[0.08em] text-[#6B7280] font-bold flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5" />
                 Bron vaqti
               </p>
-              <p className="text-sm font-bold text-white">
+              <p className="text-sm font-bold text-[#F8FAFC]">
                 {booking.createdAt ? formatDateTime(booking.createdAt) : '—'}
               </p>
             </div>
             <div className="space-y-1.5">
-              <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold flex items-center gap-1.5">
+              <p className="text-[11px] uppercase tracking-[0.08em] text-[#6B7280] font-bold flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5" />
                 Zal
               </p>
-              <p className="text-sm font-bold text-white">
+              <p className="text-sm font-bold text-[#F8FAFC]">
                 {booking.hall || booking.sessionInfo?.hall || 'Zal xaritasida ko\'rsatilgan'}
               </p>
             </div>
           </div>
 
-          <div className="border-t border-dashed border-[#27272A] pt-6">
-            <p className="text-[11px] uppercase tracking-wider text-zinc-500 font-bold flex items-center gap-1.5 mb-2">
+          <div className="border-t border-dashed border-white/[0.08] pt-6">
+            <p className="text-[11px] uppercase tracking-[0.08em] text-[#6B7280] font-bold flex items-center gap-1.5 mb-2">
               <Sofa className="w-3.5 h-3.5" />
               Joy
             </p>
-            <p className="text-2xl font-extrabold text-[#FF4D5A]">
+            <p className="text-2xl font-extrabold text-[#A78BFA]">
               Qator {booking.row} • Joy {booking.seat}
             </p>
           </div>
 
           {!isPast && (
-            <div className="border-t border-[#27272A] pt-6 flex items-center justify-between gap-4">
-              <p className="text-xs text-zinc-400">Rejalar o'zgarishi bo'lsa bronni bekor qilishingiz mumkin.</p>
+            <div className="border-t border-white/[0.08] pt-6 flex items-center justify-between gap-4">
+              <p className="text-xs text-[#9CA3AF]">Rejalar o'zgarishi bo'lsa bronni bekor qilishingiz mumkin.</p>
               <button
                 type="button"
                 onClick={() => setIsCancelModalOpen(true)}
@@ -143,16 +143,16 @@ export const BookingDetails = () => {
         <div className="space-y-5">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center shrink-0">
-              <AlertTriangle className="w-6 h-6 text-[#FF4D5A]" />
+              <AlertTriangle className="w-6 h-6 text-[#A78BFA]" />
             </div>
             <div>
-              <h3 className="text-base font-bold text-white">Bronni bekor qilasizmi?</h3>
-              <p className="text-xs text-zinc-400 mt-0.5">
+              <h3 className="text-base font-bold text-[#F8FAFC]">Bronni bekor qilasizmi?</h3>
+              <p className="text-xs text-[#9CA3AF] mt-0.5">
                 #{booking.id} bron — Qator {booking.row}, Joy {booking.seat}
               </p>
             </div>
           </div>
-          <p className="text-xs text-zinc-400 leading-relaxed">
+          <p className="text-xs text-[#9CA3AF] leading-relaxed">
             Bu amalni qaytarib bo'lmayadi. Joy darhol boshqa foydalanuvchilar uchun bo'shaydi.
           </p>
           <div className="flex items-center gap-3">
@@ -173,7 +173,7 @@ export const BookingDetails = () => {
             <button
               type="button"
               onClick={() => setIsCancelModalOpen(false)}
-              className="px-5 py-2.5 rounded-xl bg-[#18181F] border border-[#27272A] text-zinc-300 hover:text-white text-sm font-semibold transition-colors"
+              className="px-5 py-2.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-[#D1D5DB] hover:text-[#F8FAFC] text-sm font-semibold transition-colors"
             >
               Yo'q, qoldirish
             </button>

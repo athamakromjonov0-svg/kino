@@ -35,16 +35,16 @@ export const ContinueWatchingPage = () => {
         title="Davom ettirish"
         subtitle="To'liq ko'rilmay qolgan filmlar"
         badge={
-          <span className="px-3 py-1.5 rounded-xl bg-[#18181F] border border-[#27272A] text-xs font-semibold text-zinc-300">
+          <span className="px-3 py-1.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-xs font-semibold text-[#D1D5DB]">
             {entries.length} ta yozuv
           </span>
         }
       />
 
-      <div className="flex items-start gap-3 bg-[#121216] border border-[#27272A] rounded-2xl p-4">
-        <HardDrive className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-        <p className="text-xs text-zinc-400 leading-relaxed">
-          Ijro holati <span className="text-white font-semibold">faqat shu qurilmada (localStorage)</span> saqlanadi.
+      <div className="flex items-start gap-3 bg-[#101218] border border-white/[0.08] rounded-2xl p-4">
+        <HardDrive className="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5" />
+        <p className="text-xs text-[#9CA3AF] leading-relaxed">
+          Ijro holati <span className="text-[#F8FAFC] font-semibold">faqat shu qurilmada (localStorage)</span> saqlanadi.
           Bu yerda faqat haqiqatan boshlangan va qonuniy manba orqali ko'rilgan filmlar paydo bo'ladi.
         </p>
       </div>
@@ -64,30 +64,30 @@ export const ContinueWatchingPage = () => {
             return (
               <div
                 key={e.movieId}
-                className="bg-[#18181F] border border-[#27272A] hover:border-[#E50914]/50 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-all group"
+                className="bg-[#171A22] border border-white/[0.08] hover:border-[#8B5CF6]/50 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center gap-4 transition-all group"
               >
-                <div className="w-12 h-12 rounded-xl bg-[#E50914]/15 border border-[#E50914]/30 flex items-center justify-center shrink-0">
-                  <Film className="w-5 h-5 text-[#FF4D5A]" />
+                <div className="w-12 h-12 rounded-xl bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 flex items-center justify-center shrink-0">
+                  <Film className="w-5 h-5 text-[#A78BFA]" />
                 </div>
 
                 <div className="flex-1 min-w-0 space-y-2">
                   <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-sm font-bold text-white truncate">
+                    <h3 className="text-sm font-bold text-[#F8FAFC] truncate">
                       Film #{e.movieId}
                     </h3>
-                    <span className="text-xs text-zinc-500 shrink-0 flex items-center gap-1">
+                    <span className="text-xs text-[#6B7280] shrink-0 flex items-center gap-1">
                       <Clock className="w-3 h-3" />
                       {formatClock(e.progress)}
                       {e.duration ? ` / ${formatClock(e.duration)}` : ''}
                     </span>
                   </div>
-                  <div className="w-full h-1.5 bg-[#27272A] rounded-full overflow-hidden">
+                  <div className="w-full h-1.5 bg-white/[0.04] rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-[#E50914] to-[#FF4D5A] rounded-full"
+                      className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#A78BFA] rounded-full"
                       style={{ width: `${pct}%` }}
                     />
                   </div>
-                  <p className="text-[11px] text-zinc-500">
+                  <p className="text-[11px] text-[#6B7280]">
                     {e.updatedAt ? `${formatDateTime(new Date(e.updatedAt).toISOString())} da ko'rilgan` : ''}
                     {pct > 0 ? ` — ${pct}% tugallangan` : ''}
                   </p>
@@ -96,7 +96,7 @@ export const ContinueWatchingPage = () => {
                 <div className="flex items-center gap-2 shrink-0">
                   <Link
                     to={`/watch/${e.movieId}`}
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-bold transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-bold transition-colors"
                   >
                     <Play className="w-3.5 h-3.5 fill-white" />
                     Davom ettirish
@@ -104,7 +104,7 @@ export const ContinueWatchingPage = () => {
                   <button
                     type="button"
                     onClick={() => clearPlaybackProgress(e.movieId)}
-                    className="p-2.5 rounded-xl bg-[#121216] border border-[#27272A] text-zinc-400 hover:text-red-400 hover:border-red-500/40 transition-colors"
+                    className="p-2.5 rounded-xl bg-[#101218] border border-white/[0.08] text-[#9CA3AF] hover:text-red-400 hover:border-red-500/40 transition-colors"
                     aria-label="Yozuvni o'chirish"
                     title="Yozuvni o'chirish"
                   >

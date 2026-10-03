@@ -8,22 +8,22 @@ export const NotFound = () => {
 
   return (
     <div className="min-h-[75vh] flex items-center justify-center px-4 py-16">
-      <div className="max-w-md w-full text-center space-y-6 bg-[#121216] border border-[#27272A] rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+      <div className="max-w-md w-full text-center space-y-6 bg-[#101218] border border-white/[0.08] rounded-2xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
         {/* Ambient glow */}
-        <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#E50914]/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#8B5CF6]/20 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="w-20 h-20 rounded-3xl bg-[#18181F] border border-[#27272A] flex items-center justify-center text-[#E50914] mx-auto shadow-inner">
+        <div className="w-20 h-20 rounded-2xl bg-[#171A22] border border-white/[0.08] flex items-center justify-center text-[#8B5CF6] mx-auto shadow-inner">
           <Film className="w-10 h-10" />
         </div>
 
         <div className="space-y-2">
-          <span className="text-5xl sm:text-6xl font-black text-[#E50914] tracking-wider block">
+          <span className="text-5xl sm:text-6xl font-black text-[#8B5CF6] tracking-[0.08em] block">
             404
           </span>
-          <h2 className="text-2xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl font-bold text-[#F8FAFC] tracking-tight">
             Sahifa topilmadi
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
             Siz qidirayotgan sahifa mavjud emas yoki boshqa manzilga ko'chirilgan.
           </p>
         </div>
@@ -44,7 +44,7 @@ export const NotFound = () => {
             size="md"
             icon={Home}
             onClick={() => navigate('/')}
-            className="w-full sm:w-auto glow-red"
+            className="w-full sm:w-auto glow-violet"
           >
             Bosh sahifaga
           </Button>

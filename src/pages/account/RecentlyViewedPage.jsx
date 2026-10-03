@@ -22,16 +22,16 @@ export const RecentlyViewedPage = () => {
         title="Yaqinda ko'rilgan"
         subtitle="Oxirgi ochgan film sahifalaringiz"
         badge={
-          <span className="px-3 py-1.5 rounded-xl bg-[#18181F] border border-[#27272A] text-xs font-semibold text-zinc-300">
+          <span className="px-3 py-1.5 rounded-xl bg-[#171A22] border border-white/[0.08] text-xs font-semibold text-[#D1D5DB]">
             {items.length} ta film
           </span>
         }
       />
 
-      <div className="flex items-start gap-3 bg-[#121216] border border-[#27272A] rounded-2xl p-4">
-        <HardDrive className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-        <p className="text-xs text-zinc-400 leading-relaxed">
-          Tarix <span className="text-white font-semibold">faqat shu qurilmada (localStorage)</span> saqlanadi
+      <div className="flex items-start gap-3 bg-[#101218] border border-white/[0.08] rounded-2xl p-4">
+        <HardDrive className="w-5 h-5 text-[#FBBF24] shrink-0 mt-0.5" />
+        <p className="text-xs text-[#9CA3AF] leading-relaxed">
+          Tarix <span className="text-[#F8FAFC] font-semibold">faqat shu qurilmada (localStorage)</span> saqlanadi
           va hech qanday serverga yuborilmaydi.
         </p>
       </div>

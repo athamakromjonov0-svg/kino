@@ -44,8 +44,8 @@ export const AdminBookings = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-extrabold text-white tracking-tight">Bronlar</h1>
-        <p className="text-xs text-zinc-400 mt-1">Barcha foydalanuvchilar bronlari: {data?.total ?? 0} ta</p>
+        <h1 className="text-2xl font-extrabold text-[#F8FAFC] tracking-tight">Bronlar</h1>
+        <p className="text-xs text-[#9CA3AF] mt-1">Barcha foydalanuvchilar bronlari: {data?.total ?? 0} ta</p>
       </div>
 
       {bookings.length === 0 ? (
@@ -57,39 +57,39 @@ export const AdminBookings = () => {
           onAction={() => refetch()}
         />
       ) : (
-        <div className="bg-[#121216] border border-[#27272A] rounded-2xl overflow-hidden">
+        <div className="bg-[#101218] border border-white/[0.08] rounded-2xl overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
-                <tr className="border-b border-[#27272A] bg-[#18181F]/60">
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Bron</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Foydalanuvchi</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Seans</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Joy</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Sana</th>
-                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-wider text-zinc-400">Holat</th>
+                <tr className="border-b border-white/[0.08] bg-[#171A22]/60">
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Bron</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Foydalanuvchi</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Seans</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Joy</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Sana</th>
+                  <th className="px-4 py-3 text-[11px] font-bold uppercase tracking-[0.08em] text-[#9CA3AF]">Holat</th>
                 </tr>
               </thead>
               <tbody>
                 {bookings.map((b) => (
-                  <tr key={b.id} className="border-b border-[#27272A]/60 last:border-0 hover:bg-[#18181F]/40 transition-colors">
-                    <td className="px-4 py-3 text-xs font-mono font-bold text-white">#{b.id}</td>
-                    <td className="px-4 py-3 text-xs text-zinc-300">{b.userEmail || `User #${b.userId}`}</td>
-                    <td className="px-4 py-3 text-xs text-zinc-300">#{b.sessionId}</td>
+                  <tr key={b.id} className="border-b border-white/[0.08]/60 last:border-0 hover:bg-[#171A22]/40 transition-colors">
+                    <td className="px-4 py-3 text-xs font-mono font-bold text-[#F8FAFC]">#{b.id}</td>
+                    <td className="px-4 py-3 text-xs text-[#D1D5DB]">{b.userEmail || `User #${b.userId}`}</td>
+                    <td className="px-4 py-3 text-xs text-[#D1D5DB]">#{b.sessionId}</td>
                     <td className="px-4 py-3 text-xs">
-                      <span className="px-2 py-0.5 rounded-md bg-[#E50914]/15 border border-[#E50914]/30 text-[#FF4D5A] font-bold">
+                      <span className="px-2 py-0.5 rounded-md bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] font-bold">
                         R{b.row} • J{b.seat}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-xs text-zinc-400">
+                    <td className="px-4 py-3 text-xs text-[#9CA3AF]">
                       {b.createdAt ? formatDateTime(b.createdAt) : '—'}
                     </td>
                     <td className="px-4 py-3">
                       <span
                         className={`px-2 py-0.5 rounded-md text-[11px] font-bold ${
                           b.status === 'Bekor qilingan'
-                            ? 'bg-zinc-500/15 border border-zinc-500/30 text-zinc-300'
-                            : 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-400'
+                            ? 'bg-white/[0.06] border border-white/[0.14]/30 text-[#D1D5DB]'
+                            : 'bg-[#22C55E]/[0.14] border border-[#22C55E]/[0.28] text-[#34D399]'
                         }`}
                       >
                         {b.status || 'Tasdiqlangan'}

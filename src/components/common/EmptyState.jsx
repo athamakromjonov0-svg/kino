@@ -10,13 +10,13 @@ export const EmptyState = ({
   onAction,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-[#121216] border border-[#27272A] my-6 max-w-lg mx-auto">
-      <div className="w-16 h-16 rounded-2xl bg-[#18181F] border border-[#27272A] flex items-center justify-center text-zinc-400 mb-4 shadow-inner">
-        <Icon className="w-8 h-8 text-[#FF4D5A]" />
+    <div className="flex flex-col items-center justify-center p-12 text-center rounded-2xl bg-[#101218] border border-white/[0.08] my-6 max-w-lg mx-auto">
+      <div className="w-16 h-16 rounded-2xl bg-[#171A22] border border-white/[0.08] flex items-center justify-center text-[#9CA3AF] mb-4 shadow-inner">
+        <Icon className="w-8 h-8 text-[#A78BFA]" />
       </div>
 
-      <h3 className="text-xl font-bold text-white mb-2">{title}</h3>
-      <p className="text-sm text-zinc-400 max-w-sm mb-6 leading-relaxed">
+      <h3 className="text-xl font-bold text-[#F8FAFC] mb-2">{title}</h3>
+      <p className="text-sm text-[#9CA3AF] max-w-sm mb-6 leading-relaxed">
         {description}
       </p>
 

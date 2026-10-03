@@ -13,12 +13,12 @@ export const Seat = ({
     onToggle({ row, seat });
   };
 
-  let seatStyle = "bg-[#27272A] border border-zinc-700 text-zinc-300 hover:border-[#FF4D5A] hover:bg-[#3F3F46]";
+  let seatStyle = "bg-white/[0.04] border border-white/[0.1] text-[#D1D5DB] hover:border-[#A78BFA] hover:bg-white/[0.08]";
   
   if (isTaken) {
-    seatStyle = "bg-[#18181F] border border-zinc-800 text-zinc-600 cursor-not-allowed opacity-40";
+    seatStyle = "bg-[#171A22] border border-white/[0.06] text-[#6B7280] cursor-not-allowed opacity-40";
   } else if (isSelected) {
-    seatStyle = "bg-[#E50914] border border-[#FF4D5A] text-white shadow-lg shadow-[#E50914]/40 scale-105";
+    seatStyle = "bg-[#8B5CF6] border border-[#A78BFA] text-[#F8FAFC] shadow-lg shadow-[#8B5CF6]/40 scale-105";
   }
 
   return (

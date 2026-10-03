@@ -64,18 +64,18 @@ export const SessionDetailsPage = () => {
       <button
         type="button"
         onClick={() => navigate('/sessions')}
-        className="inline-flex items-center gap-2 text-xs font-semibold text-zinc-400 hover:text-white p-2 rounded-lg bg-[#18181F] border border-[#27272A] transition-colors"
+        className="inline-flex items-center gap-2 text-xs font-semibold text-[#9CA3AF] hover:text-[#F8FAFC] p-2 rounded-lg bg-[#171A22] border border-white/[0.08] transition-colors"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Seanslar ro'yxati</span>
       </button>
 
       {/* Session Hero */}
-      <div className="bg-[#121216] border border-[#27272A] rounded-3xl overflow-hidden">
-        <div className="relative h-40 bg-gradient-to-r from-[#E50914]/20 via-[#121216] to-[#121216] flex items-center justify-center">
-          <Clock className="w-16 h-16 text-[#E50914]/30" />
+      <div className="bg-[#101218] border border-white/[0.08] rounded-2xl overflow-hidden">
+        <div className="relative h-40 bg-gradient-to-r from-[#8B5CF6]/20 via-[#101218] to-[#101218] flex items-center justify-center">
+          <Clock className="w-16 h-16 text-[#8B5CF6]/30" />
           <div className="absolute bottom-4 left-6 right-6">
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-[#F8FAFC] tracking-tight">
               Seans #{sessionId}
             </h1>
           </div>
@@ -88,17 +88,17 @@ export const SessionDetailsPage = () => {
               <img
                 src={movie.poster}
                 alt={movie.title}
-                className="w-20 h-28 object-cover rounded-xl border border-[#27272A]"
+                className="w-20 h-28 object-cover rounded-xl border border-white/[0.08]"
               />
             )}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-xs text-zinc-400 uppercase tracking-wider font-bold">
-                <Film className="w-3.5 h-3.5 text-[#FF4D5A]" />
+              <div className="flex items-center gap-2 text-xs text-[#9CA3AF] uppercase tracking-[0.08em] font-bold">
+                <Film className="w-3.5 h-3.5 text-[#A78BFA]" />
                 <span>Film</span>
               </div>
-              <h2 className="text-xl font-bold text-white">{movie?.title}</h2>
+              <h2 className="text-xl font-bold text-[#F8FAFC]">{movie?.title}</h2>
               {movie?.genre && (
-                <span className="inline-block px-2.5 py-1 rounded-md bg-[#E50914]/20 border border-[#E50914]/30 text-[#FF4D5A] text-xs font-bold">
+                <span className="inline-block px-2.5 py-1 rounded-md bg-[#8B5CF6]/20 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-bold">
                   {movie.genre}
                 </span>
               )}
@@ -106,31 +106,31 @@ export const SessionDetailsPage = () => {
           </div>
 
           {/* Details grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[#27272A]">
-            <div className="bg-[#18181F] rounded-xl p-4 border border-[#27272A]">
-              <div className="flex items-center gap-2 text-xs text-zinc-400 mb-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[#FF4D5A]" />
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-white/[0.08]">
+            <div className="bg-[#171A22] rounded-xl p-4 border border-white/[0.08]">
+              <div className="flex items-center gap-2 text-xs text-[#9CA3AF] mb-1.5">
+                <MapPin className="w-3.5 h-3.5 text-[#A78BFA]" />
                 <span>Zal</span>
               </div>
-              <p className="text-sm font-bold text-white">{hallName}</p>
+              <p className="text-sm font-bold text-[#F8FAFC]">{hallName}</p>
             </div>
 
-            <div className="bg-[#18181F] rounded-xl p-4 border border-[#27272A]">
-              <div className="flex items-center gap-2 text-xs text-zinc-400 mb-1.5">
-                <Clock className="w-3.5 h-3.5 text-emerald-400" />
+            <div className="bg-[#171A22] rounded-xl p-4 border border-white/[0.08]">
+              <div className="flex items-center gap-2 text-xs text-[#9CA3AF] mb-1.5">
+                <Clock className="w-3.5 h-3.5 text-[#34D399]" />
                 <span>Vaqt</span>
               </div>
-              <p className="text-sm font-bold text-white">
+              <p className="text-sm font-bold text-[#F8FAFC]">
                 {sessionTime ? formatDateTime(sessionTime) : "Ko'rsatilmagan"}
               </p>
             </div>
 
-            <div className="bg-[#18181F] rounded-xl p-4 border border-[#27272A]">
-              <div className="flex items-center gap-2 text-xs text-zinc-400 mb-1.5">
-                <Users className="w-3.5 h-3.5 text-blue-400" />
+            <div className="bg-[#171A22] rounded-xl p-4 border border-white/[0.08]">
+              <div className="flex items-center gap-2 text-xs text-[#9CA3AF] mb-1.5">
+                <Users className="w-3.5 h-3.5 text-[#60A5FA]" />
                 <span>Joylar</span>
               </div>
-              <p className="text-sm font-bold text-white">Zal xaritasida mavjud</p>
+              <p className="text-sm font-bold text-[#F8FAFC]">Zal xaritasida mavjud</p>
             </div>
           </div>
 
@@ -138,7 +138,7 @@ export const SessionDetailsPage = () => {
           <button
             type="button"
             onClick={() => navigate(`/booking/${sessionId}`)}
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-sm font-bold shadow-lg shadow-[#E50914]/30 transition-all hover:scale-[1.01]"
+            className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-sm font-bold shadow-lg shadow-[#8B5CF6]/30 transition-all hover:scale-[1.01]"
           >
             <Ticket className="w-5 h-5" />
             <span>Joyni tanlash va bron qilish</span>

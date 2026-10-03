@@ -17,26 +17,26 @@ export const SessionCard = ({ session }) => {
   };
 
   return (
-    <div className="bg-[#18181F] border border-[#27272A] hover:border-[#E50914]/50 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-200 hover:shadow-xl hover:shadow-[#E50914]/5 group">
+    <div className="bg-[#171A22] border border-white/[0.08] hover:border-[#8B5CF6]/50 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-200 hover:shadow-xl hover:shadow-[#8B5CF6]/5 group">
       {/* Session Details */}
       <div className="space-y-2">
         <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 rounded-md bg-[#E50914]/15 border border-[#E50914]/30 text-[#FF4D5A] text-xs font-bold font-mono">
+          <span className="px-2.5 py-1 rounded-md bg-[#8B5CF6]/15 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-bold font-mono">
             ID: #{sessionId}
           </span>
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-white">
-            <MapPin className="w-3.5 h-3.5 text-[#E50914]" />
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-[#F8FAFC]">
+            <MapPin className="w-3.5 h-3.5 text-[#8B5CF6]" />
             <span>{hallName}</span>
           </div>
         </div>
 
         {rawTime && (
-          <div className="flex flex-wrap items-center gap-3 text-xs text-zinc-300">
-            <div className="flex items-center gap-1.5 bg-[#121216] px-2.5 py-1 rounded-lg border border-[#27272A]">
-              <Clock className="w-3.5 h-3.5 text-emerald-400" />
-              <span className="font-semibold text-white">{formatTime(rawTime) || rawTime}</span>
+          <div className="flex flex-wrap items-center gap-3 text-xs text-[#D1D5DB]">
+            <div className="flex items-center gap-1.5 bg-[#101218] px-2.5 py-1 rounded-lg border border-white/[0.08]">
+              <Clock className="w-3.5 h-3.5 text-[#34D399]" />
+              <span className="font-semibold text-[#F8FAFC]">{formatTime(rawTime) || rawTime}</span>
             </div>
-            <span className="text-zinc-500">{formatDate(rawTime)}</span>
+            <span className="text-[#6B7280]">{formatDate(rawTime)}</span>
           </div>
         )}
       </div>
@@ -46,7 +46,7 @@ export const SessionCard = ({ session }) => {
         <button
           type="button"
           onClick={handleSelect}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#E50914] hover:bg-[#c40811] text-white text-xs font-bold shadow-md shadow-[#E50914]/20 transition-all hover:scale-[1.02]"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#8B5CF6] hover:bg-[#7C3AED] text-[#F8FAFC] text-xs font-bold shadow-md shadow-[#8B5CF6]/20 transition-all hover:scale-[1.02]"
         >
           <Ticket className="w-3.5 h-3.5" />
           <span>Joy tanlash</span>

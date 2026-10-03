@@ -34,7 +34,7 @@ export const ContactPage = () => {
             <Mail className="w-5 h-5" />
           </div>
           <h3 className="text-sm font-bold text-white">Email</h3>
-          <p className="text-xs text-zinc-400">support@cinebook.uz</p>
+          <p className="text-xs text-zinc-400">support@cineora.uz</p>
           <p className="text-[11px] text-zinc-500">24 soat ichida javob beramiz</p>
         </div>
 

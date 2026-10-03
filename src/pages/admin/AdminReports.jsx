@@ -28,7 +28,7 @@ export const AdminReports = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `cinebook-bookings-report-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `cineora-bookings-report-${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   };

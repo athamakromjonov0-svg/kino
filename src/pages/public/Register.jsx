@@ -64,7 +64,7 @@ export const Register = () => {
             Ro'yxatdan o'tish
           </h2>
           <p className="text-xs text-zinc-400">
-            CineBook platformasining barcha imkoniyatlaridan to'liq foydalaning
+            Cineora platformasining barcha imkoniyatlaridan to'liq foydalaning
           </p>
         </div>
 

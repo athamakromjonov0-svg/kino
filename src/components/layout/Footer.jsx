@@ -111,7 +111,7 @@ export const Footer = () => {
         </div>
 
         <div className="border-t border-[#27272A] pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
-          <p>© {new Date().getFullYear()} CineBook Ultra. Barcha huquqlar himoyalangan.</p>
+          <p>© {new Date().getFullYear()} Cineora. Barcha huquqlar himoyalangan.</p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link to="/about" className="hover:text-white transition-colors flex items-center gap-1">
               <Info className="w-3 h-3" />

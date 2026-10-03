@@ -25,7 +25,7 @@ export const MovieCarousel = ({ movies = [] }) => {
         <div className="text-center space-y-4 max-w-lg">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E50914]/20 border border-[#E50914]/30 text-[#FF4D5A] text-xs font-semibold">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>CineBook Premium</span>
+            <span>Cineora Premium</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
             Kinolar olamiga xush kelibsiz

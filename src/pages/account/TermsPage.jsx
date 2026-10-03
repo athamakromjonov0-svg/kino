@@ -5,7 +5,7 @@ import PageHeader from '../../components/common/PageHeader';
 const SECTIONS = [
   {
     title: '1. Umumiy qoidalar',
-    body: 'CineBook Ultra (keyingi o\'rinlarda «Platforma») — kino katalogi, chipta bron qilish va qonuniy onlayn tomosha xizmatlari. Platformadan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz.',
+    body: 'Cineora (keyingi o\'rinlarda «Platforma») — kino katalogi, chipta bron qilish va qonuniy onlayn tomosha xizmatlari. Platformadan foydalanish orqali siz ushbu shartlarga rozilik bildirasiz.',
   },
   {
     title: '2. Hisob va xavfsizlik',

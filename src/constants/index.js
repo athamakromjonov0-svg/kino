@@ -1,6 +1,6 @@
-// CineBook Ultra — Global constants
+// Cineora — Global constants
 
-export const APP_NAME = 'CineBook Ultra';
+export const APP_NAME = 'Cineora';
 export const APP_SLOGAN = 'EVERY STORY STARTS HERE';
 
 export const MAX_SEATS_PER_BOOKING = 4;

@@ -2,7 +2,7 @@
  * Device-local movie lists (localStorage).
  *
  * NOTE: These lists are DEVICE-LOCAL only. They are clearly labeled as such in
- * the UI because the CineBook backend does not provide server-side
+ * the UI because the Cineora backend does not provide server-side
  * watchlist/favorites endpoints yet.
  *
  * Storage formats are kept compatible with MovieDetails.jsx which writes

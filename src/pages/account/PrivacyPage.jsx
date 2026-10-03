@@ -53,7 +53,7 @@ const SECTIONS = [
     title: '7. O\'z huquqlaringiz',
     body: [
       'Hisobingizni o\'chirishni va shaxsiy ma\'lumotlaringizni olib tashlashni so\'rashingiz mumkin.',
-      'Saqlangan ma\'lumotlaringiz haqida ma\'lumot olish uchun support@cinebook.uz manziliga murojaat qiling.',
+      'Saqlangan ma\'lumotlaringiz haqida ma\'lumot olish uchun support@cineora.uz manziliga murojaat qiling.',
     ],
   },
 ];
@@ -68,7 +68,7 @@ export const PrivacyPage = () => {
       />
 
       <p className="text-xs text-zinc-500">
-        Oxirgi yangilanish: 2026-yil oktyabr. Ushbu siyosa CineBook Ultra platformasining barcha xizmatlariga tatbiq etiladi.
+        Oxirgi yangilanish: 2026-yil oktyabr. Ushbu siyosa Cineora platformasining barcha xizmatlariga tatbiq etiladi.
       </p>
 
       <div className="space-y-6">

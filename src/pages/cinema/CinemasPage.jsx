@@ -25,7 +25,7 @@ export const CinemasPage = () => {
       <PageHeader
         icon={Building2}
         title="Kinoteatrlar"
-        subtitle="CineBook hamkor kinoteatrlari katalogi (namoyish ma'lumotlari)"
+        subtitle="Cineora hamkor kinoteatrlari katalogi (namoyish ma'lumotlari)"
       />
 
       {!error && cinemas && cinemas.length > 0 && (

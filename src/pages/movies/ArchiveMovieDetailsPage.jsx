@@ -35,10 +35,10 @@ export const ArchiveMovieDetailsPage = () => {
 
   useEffect(() => {
     if (movie?.title) {
-      document.title = `${movie.title} — CineBook Ultra`;
+      document.title = `${movie.title} — Cineora`;
     }
     return () => {
-      document.title = 'CineBook Ultra';
+      document.title = 'Cineora';
     };
   }, [movie?.title]);
 

@@ -1,5 +1,5 @@
 /**
- * Mock Backend Server for CineBook
+ * Mock Backend Server for Cineora
  * Implements 100% of the required endpoints specified in the prompt:
  * 
  * AUTH:
@@ -47,14 +47,14 @@ const SWAGGER_HTML = `<!DOCTYPE html>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#09090B" />
-  <title>CineBook Ultra — Mock API Docs</title>
+  <title>Cineora — Mock API Docs</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
   <style>
-    /* ---------- CineBook design tokens (tailwind.config.js bilan bir xil) ---------- */
+    /* ---------- Cineora design tokens (tailwind.config.js bilan bir xil) ---------- */
     :root {
       --cb-bg: #09090B;
       --cb-surface: #121216;
@@ -383,7 +383,7 @@ const SWAGGER_HTML = `<!DOCTYPE html>
           </svg>
         </div>
         <div class="cb-logo-text">
-          <h1>CineBook <span>Ultra</span> — Mock API</h1>
+          <h1>Cineora <span>Ultra</span> — API hujjatlari</h1>
           <p class="cb-slogan">Every story starts here</p>
         </div>
       </div>
@@ -400,7 +400,7 @@ const SWAGGER_HTML = `<!DOCTYPE html>
   <div id="swagger-ui"></div>
 
   <footer class="cb-footer">
-    <span>CineBook Ultra · Mock backend · ma'lumotlar xotirada (in-memory) saqlanadi</span>
+    <span>Cineora · Mock backend · ma'lumotlar xotirada (in-memory) saqlanadi</span>
     <span><a href="/openapi.json">openapi.json</a> · <a href="/">health check</a></span>
   </footer>
 
@@ -786,9 +786,9 @@ const reviews = [
 
 // Cinemas (reference data — clearly marked as catalog sample)
 const cinemas = [
-  { id: 1, name: 'CineBook Imax Center', address: 'Toshkent, Amir Temur shoh ko‘chasi 108', halls: 4, image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80' },
-  { id: 2, name: 'CineBook Mega Planet', address: 'Samarqand, Registon ko‘chasi 12', halls: 3, image: 'https://images.unsplash.com/photo-1485872299829-c673f5194813?auto=format&fit=crop&w=800&q=80' },
-  { id: 3, name: 'CineBook Zomin', address: 'Farg‘ona, Mustaqillik ko‘chasi 45', halls: 2, image: 'https://movies.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80' }
+  { id: 1, name: 'Cineora Imax Center', address: 'Toshkent, Amir Temur shoh ko‘chasi 108', halls: 4, image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80' },
+  { id: 2, name: 'Cineora Mega Planet', address: 'Samarqand, Registon ko‘chasi 12', halls: 3, image: 'https://images.unsplash.com/photo-1485872299829-c673f5194813?auto=format&fit=crop&w=800&q=80' },
+  { id: 3, name: 'Cineora Zomin', address: 'Farg‘ona, Mustaqillik ko‘chasi 45', halls: 2, image: 'https://movies.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80' }
 ];
 
 // Lawful streaming sources per movie (null = unavailable)
@@ -995,7 +995,7 @@ const server = http.createServer(async (req, res) => {
     if (pathname === isHealthPath && method === 'GET') {
       return sendJSON(res, 200, {
         status: 'online',
-        service: 'CineBook Mock API Server',
+        service: 'Cineora Mock API Server',
         docs: '/api-docs',
         spec: '/openapi.json',
         frontend: serveStatic ? '/' : null,
@@ -1509,7 +1509,8 @@ if (pathname === '/reviews' && method === 'POST') {
   }
 });
 
-server.listen(PORT, () => {    console.log(`🎬 CineBook Mock Server running on http://localhost:${PORT}`);
+server.listen(PORT, () => {
+  console.log(`🎬 Cineora Mock Server running on http://localhost:${PORT}`);
   console.log(`📘 Swagger UI:  http://localhost:${PORT}/api-docs`);
   console.log(`📄 OpenAPI spec: http://localhost:${PORT}/openapi.json`);
   if (serveStatic) {

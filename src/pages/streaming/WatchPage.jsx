@@ -48,10 +48,10 @@ export const WatchPage = () => {
   // Set page title
   useEffect(() => {
     if (movieQuery.data?.title) {
-      document.title = `${movieQuery.data.title} — CineBook Ultra`;
+      document.title = `${movieQuery.data.title} — Cineora`;
     }
     return () => {
-      document.title = 'CineBook Ultra';
+      document.title = 'Cineora';
     };
   }, [movieQuery.data]);
 

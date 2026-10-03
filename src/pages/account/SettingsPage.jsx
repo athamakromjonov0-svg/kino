@@ -126,7 +126,7 @@ export const SettingsPage = () => {
 
       {/* Honest note about theme */}
       <div className="bg-[#121216] border border-[#27272A] rounded-2xl p-4 text-xs text-zinc-400 leading-relaxed">
-        Mavzu (theme) doim <span className="text-white font-semibold">qorong'u (dark)</span> — bu CineBook brend identifikatori.
+        Mavzu (theme) doim <span className="text-white font-semibold">qorong'u (dark)</span> — bu Cineora brend identifikatori.
         Sozlamalar qurilmangizda (localStorage) saqlanadi.
       </div>
     </div>

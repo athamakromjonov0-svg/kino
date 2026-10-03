@@ -69,7 +69,7 @@ const AdminSettings = lazy(() => import('../pages/admin/AdminSettings'));
 
 export function AppRoutes() {
   return (
-    <Suspense fallback={<Loader fullScreen text="CineBook yuklanmoqda..." />}>
+    <Suspense fallback={<Loader fullScreen text="Cineora yuklanmoqda..." />}>
       <Routes>
         <Route element={<MainLayout />}>
           {/* ===================== PUBLIC ===================== */}

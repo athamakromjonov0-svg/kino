@@ -1,10 +1,10 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "CineBook Mock API",
+    "title": "Cineora Mock API",
     "version": "1.0.0",
-    "description": "CINEBOOK ULTRA uchun to'liq mock backend API.\n\nBarcha ma'lumot xotira (in-memory) da saqlanadi — server qayta ishga tushsa tiklanadi.\n\n**Muhim:** bu mock server. Haqiqiy backend ulansa, endpointlar bir xil, ammo ma'lumotlar haqiqiy bo'ladi.\n\n## Test akkauntlar\n\n| Rol | Email | Parol |\n| --- | --- | --- |\n| admin | ali@example.com | password123 |\n| user | madina@example.com | password123 |\n\n## Autentifikatsiya\n\nBarcha himoyalangan endpointlar `Authorization: Bearer <token>` sarlavhasini talab qiladi.\nToken `POST /auth/login` orqali olinadi.",
-    "contact": { "name": "CineBook Ultra", "url": "http://localhost:5173" },
+    "description": "CINEORA uchun to'liq mock backend API.\n\nBarcha ma'lumot xotira (in-memory) da saqlanadi — server qayta ishga tushsa tiklanadi.\n\n**Muhim:** bu mock server. Haqiqiy backend ulansa, endpointlar bir xil, ammo ma'lumotlar haqiqiy bo'ladi.\n\n## Test akkauntlar\n\n| Rol | Email | Parol |\n| --- | --- | --- |\n| admin | ali@example.com | password123 |\n| user | madina@example.com | password123 |\n\n## Autentifikatsiya\n\nBarcha himoyalangan endpointlar `Authorization: Bearer <token>` sarlavhasini talab qiladi.\nToken `POST /auth/login` orqali olinadi.",
+    "contact": { "name": "Cineora", "url": "http://localhost:5173" },
     "license": { "name": "MIT" }
   },
   "servers": [
@@ -36,7 +36,7 @@
                   "type": "object",
                   "properties": {
                     "status": { "type": "string", "example": "online" },
-                    "service": { "type": "string", "example": "CineBook Mock API Server" },
+                    "service": { "type": "string", "example": "Cineora Mock API Server" },
                     "docs": { "type": "string", "example": "/api-docs" },
                     "timestamp": { "type": "string", "format": "date-time" }
                   }
@@ -772,7 +772,7 @@
         "type": "object",
         "properties": {
           "id": { "type": "integer", "example": 1 },
-          "name": { "type": "string", "example": "CineBook Imax Center" },
+          "name": { "type": "string", "example": "Cineora Imax Center" },
           "address": { "type": "string", "example": "Toshkent, Amir Temur shoh ko'chasi 108" },
           "halls": { "type": "integer", "example": 4 },
           "image": { "type": "string", "format": "uri" }

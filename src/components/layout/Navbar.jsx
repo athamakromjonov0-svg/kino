@@ -95,7 +95,7 @@ export const Navbar = ({ onOpenSearch }) => {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-extrabold tracking-tight text-white flex items-center">
-                CINE<span className="text-[#E50914]">BOOK</span>
+                CINE<span className="text-[#E50914]">ORA</span>
               </span>
               <span className="text-[10px] uppercase tracking-widest text-zinc-500 font-semibold -mt-1">
                 Cinema Platform

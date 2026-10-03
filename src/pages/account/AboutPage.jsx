@@ -25,7 +25,7 @@ export const AboutPage = () => {
       <PageHeader
         icon={Info}
         title="Biz haqimizda"
-        subtitle="CINEBOOK ULTRA — EVERY STORY STARTS HERE"
+        subtitle="CINEORA — EVERY STORY STARTS HERE"
       />
 
       {/* Hero statement */}
@@ -37,7 +37,7 @@ export const AboutPage = () => {
           Har bir hikoya shu yerdan boshlanadi
         </h2>
         <p className="text-sm text-zinc-400 leading-relaxed max-w-2xl mx-auto">
-          CineBook Ultra — bu streaming, kinoteatr chiptalari, film ma'lumotlar bazasi va
+          Cineora — bu streaming, kinoteatr chiptalari, film ma'lumotlar bazasi va
           kino hamjamiyatini birlashtirgan zamonaviy platforma. Bizning maqsadimiz — kino
           sevgililariga eng qulay va ishonchli tajribani taqdim etish.
         </p>

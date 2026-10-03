@@ -96,14 +96,14 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* Why CineBook Section */}
+      {/* Why Cineora Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="text-center max-w-2xl mx-auto space-y-2">
           <span className="text-xs font-bold uppercase tracking-widest text-[#FF4D5A]">
             Afzalliklarimiz
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Nega aynan CineBook?
+            Nega aynan Cineora?
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400">
             Kino tajribangizni eng yuqori darajaga olib chiqish uchun yaratilgan qulay platforma.

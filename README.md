@@ -1,6 +1,6 @@
-# 🎬 CINEBOOK ULTRA — Next-Gen Cinema & Streaming Platform
+# 🎬 CINEORA — Next-Gen Cinema & Streaming Platform
 
-**CINEBOOK ULTRA** — kino katalogi, onlayn streaming (faqat qonuniy manbalar), kinoteatr chiptalarini bron qilish, hamjamiyat va admin panelni birlashtirgan katta, ko'p sahifali, premium web application. Slogan: **EVERY STORY STARTS HERE.**
+**CINEORA** — kino katalogi, onlayn streaming (faqat qonuniy manbalar), kinoteatr chiptalarini bron qilish, hamjamiyat va admin panelni birlashtirgan katta, ko'p sahifali, premium web application. Slogan: **EVERY STORY STARTS HERE.**
 
 ---
 
@@ -80,7 +80,7 @@
 ## 📁 Loyiha Strukturasi
 
 ```text
-cinebook-frontend/
+cineora-frontend/
 │
 ├── public/                   # logo, favicon, _redirects (Static Site uchun zaxira)
 ├── src/
@@ -169,7 +169,7 @@ Mock server barcha endpointlar uchun OpenAPI 3.0 hujjatlarini o'zi beradi:
 
 | URL | Nima |
 | :--- | :--- |
-| `http://localhost:5432/api-docs` | Swagger UI — CineBook brend dizaynida, "Try it out" bilan |
+| `http://localhost:5432/api-docs` | Swagger UI — Cineora brend dizaynida, "Try it out" bilan |
 | `http://localhost:5432/openapi.json` | OpenAPI 3.0 spetsifikatsiyasi (JSON) |
 
 - Spetsifikatsiya — loyiha ildizidagi **`openapi.json`** fayli (22 path / 31 operation,
